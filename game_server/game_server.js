@@ -1,4 +1,4 @@
-const Pazaak = require("./pazaak.js");
+const PazaakSession = require("./pazaak.js");
 
 const io = require('socket.io')(3333, {
     cors: {
@@ -19,21 +19,6 @@ const endEmptyGames = (socket) => {
     }
 }
 
-const leaveGame = (socket) => {
-    const oldRooms = Array.from(socket.rooms.values());
-    for (const i in Object.keys(games)){
-        if (oldRooms.includes(Object.keys(games)[i])) {
-            const players = games[Object.keys(games)[i]]["players"];
-            if (players["Player 1"] == socket.id) {
-                games[Object.keys(games)[i]]["players"]["Player 1"] = null; 
-            }
-            if (players["Player 2"] == socket.id) {
-                games[Object.keys(games)[i]]["players"]["Player 2"] = null;
-            }
-        }
-    }
-}
-
 const updatePlayers = (socket) => {
     const rooms = Array.from(socket.rooms.values())
     let room = null;
@@ -44,26 +29,6 @@ const updatePlayers = (socket) => {
     };
     io.to(games[room]["players"]["Player 1"]).emit('game-state', games[room].retrieveGameState("Player 1"));
     io.to(games[room]["players"]["Player 2"]).emit('game-state', games[room].retrieveGameState("Player 2"));
-}
-
-const processGameMove = (socket, room, move) => {
-    if (socket.id == games[room].currentPlayer) {
-        if (move == "stand") {
-            games[room].stand();
-        }
-        else if (move == "end turn") {
-            games[room].endTurn();
-        }
-        else if (!isNaN(move)) {
-            games[room].playCard(move);
-        }
-        else {
-            console.log(`${move} is not a valid move!`);
-        }
-    }
-    else {
-        console.log(`It is not ${socket.id}'s turn!`);
-    }
 }
 
 const addSocketToRoom = (socket, roomName) => {
@@ -97,12 +62,25 @@ const removeSocketFromRoom = (socket, roomName) => {
 
 const createGame = (roomName) => {
     if(!Object.keys(games).includes(roomName)){
-        games[roomName] = new Pazaak();
+        games[roomName] = new PazaakSession();
     }
 }
 
 const addPlayerToGame = (socket, roomName) => {
     games[roomName].assignPlayer(socket.id);
+}
+
+const leaveGame = (socket) => {
+    const oldRooms = Array.from(socket.rooms.values());
+    for (const i in oldRooms) {
+        if (Object.keys(games).includes(oldRooms[i])){
+            games[oldRooms[i]].removePlayer(socket.id);
+        }
+    }
+}
+
+const processGameMove = (socket, room, move) => {
+    games[room].processMove(socket.id, move);
 }
 
 io.on('connection', socket => {
@@ -111,14 +89,14 @@ io.on('connection', socket => {
         updatePlayers(socket);
     };
     
-    const joinRoom = (roomName) => {
+    const joinRoom = roomName => {
         createGame(roomName);
         addPlayerToGame(socket, roomName);
         addSocketToRoom(socket, roomName);
         updatePlayers(socket);
     };
     
-    const leaveRoom = (roomName) => {
+    const leaveRoom = roomName => {
         leaveGame(socket);
         endEmptyGames(socket);
         removeSocketFromRoom(socket, roomName);

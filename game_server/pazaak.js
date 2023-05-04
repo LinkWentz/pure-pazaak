@@ -1,9 +1,5 @@
 class Pazaak {
     constructor() {
-        this.players = {
-            "Player 1": null, 
-            "Player 2": null
-        };
         this.boards = {
             "Player 1": {
                 "points": 0,
@@ -20,35 +16,6 @@ class Pazaak {
         };
         this.turn = "Player 1";
         this.finished = false;
-    };
-
-    get currentPlayer() {
-        return this.players[this.turn];
-    };
-
-    retrieveGameState(player) {
-        return {
-            "players": this.players,
-            "boards": this.boards,
-            "turn": this.turn,
-            "finished": this.finished
-        }
-    }
-
-    assignPlayer(player) {
-        if (!this.players["Player 1"] && !this.players["Player 2"]) {
-            const assignment = ["Player 1", "Player 2"][Math.round(Math.random())];
-            this.players[assignment] = player;
-        }
-        else if (!this.players["Player 1"]) {
-            this.players["Player 1"] = player;
-        }
-        else if (!this.players["Player 2"]) {
-            this.players["Player 2"] = player;
-        }
-        else {
-            console.log("Game is full!");
-        }
     }
 
     generateSideDecks() {
@@ -194,4 +161,75 @@ class Pazaak {
     }
 }
 
-module.exports = Pazaak;
+class PazaakSession extends Pazaak {
+    constructor() {
+        super();
+        this.players = {
+            "Player 1": null, 
+            "Player 2": null
+        };
+    }
+
+    get currentPlayer() {
+        return this.players[this.turn];
+    }
+
+    retrieveGameState(player) {
+        return {
+            "players": this.players,
+            "boards": this.boards,
+            "turn": this.turn,
+            "finished": this.finished
+        }
+    }
+
+    assignPlayer(player) {
+        if (!this.players["Player 1"] && !this.players["Player 2"]) {
+            const assignment = ["Player 1", "Player 2"][Math.round(Math.random())];
+            this.players[assignment] = player;
+        }
+        else if (!this.players["Player 1"]) {
+            this.players["Player 1"] = player;
+        }
+        else if (!this.players["Player 2"]) {
+            this.players["Player 2"] = player;
+        }
+        else {
+            console.log("Game is full!");
+        }
+    }
+
+    removePlayer(player) {
+        if (player == this.players["Player 1"]) {
+            this.players["Player 1"] = null;
+        }
+        else if (player == this.players["Player 2"]) {
+            this.players["Player 2"] = null;
+        }
+        else {
+            return `${player} is not in the game!`;
+        }
+    }
+
+    processMove(player, move) {
+        if (player == this.currentPlayer) {
+            if (move == "stand") {
+                this.stand();
+            }
+            else if (move == "end turn") {
+                this.endTurn();
+            }
+            else if (Number.isInteger(move)) {
+                this.playCard(move);
+            }
+            else {
+                return `${move} is not a valid move!`;
+            }
+        }
+        else {
+            return `It is not ${player}'s turn!`;
+        }
+    }
+}
+
+module.exports = PazaakSession;
