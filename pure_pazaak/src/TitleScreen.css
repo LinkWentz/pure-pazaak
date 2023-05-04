@@ -1,0 +1,29 @@
+.TitleScreen {
+  width: 100%;
+}
+header {
+  font-size: 10rem;
+  text-align: center;
+  width: 100%;
+  font-family: starwars;
+  color: gold;
+  padding: 10% 0px;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+main {
+  display: flex;
+  width: 100%;
+  height: 225px;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,15 @@
+.BoardContainer{
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.Board {
+  height: 100%;
+  aspect-ratio: 0.75;
+  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}

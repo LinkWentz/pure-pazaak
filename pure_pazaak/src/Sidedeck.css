@@ -1,0 +1,6 @@
+.Sidedeck {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 500px;
+  gap: 10px;
+}

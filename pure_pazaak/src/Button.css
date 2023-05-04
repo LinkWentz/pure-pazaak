@@ -1,0 +1,21 @@
+.Button {
+    height: 60px;
+    width: 200px;
+    border-radius: 50px;
+    font-size: 1.5rem;
+    font-family: 'Bruno Ace SC', cursive;
+    color: lightblue;
+    background-color: darkblue;
+    border: lightblue 2px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+.Button:hover {
+    background-color: #002
+}

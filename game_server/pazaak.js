@@ -1,0 +1,197 @@
+class Pazaak {
+    constructor() {
+        this.players = {
+            "Player 1": null, 
+            "Player 2": null
+        };
+        this.boards = {
+            "Player 1": {
+                "points": 0,
+                "standing": false,
+                "side_deck": [1, -1, 2, -2],
+                "board": []
+            },
+            "Player 2": {
+                "points": 0,
+                "standing": false,
+                "side_deck": [1, -1, 2, -2],
+                "board": []
+            }
+        };
+        this.turn = "Player 1";
+        this.finished = false;
+    };
+
+    get currentPlayer() {
+        return this.players[this.turn];
+    };
+
+    retrieveGameState(player) {
+        return {
+            "players": this.players,
+            "boards": this.boards,
+            "turn": this.turn,
+            "finished": this.finished
+        }
+    }
+
+    assignPlayer(player) {
+        if (!this.players["Player 1"] && !this.players["Player 2"]) {
+            const assignment = ["Player 1", "Player 2"][Math.round(Math.random())];
+            this.players[assignment] = player;
+        }
+        else if (!this.players["Player 1"]) {
+            this.players["Player 1"] = player;
+        }
+        else if (!this.players["Player 2"]) {
+            this.players["Player 2"] = player;
+        }
+        else {
+            console.log("Game is full!");
+        }
+    }
+
+    generateSideDecks() {
+        return
+    }
+
+    switchTurn() {
+        if (this.turn == "Player 1"){
+            this.turn = "Player 2";
+        }
+        else {
+            this.turn = "Player 1";
+        }
+    }
+ 
+    playerStanding() {
+        return this.boards[this.turn]["standing"]
+    }
+    
+    score(player = null) {
+        let board;
+        if (player !== null){
+            board = this.boards[player];
+        }
+        else {
+            board = this.boards[this.turn];
+        }
+        const score = board["board"].reduce((x, e) => x + e, 0);
+        return score;
+    }
+
+    dealCard() {
+        const selectedCard = Math.round(Math.random() * 9) + 1;
+        this.boards[this.turn]["board"].push(selectedCard);
+    }
+
+    playCard(card) {
+        if (this.boards[this.turn]["side_deck"].includes(card)){
+            const cardIndex = this.boards[this.turn]["side_deck"].indexOf(card)
+            this.boards[this.turn]["side_deck"].splice(cardIndex, 1);
+
+            this.boards[this.turn]["board"].push(card);
+        }
+    }
+
+    stand() {
+        this.boards[this.turn]["standing"] = true;
+        this.endTurn();
+    }
+
+    endTurn() {
+        if (this.score() > 20){
+            this.endRound();
+        }
+        else {
+            this.switchTurn();
+
+            if(this.playerStanding()){
+                this.switchTurn();
+                if (this.playerStanding()){
+                    this.endRound();
+                }
+            }
+            this.dealCard();
+        }
+    }
+
+    endRound() {
+        // Figure out who won the round.
+        const player1Score = this.score("Player 1");
+        const player2Score = this.score("Player 2");
+        if (player1Score > 20){
+            this.boards["Player 2"]["points"]++;
+            console.log("Player 2 Won the Round!");
+        }
+        else if (player2Score > 20){
+            this.boards["Player 1"]["points"]++;
+            console.log("Player 1 Won the Round!");
+        }
+        else if (player1Score == player2Score){
+            this.boards["Player 1"]["points"]++;
+            this.boards["Player 2"]["points"]++;
+            console.log("Round is Tied!");
+        }
+        else if (player1Score > player2Score){
+            this.boards["Player 1"]["points"]++;
+            console.log("Player 1 Won the Round!");
+        }
+        else {
+            this.boards["Player 2"]["points"]++;
+            console.log("Player 2 Won the Round!");
+        }
+        this.resetBoards();
+        // Check if either player has won the game.
+        const player1Won = this.boards["Player 1"]["points"] === 3;
+        const player2Won = this.boards["Player 2"]["points"] === 3;
+        if (player1Won || player2Won){
+            this.finished = true;
+            this.resetGame();
+            if (player1Won && player2Won){
+                console.log("The Game is Tied!");
+            } 
+            else if (player1Won){
+                console.log("Player 1 Wins the Game!");
+            }
+            else {
+                console.log("Player 2 Wins the Game!");
+            }
+        }
+    }
+
+    resetBoards() {
+        this.boards["Player 1"] = {
+            ...this.boards["Player 1"],
+            "board": [],
+            "standing": false
+        };
+        this.boards["Player 2"] = {
+            ...this.boards["Player 2"],
+            "board": [],
+            "standing": false
+        };
+    }
+
+    resetGame() {
+        this.boards = {
+            "Player 1": {
+                "points": 0,
+                "standing": false,
+                "side_deck": [1, -1, 2, -2],
+                "board": []
+            },
+            "Player 2": {
+                "points": 0,
+                "standing": false,
+                "side_deck": [1, -1, 2, -2],
+                "board": []
+            }
+        };
+        this.turn = "Player 1";
+        this.finished = false;
+        //generateSideDecks();
+    }
+}
+
+module.exports = Pazaak;
