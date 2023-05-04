@@ -6,108 +6,123 @@ const io = require('socket.io')(3333, {
     }
 });
 
-const games = {};
+const sessions = {};
 
-const endEmptyGames = (socket) => {
-    const oldRooms = Array.from(socket.rooms.values());
-    for (const i in oldRooms){
-        const gameInRoom = Object.keys(games).includes(oldRooms[i]);
-        const roomIsEmpty = io.sockets.adapter.rooms.get(oldRooms[i]).size < 2;
-        if (gameInRoom && roomIsEmpty){
-            delete games[oldRooms[i]];
+// Utility
+const getCurrentRoom = (socket) => {
+    socketRooms =  Array.from(socket.rooms.values());
+
+    let room = null;
+
+    for (const i in socketRooms) {
+        if (socketRooms[i] !== socket.id){
+            room = socketRooms[i];
+            break;
         }
+    }
+
+    return room
+}
+
+const sessionInRoom = (roomName) => {
+    if (Object.keys(sessions).includes(roomName)){
+        return true;
+    }
+    else {
+        return false;
     }
 }
 
-const updatePlayers = (socket) => {
-    const rooms = Array.from(socket.rooms.values())
-    let room = null;
-    for (const i in rooms) {
-        if (Object.keys(games).includes(rooms[i])){
-            room = rooms[i];
-        }
-    };
-    io.to(games[room]["players"]["Player 1"]).emit('game-state', games[room].retrieveGameState("Player 1"));
-    io.to(games[room]["players"]["Player 2"]).emit('game-state', games[room].retrieveGameState("Player 2"));
+// Joining
+const addPlayerToSession = (socket, roomName) => {
+    createSession(roomName);
+    sessions[roomName].assignPlayer(socket.id);
+}
+
+const createSession = (roomName) => {
+    if(!sessionInRoom(roomName)){
+        sessions[roomName] = new PazaakSession();
+    }
 }
 
 const addSocketToRoom = (socket, roomName) => {
-    const room = io.sockets.adapter.rooms.get(roomName)
-    const old_rooms = Array.from(socket.rooms.values());
-    if (old_rooms.includes(roomName)) {
-        console.log(`Client ${socket.id} attempted to join ${roomName} but is already in it!`);
+    const currentRoom = getCurrentRoom(socket);
+    const newRoom = io.sockets.adapter.rooms.get(roomName);
+
+    if (currentRoom == roomName) {
+        return `Client ${socket.id} attempted to join ${roomName} but is already in it!`;
     }
-    else if (room == undefined || room.size < 2) {
-        for (const i in old_rooms){
-            const old_room = old_rooms[i]
-            if(old_room !== socket.id) {
-                socket.leave(old_room);
-                console.log(`Client ${socket.id} left ${old_room}`)
-            }
-        }
+    else if (newRoom == undefined || newRoom.size < 2) {
+        removeSocketFromCurrentRoom(socket);
         socket.join(roomName);
-        console.log(`Client ${socket.id} joined ${roomName}`);
+        return `Client ${socket.id} joined ${roomName}`;
     } 
     else {
-        console.log(`Client ${socket.id} attempted to join ${roomName} but it is full.`);
+        return `Client ${socket.id} attempted to join ${roomName} but it is full.`;
     }
 }
 
-const removeSocketFromRoom = (socket, roomName) => {
-    if(roomName !== socket.id && roomName !== undefined) {
-        socket.leave(roomName);
-        console.log(`Client ${socket.id} left ${roomName}`);
+// Interaction
+const updatePlayers = (socket) => {
+    const currentRoom = getCurrentRoom(socket);
+    if (sessionInRoom(currentRoom)) {
+        const players = sessions[currentRoom]["players"];
+        io.to(players["Player 1"]).emit('game-state', sessions[currentRoom].retrieveSessionState("Player 1"));
+        io.to(players["Player 2"]).emit('game-state', sessions[currentRoom].retrieveSessionState("Player 2"));
+    };
+}
+
+const processGameMove = (socket, roomName, move) => {
+    if (sessionInRoom(roomName)){
+        sessions[roomName].processMove(socket.id, move);
     }
 }
 
-const createGame = (roomName) => {
-    if(!Object.keys(games).includes(roomName)){
-        games[roomName] = new PazaakSession();
+
+// Leaving
+const removePlayerFromCurrentSession = (socket) => {
+    const currentRoom = getCurrentRoom(socket);
+    if (sessionInRoom(currentRoom)){
+        sessions[currentRoom].removePlayer(socket.id);
+        endCurrentSessionIfEmpty(socket);
     }
 }
 
-const addPlayerToGame = (socket, roomName) => {
-    games[roomName].assignPlayer(socket.id);
-}
+const endCurrentSessionIfEmpty = (socket) => {
+    const currentRoom = getCurrentRoom(socket);
 
-const leaveGame = (socket) => {
-    const oldRooms = Array.from(socket.rooms.values());
-    for (const i in oldRooms) {
-        if (Object.keys(games).includes(oldRooms[i])){
-            games[oldRooms[i]].removePlayer(socket.id);
-        }
+    const roomIsEmpty = io.sockets.adapter.rooms.get(oldRooms[i]).size < 2;
+    if (sessionInRoom(currentRoom) && roomIsEmpty){
+        delete sessions[currentRoom];
     }
 }
 
-const processGameMove = (socket, room, move) => {
-    games[room].processMove(socket.id, move);
+const removeSocketFromCurrentRoom = (socket) => {
+    const currentRoom = getCurrentRoom(socket);
+    socket.leave(currentRoom);
+    return `Client ${socket.id} left ${currentRoom}`;
 }
 
+// Main
 io.on('connection', socket => {
-    const gameEvent = (move, room) => {
+    socket.on('game-event', (move, room) => {
         processGameMove(socket, room, move);
         updatePlayers(socket);
-    };
-    
-    const joinRoom = roomName => {
-        createGame(roomName);
-        addPlayerToGame(socket, roomName);
+    });
+
+    socket.on('join-room', (roomName) => {
+        createSession(roomName);
+        addPlayerToSession(socket, roomName);
         addSocketToRoom(socket, roomName);
         updatePlayers(socket);
-    };
-    
-    const leaveRoom = roomName => {
-        leaveGame(socket);
-        endEmptyGames(socket);
-        removeSocketFromRoom(socket, roomName);
-    };
-    
-    const disconnecting = () => {
-        leaveGame(socket);
-        endEmptyGames(socket);
-    };
-    socket.on('game-event', gameEvent);
-    socket.on('join-room', joinRoom);
-    socket.on('leave-room', leaveRoom);
-    socket.on('disconnecting', disconnecting);
+    });
+
+    socket.on('leave-room', () => {
+        removePlayerFromCurrentSession(socket);
+        removeSocketFromCurrentRoom(socket);
+    });
+
+    socket.on('disconnecting', () => {
+        removePlayerFromCurrentSession(socket);
+    });
 });
