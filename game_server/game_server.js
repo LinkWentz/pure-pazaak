@@ -1,10 +1,10 @@
+const Pazaak = require("./pazaak.js");
+
 const io = require('socket.io')(3333, {
     cors: {
         origin: '*'
     }
 });
-
-const Pazaak = require("./pazaak.js");
 
 const games = {};
 
@@ -12,7 +12,7 @@ const endEmptyGames = (socket) => {
     const oldRooms = Array.from(socket.rooms.values());
     for (const i in oldRooms){
         const gameInRoom = Object.keys(games).includes(oldRooms[i]);
-        const roomIsEmpty = io.sockets.adapter.rooms.get(oldRooms[i]).size == 0;
+        const roomIsEmpty = io.sockets.adapter.rooms.get(oldRooms[i]).size < 2;
         if (gameInRoom && roomIsEmpty){
             delete games[oldRooms[i]];
         }
@@ -28,7 +28,7 @@ const leaveGame = (socket) => {
                 games[Object.keys(games)[i]]["players"]["Player 1"] = null; 
             }
             if (players["Player 2"] == socket.id) {
-                games[Object.keys(games)[i]]["players"]["Player 2"] = null; 
+                games[Object.keys(games)[i]]["players"]["Player 2"] = null;
             }
         }
     }
@@ -116,7 +116,6 @@ io.on('connection', socket => {
         addPlayerToGame(socket, roomName);
         addSocketToRoom(socket, roomName);
         updatePlayers(socket);
-        console.log(games[roomName]);
     };
     
     const leaveRoom = (roomName) => {
@@ -126,9 +125,8 @@ io.on('connection', socket => {
     };
     
     const disconnecting = () => {
-        const socket_before = socket;
         leaveGame(socket);
-        endEmptyGames(socket_before);
+        endEmptyGames(socket);
     };
     socket.on('game-event', gameEvent);
     socket.on('join-room', joinRoom);
