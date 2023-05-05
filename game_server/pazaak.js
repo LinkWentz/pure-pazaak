@@ -8,19 +8,18 @@ class Pazaak {
             "Player 1": {
                 "points": 0,
                 "standing": false,
-                "side_deck": [1, -1, 2, -2],
+                "side_deck": this.generateSideDeck(),
                 "board": []
             },
             "Player 2": {
                 "points": 0,
                 "standing": false,
-                "side_deck": [1, -1, 2, -2],
+                "side_deck": this.generateSideDeck(),
                 "board": []
             }
         };
         this.turn = "Player 1";
         this.finished = false;
-        //generateSideDecks();
         this.endTurn();
     }
 
@@ -37,8 +36,13 @@ class Pazaak {
         };
     }
 
-    generateSideDecks() {
-        return
+    generateSideDeck() {
+        return Array.from({length: 4}, () => {
+            const cardValue = Math.round(Math.random() * 5) + 1;
+            const sign = Math.round(Math.random()) * 2 - 1;
+            const card = cardValue * sign;
+            return card;
+        });
     }
 
     switchTurn() {
