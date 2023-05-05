@@ -21,6 +21,7 @@ class Pazaak {
         this.turn = "Player 1";
         this.finished = false;
         //generateSideDecks();
+        this.endTurn();
     }
 
     resetBoards() {
@@ -54,7 +55,7 @@ class Pazaak {
         this.boards[this.turn]["board"].push(selectedCard);
     }
 
-    determineRoundWinner() {
+    awardPoints() {
         const player1Score = this.score("Player 1");
         const player2Score = this.score("Player 2");
         if (player1Score > 20){
@@ -101,8 +102,10 @@ class Pazaak {
     }
 
     endRound() {
+        this.awardPoints();
         this.resetBoards();
-        this.determineRoundWinner();
+        this.endTurn();
+        
         this.determineGameWinner();
     }
     
@@ -148,7 +151,7 @@ class Pazaak {
             if(this.playerStanding()){
                 this.switchTurn();
                 if (this.playerStanding()){
-                    this.endRound();
+                    return this.endRound();
                 }
             }
             this.dealCard();
