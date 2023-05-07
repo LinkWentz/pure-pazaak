@@ -1,0 +1,9 @@
+.Point {
+    height: 80%;
+}
+.Point svg {
+    height: 100%;
+}
+.Point path {
+    stroke-width: 8%;
+}

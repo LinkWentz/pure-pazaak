@@ -1,32 +1,60 @@
 import './TitleScreen.css';
-import { Link, useNavigate } from "react-router-dom";
-import { socket } from './App';
+import Button from "./Button";
+import ButtonLink from './ButtonLink';
+import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
 
 function TitleScreen() {
 
   const navigate = useNavigate();
 
-  const JoinRoom = (event) => {
-    event.preventDefault();
-    const roomcode = event.target.roomcode.value;
-    navigate('/game/' + roomcode);
+  const [roomcode, setRoomcode] = useState("");
+
+  const JoinRoom = () => {
+      if (/[A-Za-z0-9]{4}/.test(roomcode)){
+        navigate('/game/' + roomcode);
+      }
+  }
+
+  const ChangeRoomcode = (value) => {
+    if (value !== null) {
+      for (const i in value.split("")){
+        if (/[A-Za-z0-9]/.test(value[i])){
+          continue
+        }
+        else {
+          return
+        }
+      }
+      setRoomcode(value);
+    }
+    else {
+      setRoomcode(null);
+    }
+  }
+
+  const onChange = (event) => {
+    ChangeRoomcode(event.target.value);
+  }
+
+  const onKeyDown = (event) => {
+    if (event.keyCode == 13) {
+      JoinRoom();
+    }
   }
 
   return (
     <div className="TitleScreen">
       <header>Pure Pazaak</header>
       <main>
-        <form onSubmit={JoinRoom}>
-          <label>
-            Room Code:
-            <input type="input" name="roomcode" maxLength={4} autoComplete="off" pattern='[A-Za-z0-9]{4}' required/>
-          </label>
-          <input type="submit" value="Join" className="Button"/>
-        </form>
-        <Link to="rules" className="Button">Rules</Link>
+        <input className="RoomcodeField" type="input" maxLength={4} 
+        autoComplete="off" onChange={onChange} onKeyDown={onKeyDown}
+        value={roomcode}/>
+        <Button onClick={JoinRoom}>Join</Button>
+        <ButtonLink to="/rules">Rules</ButtonLink>
       </main>
     </div>
   )
 }
 
-export default TitleScreen
+export default TitleScreen;

@@ -1,5 +1,6 @@
-import './Board.css'
-import Card from './Card'
+import './Board.css';
+import Card from './Card';
+import Scoreboard from './Scoreboard';
 
 function Board(props) {
 
@@ -10,11 +11,10 @@ function Board(props) {
   }
 
   return (
-    <div className="BoardContainer">
-      <div className="Board">
+    <div className="Board">
+      <div className="cardGrid">
         {card_elements}
       </div>
-      <div className="sum"><p>{props.cards.reduce((x, e) => x + e, 0)}</p></div>
     </div>
   )
 }

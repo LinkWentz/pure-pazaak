@@ -1,16 +1,12 @@
-import './Game.css';
+import './Test.css';
 import Scoreboard from './Scoreboard';
 import Board from './Board' ;
 import Sidedeck from './Sidedeck';
-import Button from './Button';
-import ButtonLink from './ButtonLink';
-import BoardSum from './BoardSum';
-import TurnIndicator from './TurnIndicator';
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { socket } from './App';
 
-function Game(){
+function Test(){
 
     const params = useParams();
 
@@ -76,38 +72,43 @@ function Game(){
   
 
     return(
-        <div className="Game">
+        <div className="A">
             <Scoreboard score={state["boards"][role["you"]]["points"]}/>
-            <div className="Spacer"/>
-            <BoardSum board={state["boards"][role["you"]]["board"]}/>
-            <div className="Spacer"/>
-            <BoardSum board={state["boards"][role["opponent"]]["board"]}/>
-            <div className="Spacer"/>
+            <div className="B"/>
+            <div className="B"><p style={{fontSize: "1.7rem", textAlign: "center"}}>{state["boards"][role["you"]]["board"].reduce((x, e) => x + e, 0)}</p></div>
+            <div className="B"/>
+            <div className="B"><p style={{fontSize: "1.7rem", textAlign: "center"}}>{state["boards"][role["opponent"]]["board"].reduce((x, e) => x + e, 0)}</p></div>
+            <div className="B"/>
             <Scoreboard score={state["boards"][role["opponent"]]["points"]}/>
 
-            <div className="Spacer"/>
+            <div className="B"/>
             <Board cards={state["boards"][role["you"]]["board"]}/>
-            <div className="Spacer"/>
+            <div className="B"/>
             <Board cards={state["boards"][role["opponent"]]["board"]}/>
-            <div className="Spacer"/>
+            <div className="B"/>
 
-            <div className="Spacer"/>
             <Sidedeck cards={state["boards"][role["you"]]["side_deck"]}></Sidedeck>
-            <div className="Spacer"/>
-            <div className="Spacer"/>
-            <div className="Spacer"/>
-            <div className="Spacer"/>
-            <div className="Spacer"/>
+            <div className="B"/>
+            <div className="B E"/>
 
-            <ButtonLink to="/">Main Menu</ButtonLink>
-            <div className="Spacer"/>
-            <div className="Spacer"/>
-            <div className="Spacer"/>
-            <div className="Spacer"/>
-            <Button onClick={EndTurn}>End Turn</Button>
-            <Button onClick={Stand}>Stand</Button>
+            <div className="Button" style={{width: "100%", height: "100%", fontSize: "1rem"}} onClick={EndTurn}>End Turn</div>
+            <div className="Button" style={{width: "100%", height: "100%", fontSize: "1rem"}} onClick={Stand}>Stand</div>
+            <div className="B"/>
+            <div className="B"/>
+            <Link className="Button" style={{width: "100%", height: "100%", fontSize: "1rem"}} to="/">Main Menu</Link>
+            <div className="B E" style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+                <p style={{fontSize: "1rem"}}>{(() => {
+                    if (role["you"] == state["turn"]) {
+                        return "Your Turn";
+                    }
+                    else {
+                        return "Opponent's Turn";
+                    }
+                    })()}
+                </p>
+            </div>
         </div>
     )
 }
 
-export default Game;
+export default Test;

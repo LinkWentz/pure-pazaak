@@ -1,21 +1,17 @@
-import './App.css'
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
-import TitleScreen from './TitleScreen'
-import Rules from './Rules'
-import Game from './Game'
+import './App.css';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Starfield from './Starfield';
+import TitleScreen from './TitleScreen';
+import Rules from './Rules';
+import Game from './Game';
 import { io } from 'socket.io-client';
-import { useEffect } from 'react';
 
 export const socket = io(`http://${window.location.hostname}:3333`);
 
 export default function App() {
-
-  useEffect(() => {
-    console.log(window.location.hostname);
-  }, []);
-
   return (
     <div className="App">
+      <Starfield count={1500}/>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<TitleScreen />}/>

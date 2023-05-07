@@ -1,41 +1,46 @@
-.TitleScreen {
-  width: 100%;
-}
-header {
-  font-size: 10rem;
-  text-align: center;
-  width: 100%;
-  font-family: starwars;
-  color: gold;
-  padding: 10% 0px;
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
-}
-main {
-  display: flex;
-  width: 100%;
-  height: 225px;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: column;
-}
 .Game {
   display: grid;
+  grid-template-rows: 1fr 6fr 3fr 1fr;
+  grid-template-columns: 1fr 1fr 2fr 1fr 1fr 1fr 2fr 1fr 1fr;
+  gap: var(--gridGap);
+  aspect-ratio: 4/3;
+  background-color: var(--gameBackground);
+  padding: 2%;
+  border-radius: var(--borderRadius);
+  border: 4px solid lightblue; 
+  box-sizing: border-box;
+}
+
+.Game > .Button {
+  height: 100%;
   width: 100%;
-  gap: 10px;
 }
-.Boards {
-  display: flex;
-  width: 100%;
-  height: 800px;
-  justify-content: space-around;
+
+.Game > .Button + .Button {
+  grid-column-start: span 2;
 }
-.Controls {
-  display: flex;
-  justify-content: center;
-  gap: 50px;
+
+.Game > .ButtonLink {
+  grid-column-start: span 2;
 }
+
+.Board {
+  grid-column-start: span 3;
+}
+
 .Score p {
   font-size: 2rem;
+}
+
+.Scoreboard {
+  grid-column-start: span 2;
+}
+
+.Sidedeck {
+  grid-column-start: span 3;
+}
+
+.Spacer {
+  height: 100%;
+  width: 100%;
 }

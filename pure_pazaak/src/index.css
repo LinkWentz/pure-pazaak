@@ -1,20 +1,47 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  font-family: 'Bruno Ace SC', cursive;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #000000;
+  color: var(--text);
+  background-color: black;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  
+  overflow: hidden;
+  /* colors */
+  --text: lightblue;
+  --borders: lightblue;
+  --headers: gold;
+  --buttonBackground: rgb(0, 0, 138);
+  --gameBackground: rgba(0, 0, 78, 0.7);
+  --starColor: white;
+  --buttonHover: #002;
+  --cardBorderColor: silver;
+  --defaultCardColor: goldenrod;
+  --negativeCardColor: darkred;
+  --positiveCardColor: darkblue;
+  --cardBackColor: grey;
+  --boardElementBackground: black;
+  --scoredPointColor: orange;
+  --unscoredPointColor: grey;
+  /* borders */
+  --gridGap: 2%;
+  --borderRadius: 70px;
+  --buttonBorderRadius: 70px;
 }
+
+
 
 @font-face {
   font-family: starwars;
   src: url("./assets/Starjedi.ttf");
+}
+
+body {
+  margin: 0;
 }

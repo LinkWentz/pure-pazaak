@@ -1,6 +1,22 @@
 .Sidedeck {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+}
+
+.sidedeckGrid {
+  height: 100%;
+  width: 100%;
+
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  width: 500px;
-  gap: 10px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--gridGap);
+  justify-content: center;
+  align-content: center;
+  justify-items: stretch;
+  align-items: center;
 }

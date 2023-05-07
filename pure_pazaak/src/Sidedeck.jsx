@@ -1,5 +1,5 @@
-import './Sidedeck.css'
-import Card from './Card'
+import './Sidedeck.css';
+import Card from './Card';
 import { useParams } from "react-router-dom";
 import { socket } from './App';
 
@@ -13,19 +13,21 @@ function Sidedeck(props) {
   };
 
   for (const card in props.cards){
-    let color = '#AA0000';
+    let color = 'var(--negativeCardColor)';
     if (props.cards[card] > 0) {
-      color = '#0000AA';
+      color = 'var(--positiveCardColor)';
     }
     card_elements.push(
-    <Card key={card} value={props.cards[card]} 
-    onClick={PlayCard}
-    style={{backgroundColor: color, cursor: "pointer"}}/>);
+      <Card key={card} value={props.cards[card]} 
+      onClick={PlayCard} color={color}/>
+    );
   }
 
   return (
     <div className="Sidedeck">
-      {card_elements}
+      <div className="sidedeckGrid">
+        {card_elements}
+      </div>
     </div>
   )
 }
