@@ -1,6 +1,6 @@
 .Game {
   display: grid;
-  grid-template-rows: 1fr 8fr 2fr 1fr;
+  grid-template-rows: 1fr 6fr 3fr 1fr;
   grid-template-columns: 1fr 1fr 2fr 1fr 1fr 1fr 2fr 1fr 1fr;
   gap: var(--gridGap);
   aspect-ratio: 4/3;

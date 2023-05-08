@@ -17,10 +17,8 @@
   --text: lightblue;
   --borders: lightblue;
   --headers: gold;
-  --buttonBackground: rgb(0, 0, 138);
   --gameBackground: rgba(0, 0, 41, 0.7);
   --starColor: white;
-  --buttonHover: rgba(0, 0, 34, 0);
   --cardBorderColor: silver;
   --defaultCardColor: goldenrod;
   --negativeCardColor: darkred;
@@ -29,12 +27,20 @@
   --boardElementBackground: black;
   --scoredPointColor: orange;
   --unscoredPointColor: grey;
+  --button: rgb(0, 0, 138);
+  --buttonHover: rgba(0, 0, 34, 0);
+  --buttonActive: red;
+  --buttonBorder: lightblue;
+  --buttonHoverBorder: gold;
+  --buttonActiveBorder: gold;
+  --buttonHoverText: gold;
+  --buttonActiveText: gold;
   /* borders */
   --gridGap: 2%;
   --borderRadius: 3vh;
   --buttonBorderRadius: 5vh;
   --borderThickness: 0.25vh;
-  --buttonBorderThickness: 0.5vh;
+  --buttonBorderThickness: 0.25vh;
 }
 
 
