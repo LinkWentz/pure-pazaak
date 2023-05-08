@@ -18,9 +18,9 @@
   --borders: lightblue;
   --headers: gold;
   --buttonBackground: rgb(0, 0, 138);
-  --gameBackground: rgba(0, 0, 78, 0.7);
+  --gameBackground: rgba(0, 0, 41, 0.7);
   --starColor: white;
-  --buttonHover: #002;
+  --buttonHover: rgba(0, 0, 34, 0);
   --cardBorderColor: silver;
   --defaultCardColor: goldenrod;
   --negativeCardColor: darkred;
@@ -31,8 +31,10 @@
   --unscoredPointColor: grey;
   /* borders */
   --gridGap: 2%;
-  --borderRadius: 70px;
-  --buttonBorderRadius: 70px;
+  --borderRadius: 3vh;
+  --buttonBorderRadius: 5vh;
+  --borderThickness: 0.25vh;
+  --buttonBorderThickness: 0.5vh;
 }
 
 

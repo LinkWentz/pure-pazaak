@@ -1,7 +1,10 @@
 .Card {
   height: 100%;
-  aspect-ratio: 20/27;
+  width: 100%;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .Card svg {

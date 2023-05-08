@@ -1,13 +1,13 @@
 .Game {
   display: grid;
-  grid-template-rows: 1fr 6fr 3fr 1fr;
+  grid-template-rows: 1fr 8fr 2fr 1fr;
   grid-template-columns: 1fr 1fr 2fr 1fr 1fr 1fr 2fr 1fr 1fr;
   gap: var(--gridGap);
   aspect-ratio: 4/3;
   background-color: var(--gameBackground);
   padding: 2%;
   border-radius: var(--borderRadius);
-  border: 4px solid lightblue; 
+  border: var(--borderThickness) solid var(--borders); 
   box-sizing: border-box;
 }
 
