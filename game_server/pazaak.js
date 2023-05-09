@@ -1,3 +1,24 @@
+class Card {
+    constructor(value, type) {
+        this.value = value;
+        this.validTypes = ["maindeck", "sidedeck"];
+
+        if (this.validTypes.includes(type)){
+            this.type = type;
+        }
+        else {
+            this.type = "maindeck";
+        }
+    }
+
+    equals (other) {
+        if (other.value) {
+            return this.value == other.value;
+        }
+        return false;
+    }
+}
+
 class Pazaak {
     constructor() {
         this.resetGame();
@@ -41,7 +62,7 @@ class Pazaak {
             const cardValue = Math.round(Math.random() * 5) + 1;
             const sign = Math.round(Math.random()) * 2 - 1;
             const card = cardValue * sign;
-            return card;
+            return new Card(card, "sidedeck");
         });
     }
 
@@ -56,7 +77,7 @@ class Pazaak {
 
     dealCard() {
         const selectedCard = Math.round(Math.random() * 9) + 1;
-        this.boards[this.turn]["board"].push(selectedCard);
+        this.boards[this.turn]["board"].push(new Card(selectedCard));
     }
 
     awardPoints() {
@@ -126,17 +147,29 @@ class Pazaak {
         else {
             board = this.boards[this.turn];
         }
-        const score = board["board"].reduce((x, e) => x + e, 0);
+        const score = board["board"].reduce((x, e) => x + e.value, 0);
         return score;
+    }
+
+    cardInSidedeck(card) {
+        
     }
 
     // Moves
     playCard(card) {
-        if (this.boards[this.turn]["side_deck"].includes(card)){
-            const cardIndex = this.boards[this.turn]["side_deck"].indexOf(card)
-            this.boards[this.turn]["side_deck"].splice(cardIndex, 1);
+        if (Number.isInteger(card)){
+            card = new Card(card, "sidedeck");
+        }
+        
+        const currentPlayerSidedeck = this.boards[this.turn]["side_deck"];
 
-            this.boards[this.turn]["board"].push(card);
+        for (const i in currentPlayerSidedeck) {
+            if (currentPlayerSidedeck[i].equals(card)){
+                currentPlayerSidedeck.splice(i, 1);
+                this.boards[this.turn]["board"].push(card);
+
+                break;
+            }
         }
     }
 
@@ -221,7 +254,7 @@ class PazaakSession extends Pazaak {
             else if (move == "end turn") {
                 this.endTurn();
             }
-            else if (Number.isInteger(move)) {
+            else if (Object.hasOwn(move, 'value') || Number.isInteger(move)) {
                 this.playCard(move);
             }
             else {

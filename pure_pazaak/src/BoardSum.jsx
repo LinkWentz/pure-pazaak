@@ -6,7 +6,7 @@ function BoardSum(props) {
     const [sum, setSum] = useState(0);
 
     useEffect(() => {
-        setSum(props.board.reduce((x, e) => x + e, 0))
+        setSum(props.board.reduce((x, e) => x + e.value, 0))
     }, [props])
 
     return(

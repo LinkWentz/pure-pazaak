@@ -7,7 +7,7 @@ function Board(props) {
   const card_elements = [];
 
   for (const card in props.cards){
-    card_elements.push(<Card value={props.cards[card]}/>);
+    card_elements.push(<Card key={card} card={props.cards[card]}/>);
   }
 
   return (

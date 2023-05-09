@@ -8,18 +8,14 @@ function Sidedeck(props) {
   const params = useParams();
   const card_elements = [];
 
-  const PlayCard = (value) => {
-    socket.emit('game-event', value, params['roomcode']);
+  const PlayCard = (card) => {
+    socket.emit('game-event', card, params['roomcode']);
   };
 
   for (const card in props.cards){
-    let color = 'var(--negativeCardColor)';
-    if (props.cards[card] > 0) {
-      color = 'var(--positiveCardColor)';
-    }
     card_elements.push(
-      <Card key={card} value={props.cards[card]} 
-      onClick={PlayCard} color={color}/>
+      <Card key={card} card={props.cards[card]} 
+      onClick={PlayCard}/>
     );
   }
 
