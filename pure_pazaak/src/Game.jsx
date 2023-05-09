@@ -92,7 +92,7 @@ function Game(){
             <div className="Spacer"/>
 
             <div className="Spacer"/>
-            <Sidedeck cards={state["boards"][role["you"]]["side_deck"]}></Sidedeck>
+            <Sidedeck cards={state["boards"][role["you"]]["sidedeck"]}></Sidedeck>
             <div className="Spacer"/>
             <div className="Spacer"/>
             <div className="Spacer"/>

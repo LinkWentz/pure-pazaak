@@ -29,13 +29,15 @@ class Pazaak {
             "Player 1": {
                 "points": 0,
                 "standing": false,
-                "side_deck": this.generateSideDeck(),
+                "sidedeck": this.generateSideDeck(),
+                "sidedeckCardPlayed": false,
                 "board": []
             },
             "Player 2": {
                 "points": 0,
                 "standing": false,
-                "side_deck": this.generateSideDeck(),
+                "sidedeck": this.generateSideDeck(),
+                "sidedeckCardPlayed": false,
                 "board": []
             }
         };
@@ -48,11 +50,13 @@ class Pazaak {
         this.boards["Player 1"] = {
             ...this.boards["Player 1"],
             "board": [],
+            "sidedeckCardPlayed": false,
             "standing": false
         };
         this.boards["Player 2"] = {
             ...this.boards["Player 2"],
             "board": [],
+            "sidedeckCardPlayed": false,
             "standing": false
         };
     }
@@ -155,14 +159,19 @@ class Pazaak {
 
     // Moves
     playCard(card) {
+        if (this.boards[this.turn]["sidedeckCardPlayed"]){
+            return;
+        }
+
         if (Number.isInteger(card)){
             card = new Card(card, "sidedeck");
         }
         
-        const currentPlayerSidedeck = this.boards[this.turn]["side_deck"];
+        const currentPlayerSidedeck = this.boards[this.turn]["sidedeck"];
 
         for (const i in currentPlayerSidedeck) {
             if (currentPlayerSidedeck[i].equals(card)){
+                this.boards[this.turn]["sidedeckCardPlayed"] = true;
                 currentPlayerSidedeck.splice(i, 1);
                 this.boards[this.turn]["board"].push(card);
 
@@ -177,6 +186,8 @@ class Pazaak {
     }
 
     endTurn() {
+        this.boards[this.turn]["sidedeckCardPlayed"] = false;
+        
         if (this.score() > 20){
             this.endRound();
         }
