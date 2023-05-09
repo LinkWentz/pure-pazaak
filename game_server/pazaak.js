@@ -153,10 +153,6 @@ class Pazaak {
         return score;
     }
 
-    cardInSidedeck(card) {
-        
-    }
-
     // Moves
     playCard(card) {
         if (this.boards[this.turn]["sidedeckCardPlayed"]){
