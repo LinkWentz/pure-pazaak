@@ -187,7 +187,7 @@ class Pazaak {
 
     endTurn() {
         this.boards[this.turn]["sidedeckCardPlayed"] = false;
-        
+
         if (this.score() > 20){
             this.endRound();
         }
@@ -219,10 +219,19 @@ class PazaakSession extends Pazaak {
     }
 
     retrieveSessionState(player) {
+        const otherPlayer = ["Player 1", "Player 2"].filter(role => role != player)[0];
         return {
             "players": this.players,
-            "boards": this.boards,
-            "turn": this.turn,
+            "boards": {
+                "you": this.boards[player],
+                "opponent": {
+                    "points": this.boards[otherPlayer]["points"],
+                    "sidedeckSize": this.boards[otherPlayer]["sidedeck"].length,
+                    "standing": this.boards[otherPlayer]["standing"],
+                    "board": this.boards[otherPlayer]["board"]
+                }
+            },
+            "turn": player == this.turn ? "you" : "opponent",
             "finished": this.finished
         }
     }

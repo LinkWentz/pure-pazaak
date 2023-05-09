@@ -13,30 +13,24 @@ import { socket } from './App';
 function Game(){
 
     const params = useParams();
-
-    const [role, setRole] = useState({
-      "you": "Player 1",
-      "opponent": "Player 2"
-    })
   
-    const [state, setState] = useState({
-      "players": {
-        "Player 1": null,
-        "Player 2": null
-      },
+    const [gameState, setGameState] = useState({
       "boards": {
-        "Player 1": {
+        "you": {
           "points": 0,
-          "board": [],
-          "sidedeck": []
+          "standing": false,
+          "sidedeck": [],
+          "sidedeckCardPlayed": false,
+          "board": []
         },
-        "Player 2": {
+        "opponent": {
+          "sidedeckSize": 4,
           "points": 0,
-          "board": [],
-          "sidedeck": []
+          "standing": false,
+          "board": []
         }
       },
-      "turn": "Player 1",
+      "turn": "you",
       "finished": false
     });
   
@@ -45,58 +39,43 @@ function Game(){
       socket.on('connection', () => {
         socket.emit('join-room', params['roomcode']);
       })
-      socket.on('game-state', (gameState) => {
-        setState(gameState);
+      socket.on('game-state', (newGameState) => {
+        setGameState(newGameState);
       });
       return () => {
         socket.emit('leave-room', params['roomcode']);
       };
     }, []);
   
-    useEffect(() => {
-      if (socket.id == state.players["Player 1"]){
-        setRole({
-          "you": "Player 1",
-          "opponent": "Player 2"
-        });
-      }
-      else if (socket.id == state.players["Player 2"]){
-        setRole({
-          "you": "Player 2",
-          "opponent": "Player 1"
-        });
-      }
-    }, [state]);
-  
-    const EndTurn = (event) => {
+    const EndTurn = () => {
       socket.emit('game-event', 'end turn', params['roomcode']);
     };
   
-    const Stand = (event) => {
+    const Stand = () => {
       socket.emit('game-event', 'stand', params['roomcode']);
     };
   
 
     return(
         <div className="Game">
-            <Scoreboard score={state["boards"][role["you"]]["points"]}/>
+            <Scoreboard score={gameState["boards"]["you"]["points"]}/>
             <div className="Spacer"/>
-            <BoardSum board={state["boards"][role["you"]]["board"]}/>
+            <BoardSum board={gameState["boards"]["you"]["board"]}/>
             <div className="Spacer"/>
-            <BoardSum board={state["boards"][role["opponent"]]["board"]}/>
+            <BoardSum board={gameState["boards"]["opponent"]["board"]}/>
             <div className="Spacer"/>
-            <Scoreboard score={state["boards"][role["opponent"]]["points"]}/>
+            <Scoreboard score={gameState["boards"]["opponent"]["points"]}/>
 
             <div className="Spacer"/>
-            <Board cards={state["boards"][role["you"]]["board"]}/>
+            <Board cards={gameState["boards"]["you"]["board"]}/>
             <div className="Spacer"/>
-            <Board cards={state["boards"][role["opponent"]]["board"]}/>
+            <Board cards={gameState["boards"]["opponent"]["board"]}/>
             <div className="Spacer"/>
 
             <div className="Spacer"/>
-            <Sidedeck cards={state["boards"][role["you"]]["sidedeck"]}></Sidedeck>
+            <Sidedeck cards={gameState["boards"]["you"]["sidedeck"]}></Sidedeck>
             <div className="Spacer"/>
-            <OpponentsSidedeck cardsCount={state["boards"][role["opponent"]]["sidedeck"].length}/>
+            <OpponentsSidedeck cardsCount={gameState["boards"]["opponent"]["sidedeckSize"]}/>
             <div className="Spacer"/>
 
             <ButtonLink to="/">Main Menu</ButtonLink>
