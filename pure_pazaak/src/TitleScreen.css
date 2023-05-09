@@ -20,3 +20,23 @@
 .RoomcodeField:focus-visible {
     outline: none;
 }
+
+.TitleScreen > header {
+    padding: 10% 0px;
+}
+  
+.TitleScreen > main {
+    display: flex;
+    width: 100%;
+    height: 250px;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+  
+.TitleScreen > form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
