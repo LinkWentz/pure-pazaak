@@ -1,0 +1,6 @@
+.Overlay {
+    background-color: var(--overlayColor);
+    border-radius: var(--borderRadius);
+    height: 100%;
+    width: 100%;
+}

@@ -1,4 +1,5 @@
 import './Game.css';
+import Overlay from './Overlay';
 import Scoreboard from './Scoreboard';
 import Board from './Board' ;
 import Sidedeck from './Sidedeck';
@@ -58,33 +59,41 @@ function Game(){
 
     return(
         <div className="Game">
-            <Scoreboard score={gameState["boards"]["you"]["points"]}/>
+          <div className="gameOverlayGrid">
             <div className="Spacer"/>
-            <BoardSum board={gameState["boards"]["you"]["board"]}/>
             <div className="Spacer"/>
-            <BoardSum board={gameState["boards"]["opponent"]["board"]}/>
-            <div className="Spacer"/>
-            <Scoreboard score={gameState["boards"]["opponent"]["points"]}/>
+            <Overlay for="you" turn={gameState["turn"]}/>
+            <Overlay for="opponent" turn={gameState["turn"]}/>
+          </div>
+          <div className="gameGrid">
+              <Scoreboard score={gameState["boards"]["you"]["points"]}/>
+              <div className="Spacer"/>
+              <BoardSum board={gameState["boards"]["you"]["board"]}/>
+              <div className="Spacer"/>
+              <BoardSum board={gameState["boards"]["opponent"]["board"]}/>
+              <div className="Spacer"/>
+              <Scoreboard score={gameState["boards"]["opponent"]["points"]}/>
 
-            <div className="Spacer"/>
-            <Board cards={gameState["boards"]["you"]["board"]}/>
-            <div className="Spacer"/>
-            <Board cards={gameState["boards"]["opponent"]["board"]}/>
-            <div className="Spacer"/>
+              <div className="Spacer"/>
+              <Board cards={gameState["boards"]["you"]["board"]}/>
+              <div className="Spacer"/>
+              <Board cards={gameState["boards"]["opponent"]["board"]}/>
+              <div className="Spacer"/>
 
-            <div className="Spacer"/>
-            <Sidedeck cards={gameState["boards"]["you"]["sidedeck"]}></Sidedeck>
-            <div className="Spacer"/>
-            <OpponentsSidedeck cardsCount={gameState["boards"]["opponent"]["sidedeckSize"]}/>
-            <div className="Spacer"/>
+              <div className="Spacer"/>
+              <Sidedeck cards={gameState["boards"]["you"]["sidedeck"]}></Sidedeck>
+              <div className="Spacer"/>
+              <OpponentsSidedeck cardsCount={gameState["boards"]["opponent"]["sidedeckSize"]}/>
+              <div className="Spacer"/>
 
-            <ButtonLink to="/">Main Menu</ButtonLink>
-            <div className="Spacer"/>
-            <div className="Spacer"/>
-            <div className="Spacer"/>
-            <div className="Spacer"/>
-            <Button onClick={EndTurn}>End Turn</Button>
-            <Button onClick={Stand}>Stand</Button>
+              <ButtonLink to="/">Main Menu</ButtonLink>
+              <div className="Spacer"/>
+              <div className="Spacer"/>
+              <div className="Spacer"/>
+              <div className="Spacer"/>
+              <Button onClick={EndTurn}>End Turn</Button>
+              <Button onClick={Stand}>Stand</Button>
+          </div>
         </div>
     )
 }

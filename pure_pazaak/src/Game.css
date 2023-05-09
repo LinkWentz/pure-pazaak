@@ -1,9 +1,27 @@
 .Game {
+  aspect-ratio: 4/3;
+  position: relative;
+}
+
+.gameOverlayGrid{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr 9fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  padding: 2vh;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.gameGrid {
+  height: 100%;
+  width: 100%;
   display: grid;
   grid-template-rows: 1fr 6fr 3fr 1fr;
   grid-template-columns: 1fr 1fr 2fr 1fr 1fr 1fr 2fr 1fr 1fr;
   gap: var(--gridGap);
-  aspect-ratio: 4/3;
   background-color: var(--gameBackground);
   padding: 2%;
   border-radius: var(--borderRadius);
@@ -11,16 +29,16 @@
   box-sizing: border-box;
 }
 
-.Game > .Button {
+.gameGrid > .Button {
   height: 100%;
   width: 100%;
 }
 
-.Game > .Button + .Button {
+.gameGrid > .Button + .Button {
   grid-column-start: span 2;
 }
 
-.Game > .ButtonLink {
+.gameGrid > .ButtonLink {
   grid-column-start: span 2;
 }
 
