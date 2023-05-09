@@ -2,10 +2,10 @@ import './Game.css';
 import Scoreboard from './Scoreboard';
 import Board from './Board' ;
 import Sidedeck from './Sidedeck';
+import OpponentsSidedeck from './OpponentsSidedeck'
 import Button from './Button';
 import ButtonLink from './ButtonLink';
 import BoardSum from './BoardSum';
-import TurnIndicator from './TurnIndicator';
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { socket } from './App';
@@ -27,11 +27,13 @@ function Game(){
       "boards": {
         "Player 1": {
           "points": 0,
-          "board": []
+          "board": [],
+          "sidedeck": []
         },
         "Player 2": {
           "points": 0,
-          "board": []
+          "board": [],
+          "sidedeck": []
         }
       },
       "turn": "Player 1",
@@ -94,9 +96,7 @@ function Game(){
             <div className="Spacer"/>
             <Sidedeck cards={state["boards"][role["you"]]["sidedeck"]}></Sidedeck>
             <div className="Spacer"/>
-            <div className="Spacer"/>
-            <div className="Spacer"/>
-            <div className="Spacer"/>
+            <OpponentsSidedeck cardsCount={state["boards"][role["opponent"]]["sidedeck"].length}/>
             <div className="Spacer"/>
 
             <ButtonLink to="/">Main Menu</ButtonLink>
