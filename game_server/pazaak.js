@@ -92,8 +92,6 @@ class Pazaak {
             return "Player 1 Won the Round!";
         }
         else if (player1Score == player2Score){
-            this.boards["Player 1"]["points"]++;
-            this.boards["Player 2"]["points"]++;
             return "Round is Tied!";
         }
         else if (player1Score > player2Score){
