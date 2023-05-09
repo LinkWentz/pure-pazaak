@@ -1,0 +1,11 @@
+.TurnOverlay{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1fr 9fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    padding: 2vh;
+    box-sizing: border-box;
+    pointer-events: none;
+}

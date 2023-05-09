@@ -1,0 +1,42 @@
+.GameBoard {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr 6fr 3fr 1fr;
+  grid-template-columns: 1fr 1fr 2fr 1fr 1fr 1fr 2fr 1fr 1fr;
+  gap: var(--gridGap);
+  background-color: var(--gameBackground);
+  padding: 2%;
+  border-radius: var(--borderRadius);
+  border: var(--borderThickness) solid var(--borders); 
+  box-sizing: border-box;
+}
+
+.GameBoard > .Button {
+  height: 100%;
+  width: 100%;
+}
+
+.GameBoard > .Button + .Button {
+  grid-column-start: span 2;
+}
+
+.GameBoard > .ButtonLink {
+  grid-column-start: span 2;
+}
+
+.Board {
+  grid-column-start: span 3;
+}
+
+.Score p {
+  font-size: 2rem;
+}
+
+.Scoreboard {
+  grid-column-start: span 2;
+}
+
+.Sidedeck {
+  grid-column-start: span 3;
+}
