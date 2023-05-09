@@ -6,13 +6,13 @@ function WaitingForOpponent(props){
     const [style, setStyle] = useState({});
 
     useEffect(() => {
-        if (props.playerCount > 1){
+        if (props.playerCount > 1 || props.finished){
             setStyle({"visibility": "hidden"});
         }
         else {
             setStyle({"visibility": "visible"});
         }
-    }, [props.playerCount]);
+    }, [props.playerCount, props.finished]);
 
     return(
         <div className="WaitingForOpponent" style={style}>

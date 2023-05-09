@@ -14,10 +14,10 @@ export default function App() {
       <Starfield count={1500}/>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<TitleScreen />}/>
-          <Route path="/rules" element={<Rules />}/>
-          <Route path="/game/:roomcode" element={<Game />}/>
-          <Route path="*" element={<Navigate to="/" replace/>}/>
+          <Route path="/" element={<TitleScreen/>} />
+          <Route path="/rules" element={<Rules/>} />
+          <Route path="/game/:roomcode" element={<Game/>} />
+          <Route path="*" element={<Navigate to="/" replace/>} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -112,7 +112,7 @@ class Pazaak {
         const player1Won = this.boards["Player 1"]["points"] === 3;
         const player2Won = this.boards["Player 2"]["points"] === 3;
         if (player1Won || player2Won){
-            this.resetGame();
+            this.finished = true;
             if (player1Won && player2Won){
                 return "The Game is Tied!";
             } 
@@ -279,6 +279,16 @@ class PazaakSession extends Pazaak {
     }
 
     processMove(player, move) {
+        if (this.finished) {
+            if (move == "new game"){
+                this.resetGame();
+            }
+            else {
+                return "This game is finished!";
+            } 
+            return;
+        }
+
         if (player == this.currentPlayer) {
             if (move == "stand") {
                 this.stand();

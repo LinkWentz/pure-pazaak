@@ -1,4 +1,5 @@
 import './Game.css';
+import GameOver from './GameOver';
 import WaitingForOpponent from './WaitingForOpponent';
 import TurnOverlay from './TurnOverlay';
 import GameBoard from './GameBoard';
@@ -46,7 +47,10 @@ function Game(){
 
     return(
         <div className="Game">
-          <WaitingForOpponent playerCount={gameState.playerCount}/>
+          <GameOver finished={gameState.finished} yourScore={gameState["boards"]["you"]["points"]} 
+          opponentScore={gameState["boards"]["opponent"]["points"]}/>
+          <WaitingForOpponent playerCount={gameState.playerCount} 
+          finished={gameState.finished}/>
           <TurnOverlay turn={gameState.turn}/>
           <GameBoard gameState={gameState}/>
         </div>
