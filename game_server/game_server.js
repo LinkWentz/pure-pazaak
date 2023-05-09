@@ -119,10 +119,12 @@ io.on('connection', socket => {
 
     socket.on('leave-room', () => {
         removePlayerFromCurrentSession(socket);
+        updatePlayers(socket);
         removeSocketFromCurrentRoom(socket);
     });
 
     socket.on('disconnecting', () => {
         removePlayerFromCurrentSession(socket);
+        updatePlayers(socket);
     });
 });

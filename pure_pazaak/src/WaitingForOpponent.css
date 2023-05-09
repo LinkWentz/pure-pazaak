@@ -1,0 +1,13 @@
+.WaitingForOpponent {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: var(--waitingOverlayColor);
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--borderRadius);
+    box-sizing: border-box;
+    z-index: 30;
+}

@@ -1,4 +1,5 @@
 import './Game.css';
+import WaitingForOpponent from './WaitingForOpponent';
 import TurnOverlay from './TurnOverlay';
 import GameBoard from './GameBoard';
 import { useParams } from "react-router-dom";
@@ -26,7 +27,8 @@ function Game(){
         }
       },
       "turn": "you",
-      "finished": false
+      "finished": false,
+      "playerCount": 1
     });
   
     useEffect(() => {
@@ -44,6 +46,7 @@ function Game(){
 
     return(
         <div className="Game">
+          <WaitingForOpponent playerCount={gameState.playerCount}/>
           <TurnOverlay turn={gameState.turn}/>
           <GameBoard gameState={gameState}/>
         </div>

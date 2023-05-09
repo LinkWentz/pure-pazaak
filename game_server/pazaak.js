@@ -218,8 +218,21 @@ class PazaakSession extends Pazaak {
         return this.players[this.turn];
     }
 
+    get playerCount() {
+        let playerCount = 0;
+        if (this.players["Player 1"]){
+            playerCount++;
+        }
+        if (this.players["Player 2"]){
+            playerCount++;
+        }
+
+        return playerCount;
+    }
+
     retrieveSessionState(player) {
         const otherPlayer = ["Player 1", "Player 2"].filter(role => role != player)[0];
+
         return {
             "players": this.players,
             "boards": {
@@ -232,7 +245,8 @@ class PazaakSession extends Pazaak {
                 }
             },
             "turn": player == this.turn ? "you" : "opponent",
-            "finished": this.finished
+            "finished": this.finished,
+            "playerCount": this.playerCount
         }
     }
 

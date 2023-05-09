@@ -1,4 +1,5 @@
 .Game {
   aspect-ratio: 4/3;
   position: relative;
+  z-index: 10;
 }

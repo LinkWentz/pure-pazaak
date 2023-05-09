@@ -26,6 +26,7 @@
   --cardBackColor: grey;
   --boardElementBackground: black;
   --overlayColor: rgba(0, 0, 0, 0.5);
+  --waitingOverlayColor: rgba(0, 0, 0, 0.5);
   --scoredPointColor: orange;
   --unscoredPointColor: grey;
   --button: rgb(0, 0, 138);
