@@ -178,6 +178,10 @@ class Pazaak {
                 break;
             }
         }
+
+        if (this.score(this.turn) == 20){
+            this.stand();
+        }
     }
 
     stand() {
