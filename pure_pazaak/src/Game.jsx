@@ -19,7 +19,7 @@ function Game(){
           "board": []
         },
         "opponent": {
-          "sidedeckSize": 4,
+          "sidedeckSize": 0,
           "points": 0,
           "standing": false,
           "board": []
