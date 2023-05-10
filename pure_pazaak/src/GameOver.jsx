@@ -41,7 +41,6 @@ function GameOver(props){
             <div className="message">{message}</div>
             <div className="buttons">
                 <Button onClick={RestartGame}>Rematch</Button>
-                <ButtonLink to="/">Main Menu</ButtonLink>
             </div>
         </div>
     )

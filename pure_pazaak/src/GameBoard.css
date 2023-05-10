@@ -23,6 +23,7 @@
 
 .GameBoard > .ButtonLink {
   grid-column-start: span 2;
+  z-index: 50;
 }
 
 .Board {
