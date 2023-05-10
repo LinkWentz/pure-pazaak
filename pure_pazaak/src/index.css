@@ -14,29 +14,29 @@
   
   overflow: hidden;
   /* colors */
-  --text: lightblue;
-  --borders: lightblue;
-  --headers: gold;
-  --gameBackground: rgba(0, 0, 41, 0.7);
+  --text: #9DD9D2;
+  --borders: #9DD9D2;
+  --headers: #FBC846;
+  --gameBackground: rgba(0, 0, 50, 0.7);
   --starColor: white;
-  --cardBorderColor: silver;
-  --defaultCardColor: goldenrod;
-  --negativeCardColor: darkred;
-  --positiveCardColor: darkblue;
-  --cardBackColor: grey;
+  --cardBorderColor: #AAA;
+  --defaultCardColor: #cc9c00;
+  --negativeCardColor: #A30021;
+  --positiveCardColor: #1E2071;
+  --cardBackColor: #777;
   --boardElementBackground: black;
   --overlayColor: rgba(0, 0, 0, 0.5);
   --waitingOverlayColor: rgba(0, 0, 0, 0.5);
-  --scoredPointColor: orange;
-  --unscoredPointColor: grey;
-  --button: rgb(0, 0, 138);
-  --buttonHover: rgba(0, 0, 34, 0);
-  --buttonActive: red;
-  --buttonBorder: lightblue;
-  --buttonHoverBorder: gold;
-  --buttonActiveBorder: gold;
-  --buttonHoverText: gold;
-  --buttonActiveText: gold;
+  --scoredPointColor: #e0520f;
+  --unscoredPointColor: #444;
+  --button: #111240;
+  --buttonHover: rgba(0, 0, 20, 1);
+  --buttonActive: #FBC846;
+  --buttonBorder: #9DD9D2;
+  --buttonHoverBorder: #FBC846;
+  --buttonActiveBorder: #FBC846;
+  --buttonHoverText: #FBC846;
+  --buttonActiveText: #FBC846;
   /* borders */
   --gridGap: 2%;
   --borderRadius: 3vh;
@@ -56,4 +56,21 @@ body {
   margin: 0;
   overflow-y: scroll;
   overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9DD9D2;
+  border-radius: 1vw;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FBC846;
 }
