@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Starfield from './Starfield';
 import TitleScreen from './TitleScreen';
 import Rules from './Rules';
+import About from './About';
 import Game from './Game';
 import { io } from 'socket.io-client';
 
@@ -16,6 +17,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<TitleScreen/>} />
           <Route path="/rules" element={<Rules/>} />
+          <Route path="/about" element={<About/>} />
           <Route path="/game/:roomcode" element={<Game/>} />
           <Route path="*" element={<Navigate to="/" replace/>} />
         </Routes>

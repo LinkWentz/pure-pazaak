@@ -52,6 +52,7 @@ function TitleScreen() {
         value={roomcode}/>
         <Button onClick={JoinRoom}>Join</Button>
         <ButtonLink to="/rules">Rules</ButtonLink>
+        <ButtonLink to="/about">About</ButtonLink>
       </main>
     </div>
   )
