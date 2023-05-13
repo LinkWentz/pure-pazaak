@@ -7,7 +7,7 @@ import About from './About';
 import Game from './Game';
 import { io } from 'socket.io-client';
 
-export const socket = io(`http://${window.location.hostname}:3333`);
+export const socket = io.connect(`https://${window.location.hostname}:3333`, {transports: ['websocket']});
 
 export default function App() {
   return (

@@ -1,9 +1,21 @@
 const PazaakSession = require("./pazaak.js");
+const fs = require("fs");
 
-const io = require('socket.io')(3333, {
+const {key, cert} = (() => {
+	return {
+		key: fs.readFileSync(`../certs/privkey.pem`, 'utf-8'),
+		cert: fs.readFileSync(`../certs/fullchain.pem`, 'utf-8')
+	}
+})();
+
+const https = require('https').createServer({key, cert}).listen(3333);
+const io = require('socket.io')(https, {
     cors: {
         origin: '*'
-    }
+    },
+    secure: true,
+    tiemout: 100000,
+    transports: ["websocket"]
 });
 
 const sessions = {};
@@ -104,7 +116,7 @@ const removeSocketFromCurrentRoom = (socket) => {
 }
 
 // Main
-io.on('connection', socket => {
+io.on('connection', async (socket) => {
     socket.on('game-event', (move, room) => {
         processGameMove(socket, room, move);
         updatePlayers(socket);
