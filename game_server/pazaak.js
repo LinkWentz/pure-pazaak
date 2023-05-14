@@ -206,8 +206,9 @@ class Pazaak {
 }
 
 class PazaakSession extends Pazaak {
-    constructor() {
+    constructor(privateSession = false) {
         super();
+        this.privateSession = privateSession;
         this.players = {
             "Player 1": null, 
             "Player 2": null
@@ -228,6 +229,10 @@ class PazaakSession extends Pazaak {
         }
 
         return playerCount;
+    }
+
+    get isPrivate() {
+        return this.privateSession;
     }
 
     retrieveSessionState(player) {

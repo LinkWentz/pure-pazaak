@@ -1,3 +1,4 @@
+const { create } = require("domain");
 const PazaakSession = require("./pazaak.js");
 const fs = require("fs");
 
@@ -37,12 +38,45 @@ const getCurrentRoom = (socket) => {
 }
 
 const sessionInRoom = (roomName) => {
-    if (Object.keys(sessions).includes(roomName)){
+    if (Object.keys(sessions).includes(roomName)) {
         return true;
     }
     else {
         return false;
     }
+}
+
+const generateRoomName = (length = 4) => {
+    return Math.round(Math.random() * 10**length).toString().padStart(length, "0");
+}
+
+const generateNewRoomName = (length = 4) => {
+    exisitingRooms = Object.keys(sessions);
+
+    let roomName = generateRoomName(length);
+    while (sessionInRoom(roomName)) {
+        roomName = generateRoomName(length);
+    }
+
+    return roomName;
+}
+
+const findWaitingSession = () => {
+    const existingRooms = Object.keys(sessions);
+
+    let roomName = null;
+    for (const i in existingRooms) {
+        const session = sessions[existingRooms[i]];
+
+        const freeSpaceInSession = !session.players["Player 1"] || !session.players["Player 2"];
+        const sessionIsPublic = !session.isPrivate;
+
+        if (freeSpaceInSession && sessionIsPublic) {
+            roomName = existingRooms[i];
+        }
+    }
+
+    return roomName;
 }
 
 // Joining
@@ -51,9 +85,9 @@ const addPlayerToSession = (socket, roomName) => {
     sessions[roomName].assignPlayer(socket.id);
 }
 
-const createSession = (roomName) => {
-    if(!sessionInRoom(roomName)){
-        sessions[roomName] = new PazaakSession();
+const createSession = (roomName, privateSession = false) => {
+    if(!sessionInRoom(roomName)) {
+        sessions[roomName] = new PazaakSession(privateSession);
     }
 }
 
@@ -117,13 +151,30 @@ const removeSocketFromCurrentRoom = (socket) => {
 
 // Main
 io.on('connection', async (socket) => {
-    socket.on('game-event', (move, room) => {
-        processGameMove(socket, room, move);
+    socket.on('game-event', (move, roomName) => {
+        processGameMove(socket, roomName, move);
         updatePlayers(socket);
     });
 
+    socket.on('find-room', () => {
+        let roomName = findWaitingSession();
+
+        if (!roomName){
+            roomName = generateNewRoomName(); 
+            createSession(roomName);
+        }
+
+        io.to(socket.id).emit('pull-into-session', roomName);
+    });
+
+    socket.on('create-private-room', () => {
+        const roomName = generateNewRoomName();
+        createSession(roomName, privateSession = true);
+
+        io.to(socket.id).emit('pull-into-session', roomName);
+    });
+
     socket.on('join-room', (roomName) => {
-        createSession(roomName);
         addPlayerToSession(socket, roomName);
         addSocketToRoom(socket, roomName);
         updatePlayers(socket);
