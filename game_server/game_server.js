@@ -178,6 +178,7 @@ io.on('connection', async (socket) => {
         addPlayerToSession(socket, roomName);
         addSocketToRoom(socket, roomName);
         updatePlayers(socket);
+        io.to(getCurrentRoom(socket)).emit('username-request');
     });
 
     socket.on('leave-room', () => {
@@ -189,5 +190,9 @@ io.on('connection', async (socket) => {
     socket.on('disconnecting', () => {
         removePlayerFromCurrentSession(socket);
         updatePlayers(socket);
+    });
+
+    socket.on('username', (username) => {
+        socket.volatile.to(getCurrentRoom(socket)).emit('opponents-username', username);
     });
 });

@@ -11,6 +11,8 @@ function Game(){
 
     const params = useParams();
   
+    const [opponentsUsername, setOpponentsUsername] = useState(null);
+
     const [gameState, setGameState] = useState({
       "boards": {
         "you": {
@@ -36,10 +38,20 @@ function Game(){
       socket.emit('join-room', params['roomcode']);
       socket.on('connection', () => {
         socket.emit('join-room', params['roomcode']);
-      })
+      });
+      
       socket.on('game-state', (newGameState) => {
         setGameState(newGameState);
       });
+
+      socket.on('username-request', () => {
+        socket.volatile.emit('username', window.localStorage.username || null);
+      });
+
+      socket.on('opponents-username', (opponentsUsername) => {
+        setOpponentsUsername(opponentsUsername);
+      })
+
       return () => {
         socket.emit('leave-room', params['roomcode']);
       };
@@ -52,7 +64,7 @@ function Game(){
           <WaitingForOpponent playerCount={gameState.playerCount} 
           finished={gameState.finished}/>
           <TurnOverlay turn={gameState.turn}/>
-          <GameBoard gameState={gameState}/>
+          <GameBoard gameState={gameState} opponentsUsername={opponentsUsername}/>
         </div>
     )
 }

@@ -7,6 +7,7 @@ import OpponentsSidedeck from './OpponentsSidedeck'
 import Button from './Button';
 import ButtonLink from './ButtonLink';
 import BoardSum from './BoardSum';
+import Username from './Username';
 import { useParams } from "react-router-dom";
 import { socket } from './App';
 
@@ -25,11 +26,11 @@ function GameBoard(props){
     return(
         <div className="GameBoard">
             <Scoreboard score={props.gameState["boards"]["you"]["points"]}/>
-            <Spacer/>
+            <Username>{window.localStorage.username}</Username>
             <BoardSum board={props.gameState["boards"]["you"]["board"]}/>
             <Spacer/>
             <BoardSum board={props.gameState["boards"]["opponent"]["board"]}/>
-            <Spacer/>
+            <Username>{props.opponentsUsername}</Username>
             <Scoreboard score={props.gameState["boards"]["opponent"]["points"]}/>
 
             <Spacer/>
