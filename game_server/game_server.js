@@ -1,5 +1,5 @@
 const { create } = require("domain");
-const PazaakSession = require("./pazaak.js");
+const PazaakSession = require("./pazaak-session.js");
 const fs = require("fs");
 
 const {key, cert} = (() => {
