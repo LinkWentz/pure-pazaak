@@ -1,5 +1,4 @@
-const { create } = require("domain");
-const PazaakSession = require("./pazaak-session.js");
+const SessionManager = require("./session-manager.js");
 const fs = require("fs");
 
 const {key, cert} = (() => {
@@ -19,180 +18,55 @@ const io = require('socket.io')(https, {
     transports: ["websocket"]
 });
 
-const sessions = {};
+const sessionManager = new SessionManager();
 
-// Utility
-const getCurrentRoom = (socket) => {
-    socketRooms =  Array.from(socket.rooms.values());
-
-    let room = null;
-
-    for (const i in socketRooms) {
-        if (socketRooms[i] !== socket.id){
-            room = socketRooms[i];
-            break;
-        }
-    }
-
-    return room
-}
-
-const sessionInRoom = (roomName) => {
-    if (Object.keys(sessions).includes(roomName)) {
-        return true;
-    }
-    else {
-        return false;
+const updatePlayers = (playerInformation) => {
+    players = Object.keys(playerInformation);
+    for (const i in players){
+        io.to(players[i]).emit('game-state', playerInformation[players[i]]);
     }
 }
 
-const generateRoomName = (length = 4) => {
-    return Math.round(Math.random() * 10**length).toString().padStart(length, "0");
-}
-
-const generateNewRoomName = (length = 4) => {
-    exisitingRooms = Object.keys(sessions);
-
-    let roomName = generateRoomName(length);
-    while (sessionInRoom(roomName)) {
-        roomName = generateRoomName(length);
-    }
-
-    return roomName;
-}
-
-const findWaitingSession = () => {
-    const existingRooms = Object.keys(sessions);
-
-    let roomName = null;
-    for (const i in existingRooms) {
-        const session = sessions[existingRooms[i]];
-
-        const freeSpaceInSession = !session.players["Player 1"] || !session.players["Player 2"];
-        const sessionIsPublic = !session.isPrivate;
-
-        if (freeSpaceInSession && sessionIsPublic) {
-            roomName = existingRooms[i];
-        }
-    }
-
-    return roomName;
-}
-
-// Joining
-const addPlayerToSession = (socket, roomName) => {
-    createSession(roomName);
-    sessions[roomName].assignPlayer(socket.id);
-}
-
-const createSession = (roomName, privateSession = false) => {
-    if(!sessionInRoom(roomName)) {
-        sessions[roomName] = new PazaakSession(privateSession);
-    }
-}
-
-const addSocketToRoom = (socket, roomName) => {
-    const currentRoom = getCurrentRoom(socket);
-    const newRoom = io.sockets.adapter.rooms.get(roomName);
-
-    if (currentRoom == roomName) {
-        return `Client ${socket.id} attempted to join ${roomName} but is already in it!`;
-    }
-    else if (newRoom == undefined || newRoom.size < 2) {
-        removeSocketFromCurrentRoom(socket);
-        socket.join(roomName);
-        return `Client ${socket.id} joined ${roomName}`;
-    } 
-    else {
-        return `Client ${socket.id} attempted to join ${roomName} but it is full.`;
-    }
-}
-
-// Interaction
-const updatePlayers = (socket) => {
-    const currentRoom = getCurrentRoom(socket);
-    if (sessionInRoom(currentRoom)) {
-        const players = sessions[currentRoom]["players"];
-        io.to(players["Player 1"]).emit('game-state', sessions[currentRoom].retrieveSessionState("Player 1"));
-        io.to(players["Player 2"]).emit('game-state', sessions[currentRoom].retrieveSessionState("Player 2"));
-    };
-}
-
-const processGameMove = (socket, roomName, move) => {
-    if (sessionInRoom(roomName)){
-        sessions[roomName].processMove(socket.id, move);
-    }
-}
-
-
-// Leaving
-const removePlayerFromCurrentSession = (socket) => {
-    const currentRoom = getCurrentRoom(socket);
-    if (sessionInRoom(currentRoom)){
-        sessions[currentRoom].removePlayer(socket.id);
-        endCurrentSessionIfEmpty(socket);
-    }
-}
-
-const endCurrentSessionIfEmpty = (socket) => {
-    const currentRoom = getCurrentRoom(socket);
-
-    const roomIsEmpty = io.sockets.adapter.rooms.get(currentRoom).size < 2;
-    if (sessionInRoom(currentRoom) && roomIsEmpty){
-        delete sessions[currentRoom];
-    }
-}
-
-const removeSocketFromCurrentRoom = (socket) => {
-    const currentRoom = getCurrentRoom(socket);
-    socket.leave(currentRoom);
-    return `Client ${socket.id} left ${currentRoom}`;
-}
-
-// Main
 io.on('connection', async (socket) => {
-    socket.on('game-event', (move, roomName) => {
-        processGameMove(socket, roomName, move);
-        updatePlayers(socket);
-    });
-
     socket.on('find-room', () => {
-        let roomName = findWaitingSession();
-
-        if (!roomName){
-            roomName = generateNewRoomName(); 
-            createSession(roomName);
-        }
-
-        io.to(socket.id).emit('pull-into-session', roomName);
+        const sessionName = sessionManager.findWaitingSession() || sessionManager.createSession();
+        io.to(socket.id).emit('pull-into-session', sessionName);
     });
 
     socket.on('create-private-room', () => {
-        const roomName = generateNewRoomName();
-        createSession(roomName, privateSession = true);
-
-        io.to(socket.id).emit('pull-into-session', roomName);
+        const sessionName = sessionManager.createSession({privateSession: true});
+        io.to(socket.id).emit('pull-into-session', sessionName);
     });
 
-    socket.on('join-room', (roomName) => {
-        addPlayerToSession(socket, roomName);
-        addSocketToRoom(socket, roomName);
-        updatePlayers(socket);
-        io.to(getCurrentRoom(socket)).emit('username-request');
+    socket.on('join-room', (sessionName) => {
+        sessionManager.addPlayerToSession(socket.id, sessionName);
+        updatePlayers(sessionManager.getPlayerInformation(sessionName));
+        //Username Handling
+        const playersInSession = sessionManager.playersInSession(sessionName);
+        for (const i in playersInSession){
+            io.to(playersInSession[i]).emit('username-request');
+        }
+    });
+
+    socket.on('game-event', (move) => {
+        sessionManager.processGameMove(socket.id, move);
+        updatePlayers(sessionManager.getPlayerInformation(sessionManager.players.get(socket.id)));
     });
 
     socket.on('leave-room', () => {
-        removePlayerFromCurrentSession(socket);
-        updatePlayers(socket);
-        removeSocketFromCurrentRoom(socket);
+        sessionManager.removePlayer(socket.id);
+        sessionManager.endEmptySessions();
     });
 
     socket.on('disconnecting', () => {
-        removePlayerFromCurrentSession(socket);
-        updatePlayers(socket);
+        sessionManager.removePlayer(socket.id);
+        sessionManager.endEmptySessions();
     });
 
     socket.on('username', (username) => {
-        socket.volatile.to(getCurrentRoom(socket)).emit('opponents-username', username);
+        const playersOpponent = sessionManager.playersOpponent(socket.id);
+        if (playersOpponent){
+            socket.to(playersOpponent).volatile.emit('opponents-username', username);
+        }
     });
 });
