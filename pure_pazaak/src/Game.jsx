@@ -57,6 +57,14 @@ function Game(){
       };
     }, []);
 
+    const EndTurn = () => {
+      socket.emit('game-event', 'end turn', params['roomcode']);
+    };
+  
+    const Stand = () => {
+      socket.emit('game-event', 'stand', params['roomcode']);
+    };
+
     return(
         <div className="Game">
           <GameOver finished={gameState.finished} yourScore={gameState["boards"]["you"]["points"]} 
@@ -64,7 +72,8 @@ function Game(){
           <WaitingForOpponent playerCount={gameState.playerCount} 
           finished={gameState.finished}/>
           <TurnOverlay turn={gameState.turn}/>
-          <GameBoard gameState={gameState} opponentsUsername={opponentsUsername}/>
+          <GameBoard gameState={gameState} opponentsUsername={opponentsUsername}
+          endTurn={EndTurn} stand={Stand}/>
         </div>
     )
 }
