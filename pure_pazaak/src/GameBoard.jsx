@@ -14,14 +14,6 @@ import { socket } from './App';
 function GameBoard(props){
 
     const params = useParams();
-  
-    const EndTurn = () => {
-      socket.emit('game-event', 'end turn', params['roomcode']);
-    };
-  
-    const Stand = () => {
-      socket.emit('game-event', 'stand', params['roomcode']);
-    };
 
     return(
         <div className="GameBoard">
@@ -50,8 +42,8 @@ function GameBoard(props){
             <Spacer/>
             <Spacer/>
             <Spacer/>
-            <Button onClick={EndTurn}>End Turn</Button>
-            <Button onClick={Stand}>Stand</Button>
+            <Button onClick={props.endTurn}>End Turn</Button>
+            <Button onClick={props.stand}>Stand</Button>
         </div>
     )
 }
