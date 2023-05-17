@@ -18,7 +18,7 @@ export default function App() {
           <Route path="/" element={<TitleScreen/>} />
           <Route path="/rules" element={<Rules/>} />
           <Route path="/about" element={<About/>} />
-          <Route path="/game/:roomcode" element={<Game/>} />
+          <Route path="/game/:sessionName" element={<Game/>} />
           <Route path="*" element={<Navigate to="/" replace/>} />
         </Routes>
       </BrowserRouter>

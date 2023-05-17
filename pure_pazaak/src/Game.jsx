@@ -35,9 +35,9 @@ function Game(){
     });
   
     useEffect(() => {
-      socket.emit('join-room', params['roomcode']);
+      socket.emit('join-session', params['sessionName']);
       socket.on('connection', () => {
-        socket.emit('join-room', params['roomcode']);
+        socket.emit('join-session', params['sessionName']);
       });
       
       socket.on('game-state', (newGameState) => {
@@ -53,16 +53,16 @@ function Game(){
       })
 
       return () => {
-        socket.emit('leave-room', params['roomcode']);
+        socket.emit('leave-session', params['sessionName']);
       };
     }, []);
 
     const EndTurn = () => {
-      socket.emit('game-event', 'end turn', params['roomcode']);
+      socket.emit('game-event', 'end turn', params['sessionName']);
     };
   
     const Stand = () => {
-      socket.emit('game-event', 'stand', params['roomcode']);
+      socket.emit('game-event', 'stand', params['sessionName']);
     };
 
     return(

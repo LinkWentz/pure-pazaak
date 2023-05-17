@@ -14,8 +14,8 @@ function TitleScreen() {
   useEffect(() => {
     setUsername(window.localStorage.username || Math.round(Math.random() * 10**8).toString());
 
-    socket.on('pull-into-session', (roomName) => {
-      navigate('/game/' + roomName);
+    socket.on('pull-into-session', (sessionName) => {
+      navigate('/game/' + sessionName);
     })
     return () => {
       socket.off('pull-into-session');
@@ -27,11 +27,11 @@ function TitleScreen() {
   }, [username, setUsername]);
 
   const FindRoom = () => {
-    socket.emit('find-room');
+    socket.emit('find-session');
   }
 
   const CreatePrivateRoom = () => {
-    socket.emit('create-private-room');
+    socket.emit('create-private-session');
   }
 
   const OnChange = (event) => {

@@ -9,7 +9,6 @@ import ButtonLink from './ButtonLink';
 import BoardSum from './BoardSum';
 import Username from './Username';
 import { useParams } from "react-router-dom";
-import { socket } from './App';
 
 function GameBoard(props){
 

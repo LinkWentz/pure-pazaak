@@ -28,17 +28,17 @@ const updatePlayers = (playerInformation) => {
 }
 
 io.on('connection', async (socket) => {
-    socket.on('find-room', () => {
+    socket.on('find-session', () => {
         const sessionName = sessionManager.findWaitingSession() || sessionManager.createSession();
         io.to(socket.id).emit('pull-into-session', sessionName);
     });
 
-    socket.on('create-private-room', () => {
+    socket.on('create-private-session', () => {
         const sessionName = sessionManager.createSession({privateSession: true});
         io.to(socket.id).emit('pull-into-session', sessionName);
     });
 
-    socket.on('join-room', (sessionName) => {
+    socket.on('join-session', (sessionName) => {
         sessionManager.addPlayerToSession(socket.id, sessionName);
         updatePlayers(sessionManager.getPlayerInformation(sessionName));
         //Username Handling
@@ -53,7 +53,7 @@ io.on('connection', async (socket) => {
         updatePlayers(sessionManager.getPlayerInformation(sessionManager.players.get(socket.id)));
     });
 
-    socket.on('leave-room', () => {
+    socket.on('leave-session', () => {
         sessionManager.removePlayer(socket.id);
         sessionManager.endEmptySessions();
     });
