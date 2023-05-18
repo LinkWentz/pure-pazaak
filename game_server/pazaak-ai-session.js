@@ -38,7 +38,42 @@ class PazaakAISession extends PazaakSession{
 
     aiturn(gameState) {
         if (this.turn == "Player 2"){
-            this.endTurn();
+
+            const score = this.score("Player 2");
+            const board = this.boards["Player 2"];
+
+            if (score < 17 || score > 20) {
+
+                let cardToPlay = null;
+
+                for (const i in board["sidedeck"]) {
+                    const modifiedScore = score + board["sidedeck"][i].value;
+
+                    if (modifiedScore <= 20 && modifiedScore >= 17) {
+                        if (cardToPlay) {
+                            const previousBestModifiedScore = score + cardToPlay.value;
+
+                            if (modifiedScore > previousBestModifiedScore){
+                                cardToPlay = board["sidedeck"][i];        
+                            }
+                        }
+                        else {
+                            cardToPlay = board["sidedeck"][i];
+                        }
+                    }
+                }
+                if (cardToPlay) {
+                    this.playCard(cardToPlay);
+                    this.stand();
+                }
+                else {
+                    this.endTurn();
+                }
+            }
+            else if (score >= 17 && score <= 20){
+                this.stand();
+            }
+            
             this.callbacks();
         }
     }
