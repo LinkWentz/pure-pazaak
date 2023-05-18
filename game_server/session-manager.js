@@ -1,4 +1,5 @@
 const PazaakSession = require('./pazaak-session.js');
+const PazaakAISession = require('./pazaak-ai-session.js');
 
 class SessionManager {
     constructor() {
@@ -62,8 +63,14 @@ class SessionManager {
         return null;
     }
 
-    createSession({sessionName = this.generateNewSessionName(), privateSession = false}={}) {
-        this.sessions[sessionName] = new PazaakSession(privateSession);
+    createSession({sessionName = this.generateNewSessionName(), privateSession=false, 
+        ai=false}={}){
+        if (ai){
+            this.sessions[sessionName] = new PazaakAISession();
+        } 
+        else{
+            this.sessions[sessionName] = new PazaakSession(privateSession);
+        }
         return sessionName;
     }
 
