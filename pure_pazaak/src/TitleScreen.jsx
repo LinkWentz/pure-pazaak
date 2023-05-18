@@ -34,6 +34,10 @@ function TitleScreen() {
     socket.emit('create-private-session');
   }
 
+  const CreateAIGame = () => {
+    socket.emit('create-ai-session');
+  }
+
   const OnChange = (event) => {
     setUsername(event.target.value)
   }
@@ -44,6 +48,7 @@ function TitleScreen() {
       <main>
         <Button onClick={FindRoom}>Find Game</Button>
         <Button onClick={CreatePrivateRoom}>Private Game</Button>
+        <Button onClick={CreateAIGame}>Create AI Game</Button>
         <ButtonLink to="/rules">Rules</ButtonLink>
         <ButtonLink to="/about">About</ButtonLink>
         <input value={username} onChange={OnChange}/>
