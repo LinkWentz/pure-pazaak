@@ -36,6 +36,7 @@ function Game(){
   
     useEffect(() => {
       socket.emit('join-session', params['sessionName']);
+
       socket.on('connection', () => {
         socket.emit('join-session', params['sessionName']);
       });
@@ -50,10 +51,15 @@ function Game(){
 
       socket.on('opponents-username', (opponentsUsername) => {
         setOpponentsUsername(opponentsUsername);
-      })
+      });
 
       return () => {
         socket.emit('leave-session', params['sessionName']);
+
+        socket.off('connection');
+        socket.off('game-state');
+        socket.off('username-request');
+        socket.off('opponents-username');
       };
     }, []);
 
