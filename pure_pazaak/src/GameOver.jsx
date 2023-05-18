@@ -32,15 +32,11 @@ function GameOver(props){
         }
     }, [props.finished]);
 
-    const RestartGame = () => {
-        socket.emit("game-event", "new game", params['roomcode']);
-    }
-
     return(
         <div className="GameOver" style={style}>
             <div className="message">{message}</div>
             <div className="buttons">
-                <Button onClick={RestartGame}>Rematch</Button>
+                <Button onClick={props.newGame}>Rematch</Button>
             </div>
         </div>
     )
