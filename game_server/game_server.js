@@ -31,13 +31,12 @@ io.on('connection', async (socket) => {
         io.to(socket.id).emit('pull-into-session', sessionName);
     });
 
-    socket.on('create-ai-sessionh', () => {
+    socket.on('create-ai-session', () => {
         const sessionName = sessionManager.createSession({sessionName: socket.id, ai: true});
         io.to(socket.id).emit('pull-into-session', sessionName);
     });
 
     socket.on('join-session', (sessionName) => {
-        console.log('?')
         sessionManager.addPlayerToSession(socket.id, sessionName, (gameState) => {
             console.log('Game State Update');
             socket.emit('game-state', gameState);

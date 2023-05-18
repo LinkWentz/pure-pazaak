@@ -86,21 +86,21 @@ class PazaakSession extends Pazaak {
         this.callbacks();
     }
 
-    removePlayer(player) {
-        if (player == this.players["Player 1"]["playerName"]) {
+    removePlayer(playerName) {
+        if (playerName == this.players["Player 1"]["playerName"]) {
             this.players["Player 1"] = {
                 "playerName": null,
                 "callback": null
             };
         }
-        else if (player == this.players["Player 2"]["playerName"]) {
+        else if (playerName == this.players["Player 2"]["playerName"]) {
             this.players["Player 2"] = {
                 "playerName": null,
                 "callback": null
             };
         }
         else {
-            return `${player} is not in the game!`;
+            return `${playerName} is not in the game!`;
         }
 
         this.callbacks();
