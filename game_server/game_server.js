@@ -20,13 +20,6 @@ const io = require('socket.io')(https, {
 
 const sessionManager = new SessionManager();
 
-const updatePlayers = (playerInformation) => {
-    players = Object.keys(playerInformation);
-    for (const i in players){
-        io.to(players[i]).emit('game-state', playerInformation[players[i]]);
-    }
-}
-
 io.on('connection', async (socket) => {
     socket.on('find-session', () => {
         const sessionName = sessionManager.findWaitingSession() || sessionManager.createSession();
@@ -39,8 +32,11 @@ io.on('connection', async (socket) => {
     });
 
     socket.on('join-session', (sessionName) => {
-        sessionManager.addPlayerToSession(socket.id, sessionName);
-        updatePlayers(sessionManager.getPlayerInformation(sessionName));
+        console.log('?')
+        sessionManager.addPlayerToSession(socket.id, sessionName, (gameState) => {
+            console.log('Game State Update');
+            socket.emit('game-state', gameState);
+        });
         //Username Handling
         const playersInSession = sessionManager.playersInSession(sessionName);
         for (const i in playersInSession){
@@ -50,7 +46,6 @@ io.on('connection', async (socket) => {
 
     socket.on('game-event', (move) => {
         sessionManager.processGameMove(socket.id, move);
-        updatePlayers(sessionManager.getPlayerInformation(sessionManager.players.get(socket.id)));
     });
 
     socket.on('leave-session', () => {

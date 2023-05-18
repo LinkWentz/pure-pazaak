@@ -5,21 +5,27 @@ class PazaakSession extends Pazaak {
         super();
         this.privateSession = privateSession;
         this.players = {
-            "Player 1": null, 
-            "Player 2": null
+            "Player 1": {
+                "playerName": null,
+                "callback": null
+            }, 
+            "Player 2": {
+                "playerName": null,
+                "callback": null
+            }
         };
     }
 
     get currentPlayer() {
-        return this.players[this.turn];
+        return this.players[this.turn]["playerName"];
     }
 
     get playerCount() {
         let playerCount = 0;
-        if (this.players["Player 1"]){
+        if (this.players["Player 1"]["playerName"]){
             playerCount++;
         }
-        if (this.players["Player 2"]){
+        if (this.players["Player 2"]["playerName"]){
             playerCount++;
         }
 
@@ -28,6 +34,15 @@ class PazaakSession extends Pazaak {
 
     get isPrivate() {
         return this.privateSession;
+    }
+
+    callbacks(){
+        console.log(this.players);
+        for (const player in this.players){
+            if (this.players[player]["callback"]){
+                this.players[player]["callback"](this.retrieveSessionState(player));
+            }
+        }
     }
 
     retrieveSessionState(player) {
@@ -50,32 +65,45 @@ class PazaakSession extends Pazaak {
         }
     }
 
-    assignPlayer(player) {
-        if (!this.players["Player 1"] && !this.players["Player 2"]) {
+    assignPlayer(playerName, callback = x=>x) {
+        if (!this.players["Player 1"]["playerName"] && !this.players["Player 2"]["playerName"]) {
             const assignment = ["Player 1", "Player 2"][Math.round(Math.random())];
-            this.players[assignment] = player;
+            this.players[assignment]["playerName"] = playerName;
+            this.players[assignment]["callback"] = callback;
         }
-        else if (!this.players["Player 1"]) {
-            this.players["Player 1"] = player;
+        else if (!this.players["Player 1"]["playerName"]) {
+            this.players["Player 1"]["playerName"] = playerName;
+            this.players["Player 1"]["callback"] = callback;
         }
-        else if (!this.players["Player 2"]) {
-            this.players["Player 2"] = player;
+        else if (!this.players["Player 2"]["playerName"]) {
+            this.players["Player 2"]["playerName"] = playerName;
+            this.players["Player 2"]["callback"] = callback;
         }
         else {
             return "Game is full!";
         }
+
+        this.callbacks();
     }
 
     removePlayer(player) {
-        if (player == this.players["Player 1"]) {
-            this.players["Player 1"] = null;
+        if (player == this.players["Player 1"]["playerName"]) {
+            this.players["Player 1"] = {
+                "playerName": null,
+                "callback": null
+            };
         }
-        else if (player == this.players["Player 2"]) {
-            this.players["Player 2"] = null;
+        else if (player == this.players["Player 2"]["playerName"]) {
+            this.players["Player 2"] = {
+                "playerName": null,
+                "callback": null
+            };
         }
         else {
             return `${player} is not in the game!`;
         }
+
+        this.callbacks();
     }
 
     processMove(player, move) {
@@ -85,8 +113,7 @@ class PazaakSession extends Pazaak {
             }
             else {
                 return "This game is finished!";
-            } 
-            return;
+            }
         }
 
         if (player == this.currentPlayer) {
@@ -100,12 +127,14 @@ class PazaakSession extends Pazaak {
                 this.playCard(move);
             }
             else {
-                return `${move} is not a valid move!`;
+                //`${move} is not a valid move!`;
             }
         }
         else {
-            return `It is not ${player}'s turn!`;
+            //`It is not ${player}'s turn!`;
         }
+
+        this.callbacks();
     }
 }
 

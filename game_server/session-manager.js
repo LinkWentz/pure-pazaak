@@ -11,9 +11,13 @@ class SessionManager {
     }
 
     playersInSession(sessionName){
+        const playerNames = [];
         if(this.sessionInProgress(sessionName)){
-            return Object.values(this.sessions[sessionName]["players"]);
+            for (const player in this.sessions[sessionName]["players"]){
+                playerNames.push(this.sessions[sessionName]["players"][player]["playerName"]);
+            }
         }
+        return playerNames;
     }
 
     playersOpponent(playerName){
@@ -63,12 +67,12 @@ class SessionManager {
         return sessionName;
     }
 
-    addPlayerToSession(playerName, sessionName) {
+    addPlayerToSession(playerName, sessionName, callback = x=>x) {
         if (!this.sessionInProgress(sessionName)){
             this.createSession({sessionName: sessionName, privateSession: true});
         }
 
-        this.sessions[sessionName].assignPlayer(playerName);
+        this.sessions[sessionName].assignPlayer(playerName, callback);
         this.players.set(playerName, sessionName);
     }
 
