@@ -82,6 +82,10 @@ class Pazaak {
     dealCard() {
         const selectedCard = Math.round(Math.random() * 9) + 1;
         this.boards[this.turn]["board"].push(new Card(selectedCard));
+
+        if (this.score(this.turn) == 20){
+            this.stand();
+        }
     }
 
     awardPoints() {
