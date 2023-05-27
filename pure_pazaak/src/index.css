@@ -45,8 +45,6 @@
   --buttonBorderThickness: 0.25vh;
 }
 
-
-
 @font-face {
   font-family: starwars;
   src: url("./assets/Starjedi.ttf");

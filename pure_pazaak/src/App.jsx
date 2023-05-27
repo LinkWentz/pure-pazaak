@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Starfield from './Starfield';
+import CantinaVideo from './CantinaVideo';
 import TitleScreen from './TitleScreen';
 import Rules from './Rules';
 import About from './About';
@@ -12,7 +12,7 @@ export const socket = io.connect(`https://${window.location.hostname}:3333`, {tr
 export default function App() {
   return (
     <div className="App">
-      <Starfield count={1500}/>
+      <CantinaVideo />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<TitleScreen/>} />
