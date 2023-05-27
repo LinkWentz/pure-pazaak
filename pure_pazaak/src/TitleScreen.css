@@ -1,42 +1,80 @@
-.RoomcodeField {
-    height: 60px;
-    width: 200px;
-    border-radius: var(--buttonBorderRadius);
-    font-size: 1.5rem;
-    font-family: 'Bruno Ace SC', cursive;
-    color: var(--text);
-    background-color: transparent;
-    border: var(--borders) 2px solid;
-    min-width: 0;
-    min-height: 0;
-    overflow: hidden;
-    text-align: center;
-}
-
-.RoomcodeField:hover {
-    border-color: var(--borders);
-}
-
-.RoomcodeField:focus-visible {
-    outline: none;
-}
-
 .TitleScreen > header {
-    padding: 10% 0px;
+    padding: 5% 5%;
+    text-align: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 1;
+    text-shadow: 2px 2px 15px black;
 }
   
 .TitleScreen > main {
     display: flex;
-    width: 100%;
+    width: 500px;
     height: 300px;
-    align-items: center;
+    align-items: left;
     justify-content: space-around;
     flex-direction: column;
+    left: 5%;
+    bottom: 5%;
+    position: absolute;
 }
-  
-.TitleScreen > form{
+
+.TitleScreen > form {
+    right: 5%;
+    bottom: 5%;
+    position: absolute;
+    background-color: var(--button);
+    border: 3px solid var(--borders);
+    border-radius: var(--buttonBorderRadius);
+    text-align: center;
+    font-size: 1.5rem;
+    width: 600px;
+    height: 50px;
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
-    justify-content: center;
+}
+
+.TitleScreen > form > input {
+    font-family: inherit;
+    color: inherit;
+    background-color: transparent;
+    border: transparent;
+    height: 100%;
+    font-size: inherit;
+    text-align: center;
+    outline: none;
+}
+
+.TitleScreen .Button {
+    position: relative;
+    box-sizing: border-box;
+    background-color: transparent;
+    border: transparent;
+    justify-content: left;
+    min-width: fit-content;
+    max-width: 100%;
+    padding: 30px 20px;
+    border-radius: 0;
+    text-shadow: 2px 2px 2px black;
+    transition: 0.05s;
+    top: 0;
+    left: 0;
+}
+
+.TitleScreen .Button:hover {
+    color: var(--headers);
+    background-color: transparent;
+    text-shadow: 2px 2px 20px var(--borders);
+    top: 2px;
+    left: 2px;
+}
+
+.TitleScreen .Button:active {
+    color: var(--headers);
+    background-color: transparent;
+    text-shadow: 2px 2px 20px var(--headers);
+    top: 2px;
+    left: 2px;
 }

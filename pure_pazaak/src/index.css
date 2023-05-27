@@ -72,3 +72,10 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #FBC846;
 }
+
+::selection {
+  background: #777;
+}
+::-moz-selection {
+  background: #777;
+}

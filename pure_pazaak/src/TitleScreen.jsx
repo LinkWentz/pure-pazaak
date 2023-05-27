@@ -2,7 +2,7 @@ import './TitleScreen.css';
 import Button from "./Button";
 import ButtonLink from './ButtonLink';
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { socket } from './App';
 
 function TitleScreen() {
@@ -51,8 +51,13 @@ function TitleScreen() {
         <Button onClick={CreateAIGame}>Create AI Game</Button>
         <ButtonLink to="/rules">Rules</ButtonLink>
         <ButtonLink to="/about">About</ButtonLink>
-        <input value={username} onChange={OnChange}/>
       </main>
+      <form>
+        <label htmlFor='username'>Username:</label>
+        <input id='username' value={username} 
+        onChange={OnChange} spellCheck='false'
+        autoComplete='false'/>
+      </form>
     </div>
   )
 }
