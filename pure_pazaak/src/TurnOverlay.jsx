@@ -7,8 +7,8 @@ function TurnOverlay(props){
         <div className="TurnOverlay">
             <Spacer/>
             <Spacer/>
-            <Overlay for="you" turn={props.turn}/>
-            <Overlay for="opponent" turn={props.turn}/>
+            <Overlay for="you" turn={props.turn} standing={props.youStanding}></Overlay>
+            <Overlay for="opponent" turn={props.turn} standing={props.opponentStanding}></Overlay>
         </div>
     )
 }

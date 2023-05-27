@@ -81,7 +81,8 @@ function Game(){
           opponentScore={gameState["boards"]["opponent"]["points"]} newGame={NewGame}/>
           <WaitingForOpponent playerCount={gameState.playerCount} 
           finished={gameState.finished}/>
-          <TurnOverlay turn={gameState.turn}/>
+          <TurnOverlay turn={gameState.turn} youStanding={gameState["boards"]["you"]["standing"]} 
+          opponentStanding={gameState["boards"]["opponent"]["standing"]}/>
           <GameBoard gameState={gameState} opponentsUsername={opponentsUsername}
           endTurn={EndTurn} stand={Stand}/>
         </div>

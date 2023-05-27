@@ -5,4 +5,8 @@
     width: 96%;
     margin: 1% 2%;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
 }

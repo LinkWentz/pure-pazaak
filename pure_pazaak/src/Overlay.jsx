@@ -15,7 +15,9 @@ function Overlay(props){
     }, [props.for, props.turn]);
 
     return(
-        <div className="Overlay" style={style}/>
+        <div className="Overlay" style={style}>
+          {props.standing && <p>Standing</p>}
+        </div>
     )
 }
 
