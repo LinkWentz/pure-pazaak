@@ -6,17 +6,17 @@ function Overlay(props){
     const [style, setStyle] = useState({});
 
     useEffect(() => {
-      if (props.for == props.turn){
-        setStyle({"visibility": "hidden"});
-      }
-      else {
+      if (props.visible){
         setStyle({"visibility": "visible"});
       }
-    }, [props.for, props.turn]);
+      else {
+        setStyle({"visibility": "hidden"});
+      }
+    }, [props.visible]);
 
     return(
-        <div className="Overlay" style={style}>
-          {props.standing && <p>Standing</p>}
+        <div className={`Overlay ${props.className}`} style={style}>
+          {props.children}
         </div>
     )
 }

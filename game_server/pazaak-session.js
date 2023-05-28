@@ -56,6 +56,7 @@ class PazaakSession extends Pazaak {
                     "points": this.boards[otherPlayer]["points"],
                     "sidedeckSize": this.boards[otherPlayer]["sidedeck"].length,
                     "standing": this.boards[otherPlayer]["standing"],
+                    "sidedeckCardPlayed": this.boards[otherPlayer]["sidedeckCardPlayed"],
                     "board": this.boards[otherPlayer]["board"]
                 }
             },

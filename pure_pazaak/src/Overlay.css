@@ -1,9 +1,8 @@
 .Overlay {
     background-color: var(--overlayColor);
     border-radius: var(--borderRadius);
-    height: 94%;
-    width: 96%;
-    margin: 1% 2%;
+    height: 100%;
+    width: 100%;
     box-sizing: border-box;
     display: flex;
     align-items: center;

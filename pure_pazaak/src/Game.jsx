@@ -26,6 +26,7 @@ function Game(){
           "sidedeckSize": 0,
           "points": 0,
           "standing": false,
+          "sidedeckCardPlayed": false,
           "board": []
         }
       },
@@ -81,8 +82,7 @@ function Game(){
           opponentScore={gameState["boards"]["opponent"]["points"]} newGame={NewGame}/>
           <WaitingForOpponent playerCount={gameState.playerCount} 
           finished={gameState.finished}/>
-          <TurnOverlay turn={gameState.turn} youStanding={gameState["boards"]["you"]["standing"]} 
-          opponentStanding={gameState["boards"]["opponent"]["standing"]}/>
+          <TurnOverlay gameState={gameState}/>
           <GameBoard gameState={gameState} opponentsUsername={opponentsUsername}
           endTurn={EndTurn} stand={Stand}/>
         </div>

@@ -3,10 +3,31 @@
     height: 100%;
     width: 100%;
     display: grid;
-    grid-template-rows: 1fr 9fr 1fr;
+    grid-template-rows: 1fr 6fr 3fr 1fr;
     grid-template-columns: 1fr 1fr;
-    padding: 2vh;
+    padding: 2%;
     box-sizing: border-box;
     pointer-events: none;
     z-index: 20;
+    top: 0;
+    left: 0;
+}
+.yourCardPlayedOverlay{
+    grid-column-start: 1;
+    grid-row-start: 3;
+}
+
+.opponentsCardPlayedOverlay{
+    grid-column-start: 2;
+    grid-row-start: 3;
+}
+
+.yourTurnOverlay{
+    grid-column-start: 1;
+    grid-row: 2 / span 2;
+}
+
+.opponentsTurnOverlay{
+    grid-column-start: 2;
+    grid-row: 2 / span 2;
 }
