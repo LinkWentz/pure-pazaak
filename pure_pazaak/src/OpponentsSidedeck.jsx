@@ -15,7 +15,7 @@ function Sidedeck(props) {
   }, [props.cardsCount]);
 
   return (
-    <div className="OpponentsSidedeck Sidedeck">
+    <div className="OpponentsSidedeck Sidedeck" style={{pointerEvents: 'none'}}>
       <div className="sidedeckGrid">
         {cards}
       </div>

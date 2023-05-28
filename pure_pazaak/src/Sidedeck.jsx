@@ -13,7 +13,7 @@ function Sidedeck(props) {
     const newCards = [];
     for (const card in props.cards){
       newCards.push(
-        <Card key={card} card={props.cards[card]} onClick={PlayCard}/>
+        <Card key={card} card={props.cards[card]} onClick={PlayCard} acceptPointerEvents={true}/>
       );
     }
     setCards(newCards);
