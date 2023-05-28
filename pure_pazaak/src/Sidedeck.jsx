@@ -24,7 +24,7 @@ function Sidedeck(props) {
   };
 
   return (
-    <div className="Sidedeck">
+    <div className={`Sidedeck ${props.className}`}>
       <div className="sidedeckGrid">
         {cards}
       </div>

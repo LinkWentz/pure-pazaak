@@ -12,32 +12,59 @@
   box-sizing: border-box;
 }
 
-.GameBoard > .Button {
+.GameBoard .Button {
   height: 100%;
   width: 100%;
 }
 
-.GameBoard > .Button + .Button {
-  grid-column-start: span 2;
+.yourScoreboard {
+  grid-column: 1 / span 2;
 }
 
-.GameBoard > .ButtonLink {
-  grid-column-start: span 2;
+.yourUsername {
+  grid-column: 3 / span 1;
+}
+
+.yourBoardSum {
+  grid-column: 4 / span 1;
+}
+
+.opponentsBoardSum {
+  grid-column: 6 / span 1;
+}
+.opponentsUsername {
+  grid-column: 7 / span 1;
+}
+
+.opponentsScoreboard {
+  grid-column: 8 / span 2;
+}
+
+.yourBoard {
+  grid-column: 1 / span 4;
+}
+
+.opponentsBoard {
+  grid-column: 6 / span 4;
+}
+
+.yourSidedeck {
+  grid-column: 2 / span 3;
+}
+
+.opponentsSidedeck {
+  grid-column: 6 / span 3;
+}
+
+.mainMenu {
+  grid-column: 1 / span 2;
   z-index: 50;
 }
 
-.Board {
-  grid-column-start: span 3;
+.endTurn {
+  grid-column: 7 / span 1;
 }
 
-.Score p {
-  font-size: 2rem;
-}
-
-.Scoreboard {
-  grid-column-start: span 2;
-}
-
-.Sidedeck {
-  grid-column-start: span 3;
+.stand {
+  grid-column: 8 / span 2;
 }

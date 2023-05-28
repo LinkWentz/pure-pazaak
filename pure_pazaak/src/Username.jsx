@@ -3,7 +3,7 @@ import './Username.css'
 function Username(props) {
 
     return(
-        <div className="Username">
+        <div className={`Username ${props.className}`}>
             <p>{props.children || "The Mysterious Stranger"}</p>
         </div>
     )

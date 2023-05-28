@@ -1,5 +1,4 @@
 import './GameBoard.css';
-import Spacer from './Spacer';
 import Scoreboard from './Scoreboard';
 import Board from './Board' ;
 import Sidedeck from './Sidedeck';
@@ -15,34 +14,24 @@ function GameBoard(props){
     const params = useParams();
 
     return(
-        <div className="GameBoard">
-            <Scoreboard score={props.gameState["boards"]["you"]["points"]}/>
-            <Username>{window.localStorage.username}</Username>
-            <BoardSum board={props.gameState["boards"]["you"]["board"]}/>
-            <Spacer/>
-            <BoardSum board={props.gameState["boards"]["opponent"]["board"]}/>
-            <Username>{props.opponentsUsername}</Username>
-            <Scoreboard score={props.gameState["boards"]["opponent"]["points"]}/>
+        <div className={`GameBoard ${props.className}`}>
+            <Scoreboard className="yourScoreboard" score={props.gameState["boards"]["you"]["points"]}/>
+            <Username className="yourUsername">{window.localStorage.username}</Username>
+            <BoardSum className="yourBoardSum" board={props.gameState["boards"]["you"]["board"]}/>
+            
+            <BoardSum className="opponentsBoardSum" board={props.gameState["boards"]["opponent"]["board"]}/>
+            <Username className="opponentsUsername">{props.opponentsUsername}</Username>
+            <Scoreboard className="opponentsScoreboard" score={props.gameState["boards"]["opponent"]["points"]}/>
+            
+            <Board className="yourBoard" cards={props.gameState["boards"]["you"]["board"]}/>
+            <Board className="opponentsBoard" cards={props.gameState["boards"]["opponent"]["board"]}/>
+            
+            <Sidedeck className="yourSidedeck" cards={props.gameState["boards"]["you"]["sidedeck"]}></Sidedeck>
+            <OpponentsSidedeck className="opponentsSidedeck" cardsCount={props.gameState["boards"]["opponent"]["sidedeckSize"]}/>
 
-            <Spacer/>
-            <Board cards={props.gameState["boards"]["you"]["board"]}/>
-            <Spacer/>
-            <Board cards={props.gameState["boards"]["opponent"]["board"]}/>
-            <Spacer/>
-
-            <Spacer/>
-            <Sidedeck cards={props.gameState["boards"]["you"]["sidedeck"]}></Sidedeck>
-            <Spacer/>
-            <OpponentsSidedeck cardsCount={props.gameState["boards"]["opponent"]["sidedeckSize"]}/>
-            <Spacer/>
-
-            <ButtonLink to="/">Main Menu</ButtonLink>
-            <Spacer/>
-            <Spacer/>
-            <Spacer/>
-            <Spacer/>
-            <Button onClick={props.endTurn}>End Turn</Button>
-            <Button onClick={props.stand}>Stand</Button>
+            <ButtonLink className="mainMenu" to="/">Main Menu</ButtonLink>
+            <Button className="endTurn" onClick={props.endTurn}>End Turn</Button>
+            <Button className="stand" onClick={props.stand}>Stand</Button>
         </div>
     )
 }

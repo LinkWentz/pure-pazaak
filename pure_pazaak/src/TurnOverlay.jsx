@@ -1,12 +1,9 @@
 import './TurnOverlay.css';
-import Spacer from './Spacer';
 import Overlay from './Overlay';
 
 function TurnOverlay(props){
     return(
         <div className="TurnOverlay">
-            <Spacer/>
-            <Spacer/>
             <Overlay className="yourTurnOverlay" visible={props.gameState.turn != 'you' && !props.gameState["boards"]["you"]["standing"]}/>
             <Overlay className="opponentsTurnOverlay" visible={props.gameState.turn != 'opponent' && !props.gameState["boards"]["opponent"]["standing"]}/>
             <Overlay className="yourTurnOverlay" visible={props.gameState["boards"]["you"]["standing"]}>Standing</Overlay>

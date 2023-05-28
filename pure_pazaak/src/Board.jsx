@@ -11,7 +11,7 @@ function Board(props) {
   }
 
   return (
-    <div className="Board">
+    <div className={`Board ${props.className}`}>
       <div className="cardGrid">
         {card_elements}
       </div>

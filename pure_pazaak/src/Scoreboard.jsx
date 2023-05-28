@@ -21,7 +21,7 @@ function Scoreboard(props) {
     }, [props.score]);
 
     return (
-        <div className="Scoreboard">
+        <div className={`Scoreboard ${props.className}`}>
             {points}
         </div>
     )

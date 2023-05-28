@@ -10,7 +10,7 @@ function BoardSum(props) {
     }, [props])
 
     return(
-        <div className="BoardSum">
+        <div className={`BoardSum ${props.className}`}>
             <p>{sum}</p>
         </div>
     )
