@@ -14,7 +14,8 @@
 }
 
 .GameOver > .message {
-    padding: 5vh;
+    padding: 2rem;
+    text-align: center;
 }
 
 .buttons {

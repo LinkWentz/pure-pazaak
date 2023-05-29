@@ -1,10 +1,14 @@
 .Scoreboard {
     display: flex;
     width: 100%;
-    align-items: center;
-    justify-content: space-around;
+    height: 100%;
+    max-width: 100%;
+    min-width: 100%;    
     min-width: 0;
     min-height: 0;
+    align-items: center;
+    justify-content: space-around;
     background-color: var(--boardElementBackground);
     border-radius: var(--borderRadius);
+    box-sizing: border-box;
 }

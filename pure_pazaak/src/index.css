@@ -3,6 +3,9 @@
   font-weight: 400;
   font-family: 'Bruno Ace SC', cursive;
 
+  overflow-x: hidden;
+  overflow-y: overlay;
+
   color: var(--text);
   background-color: black;
 
@@ -12,7 +15,6 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   
-  overflow: hidden;
   /* colors */
   --text: #9DD9D2;
   --borders: #9DD9D2;
@@ -52,8 +54,7 @@
 
 body {
   margin: 0;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  padding: 0;
 }
 
 ::-webkit-scrollbar {
