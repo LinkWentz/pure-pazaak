@@ -1,32 +1,51 @@
 .GameOver {
     position: absolute;
+    box-sizing: border-box;
     height: 100%;
     width: 100%;
-    background-color: var(--waitingOverlayColor);
-    font-size: 6rem;
+    padding: 2%;
+    z-index: 40;
+
+    background-color: var(--overlayColor);
+    font-size: 3rem;
+    border-radius: var(--borderRadius);
+    text-align: center;
+
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: var(--borderRadius);
-    box-sizing: border-box;
-    z-index: 40;
+    flex-direction: column;
 }
 
-.GameOver > .message {
+.GameOver p {
     padding: 2rem;
     text-align: center;
 }
 
-.buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    min-height: 8%;
+@media screen and (min-aspect-ratio: 9/16) {
+    .GameOver .mainMenu {
+        display: none;
+    }
 }
 
-.buttons > .Button {
-    margin: 1vh;
-    height: 100%;
+@media screen and (max-aspect-ratio: 9/16) {
+    .GameOver {
+        display: grid;
+        grid-template-rows: 13fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--gridGap);
+    }
+
+    .GameOver p {
+        grid-column: 1 / span 2;
+    }
+
+    .GameOver .Button {
+        height: 100%;
+        width: 100%;
+    }
+
+    .WaitingForOpponent .mainMenu {
+        display: inherit;
+    }
 }

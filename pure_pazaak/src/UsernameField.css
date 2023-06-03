@@ -1,0 +1,28 @@
+.UsernameField {
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+
+    background-color: var(--button);
+    border: 3px solid var(--borders);
+    border-radius: var(--buttonBorderRadius);
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.UsernameField label {
+    min-width: fit-content;
+    padding: 0 20px;
+}
+
+.UsernameField input {
+    min-width: 0;
+    font-family: inherit;
+    color: inherit;
+    background-color: transparent;
+    border: transparent;
+    height: 100%;
+    font-size: inherit;
+    text-align: center;
+    outline: none;
+}

@@ -1,5 +1,6 @@
 import './WaitingForOpponent.css';
 import Button from './Button';
+import ButtonLink from './ButtonLink';
 import { useEffect, useState } from 'react';
 
 function WaitingForOpponent(props){
@@ -22,6 +23,7 @@ function WaitingForOpponent(props){
     return(
         <div className="WaitingForOpponent" style={style}>
             <p>Waiting for opponent...</p>
+            <ButtonLink to="/" className="mainMenu">Main Menu</ButtonLink>
             <Button onClick={CopyInviteToClipboard}>Copy Invite</Button>
         </div>
     )

@@ -3,11 +3,8 @@ import Button from './Button';
 import ButtonLink from './ButtonLink';
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
-import { socket } from './App';
 
 function GameOver(props){
-
-    const params = useParams();
 
     const [style, setStyle] = useState({});
 
@@ -34,10 +31,9 @@ function GameOver(props){
 
     return(
         <div className="GameOver" style={style}>
-            <div className="message">{message}</div>
-            <div className="buttons">
-                <Button onClick={props.newGame}>Rematch</Button>
-            </div>
+            <p className="message">{message}</p>
+            <ButtonLink to={'/'} className="mainMenu">Main Menu</ButtonLink>
+            <Button onClick={props.newGame}>Rematch</Button>
         </div>
     )
 }

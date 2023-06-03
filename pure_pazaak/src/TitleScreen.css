@@ -1,80 +1,59 @@
-.TitleScreen > header {
-    padding: 5% 5%;
-    text-align: left;
-    position: absolute;
-    top: 0;
-    left: 0;
-    line-height: 1;
-    text-shadow: 2px 2px 15px black;
-}
-  
-.TitleScreen > main {
-    display: flex;
-    width: 500px;
-    height: 300px;
-    align-items: left;
-    justify-content: space-around;
-    flex-direction: column;
-    left: 5%;
-    bottom: 5%;
-    position: absolute;
+@media screen and (min-aspect-ratio: 9/16) {
+    .TitleScreen > header {
+        text-align: center;
+        position: absolute;
+        max-width: fit-content;
+        top: 5%;
+        left: 5%;
+        line-height: 1;
+        text-shadow: 2px 2px 15px black;
+    }
+
+    .TitleScreen .Nav {
+        position: absolute;
+        bottom: 5%;
+        left: 5%;
+        width: 100%;
+        height: 25%;
+    }
+
+    .TitleScreen .UsernameField {
+        position: fixed;
+        bottom: 5%;
+        right: 5%;
+        width: 25%;
+        min-width: max-content;
+        height: 5%;
+    }
 }
 
-.TitleScreen > form {
-    right: 5%;
-    bottom: 5%;
-    position: absolute;
-    background-color: var(--button);
-    border: 3px solid var(--borders);
-    border-radius: var(--buttonBorderRadius);
-    text-align: center;
-    font-size: 1.5rem;
-    width: 600px;
-    height: 50px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
+@media screen and (max-aspect-ratio: 9/16) {
+    .TitleScreen > header {
+        padding: 5% 5%;
+        font-size: 5rem;
+        text-align: center;
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        line-height: 1;
+        text-shadow: 2px 2px 15px black;
+    }
 
-.TitleScreen > form > input {
-    font-family: inherit;
-    color: inherit;
-    background-color: transparent;
-    border: transparent;
-    height: 100%;
-    font-size: inherit;
-    text-align: center;
-    outline: none;
-}
+    .TitleScreen .Nav {
+        position: absolute;
+        bottom: 20%;
+        left: 0;
+        width: 100%;
+        height: 25%;
+    }
 
-.TitleScreen .Button {
-    position: relative;
-    box-sizing: border-box;
-    background-color: transparent;
-    border: transparent;
-    justify-content: left;
-    min-width: fit-content;
-    max-width: 100%;
-    padding: 30px 20px;
-    border-radius: 0;
-    text-shadow: 2px 2px 2px black;
-    transition: 0.05s;
-    top: 0;
-    left: 0;
-}
-
-.TitleScreen .Button:hover {
-    color: var(--headers);
-    background-color: transparent;
-    text-shadow: 2px 2px 20px var(--borders);
-    top: 2px;
-    left: 2px;
-}
-
-.TitleScreen .Button:active {
-    color: var(--headers);
-    background-color: transparent;
-    text-shadow: 2px 2px 20px var(--headers);
-    top: 2px;
-    left: 2px;
+    .TitleScreen .UsernameField {
+        position: fixed;
+        bottom: 1%;
+        left: 0;
+        width: 100%;
+        height: 7%;
+        font-size: 1rem;
+    }
 }

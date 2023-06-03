@@ -27,22 +27,21 @@
   --positiveCardColor: #1E2071;
   --cardBackColor: #777;
   --boardElementBackground: black;
-  --overlayColor: rgba(0, 0, 0, 0.5);
-  --waitingOverlayColor: rgba(0, 0, 0, 0.5);
+  --overlayColor: rgba(0, 0, 0, 0.7);
   --scoredPointColor: #e0520f;
   --unscoredPointColor: #444;
   --button: #111240;
   --buttonHover: rgba(0, 0, 20, 1);
-  --buttonActive: #FBC846;
+  --buttonActive: black;
   --buttonBorder: #9DD9D2;
   --buttonHoverBorder: #FBC846;
   --buttonActiveBorder: #FBC846;
   --buttonHoverText: #FBC846;
   --buttonActiveText: #FBC846;
   /* borders */
-  --gridGap: 2%;
+  --gridGap: 5px;
   --borderRadius: 3vh;
-  --buttonBorderRadius: 5vh;
+  --buttonBorderRadius: 9999px;
   --borderThickness: 0.25vh;
   --buttonBorderThickness: 0.25vh;
 }
@@ -50,6 +49,16 @@
 @font-face {
   font-family: starwars;
   src: url("./assets/Starjedi.ttf");
+}
+
+@viewport {
+  zoom: 1.0;
+  min-zoom: 0.5;
+  max-zoom: 2.0;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {

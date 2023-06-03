@@ -1,19 +1,20 @@
 import './TitleScreen.css';
-import Button from "./Button";
-import ButtonLink from './ButtonLink';
+import Nav from './Nav';
+import UsernameField from './UsernameField';
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, Suspense } from 'react';
 import { socket } from './App';
+import FindGameImage from './assets/FindGame.png';
+import PrivateGameImage from './assets/PrivateGame.png';
+import AIGameImage from './assets/AIGame.png';
+import TutorialImage from './assets/Tutorial.png';
+import AboutImage from './assets/About.png';
 
 function TitleScreen() {
 
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState("");
-
   useEffect(() => {
-    setUsername(window.localStorage.username || Math.round(Math.random() * 10**8).toString());
-
     socket.on('pull-into-session', (sessionName) => {
       navigate('/game/' + sessionName);
     })
@@ -22,15 +23,11 @@ function TitleScreen() {
     }
   }, []);
 
-  useEffect(() => {
-    window.localStorage.username = username;
-  }, [username, setUsername]);
-
-  const FindRoom = () => {
+  const FindGame = () => {
     socket.emit('find-session');
   }
 
-  const CreatePrivateRoom = () => {
+  const CreatePrivateGame = () => {
     socket.emit('create-private-session');
   }
 
@@ -38,26 +35,17 @@ function TitleScreen() {
     socket.emit('create-ai-session');
   }
 
-  const OnChange = (event) => {
-    setUsername(event.target.value)
-  }
-
   return (
     <div className="TitleScreen">
       <header>Pure Pazaak</header>
-      <main>
-        <Button onClick={FindRoom}>Find Game</Button>
-        <Button onClick={CreatePrivateRoom}>Private Game</Button>
-        <Button onClick={CreateAIGame}>Create AI Game</Button>
-        <ButtonLink to="/rules">Rules</ButtonLink>
-        <ButtonLink to="/about">About</ButtonLink>
-      </main>
-      <form>
-        <label htmlFor='username'>Username:</label>
-        <input id='username' value={username} 
-        onChange={OnChange} spellCheck='false'
-        autoComplete='false'/>
-      </form>
+      <Nav>
+        <button onClick={FindGame} backgroundImage={FindGameImage}>Find Game</button>
+        <button onClick={CreatePrivateGame} backgroundImage={PrivateGameImage}>Private Game</button>
+        <button onClick={CreateAIGame} backgroundImage={AIGameImage}>Play Against AI</button>
+        <button to="/rules" backgroundImage={TutorialImage}>Rules</button>
+        <button to="/about" backgroundImage={AboutImage}>About</button>
+      </Nav>
+      <UsernameField />
     </div>
   )
 }

@@ -9,9 +9,9 @@
     background-color: var(--boardElementBackground);
     border-radius: var(--borderRadius);
     overflow:hidden;
+    font-size: 2rem;
 }
 
 .BoardSum > p {
-    font-size: 2rem;
     text-align: center;
 }

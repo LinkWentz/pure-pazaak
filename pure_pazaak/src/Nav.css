@@ -1,0 +1,114 @@
+@media screen and (min-aspect-ratio: 9/16) {
+    .Nav {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+    }
+    
+    .Nav .Button {
+        position: relative;
+        box-sizing: border-box;
+        background-color: transparent;
+        border: transparent;
+        justify-content: left;
+        min-width: fit-content;
+        max-width: 100%;
+        border-radius: 0;
+        text-shadow: 2px 2px 2px black;
+        transition: 0.05s;
+        top: 0;
+        left: 0;
+        background-size: 0px;
+    }
+
+    .Nav .Button:hover {
+        color: var(--buttonActiveText);
+        background-color: transparent;
+        text-shadow: 2px 2px 20px var(--borders);
+        top: 2px;
+        left: 2px;
+    }
+
+    .Nav .Button:active {
+        color: var(--buttonActiveText);
+        background-color: transparent;
+        text-shadow: 2px 2px 20px var(----buttonActiveText);
+        top: 2px;
+        left: 2px;
+    }
+
+    .Nav .Button:active::before {
+        display: none;
+    }
+}
+
+@media screen and (max-aspect-ratio: 9/16) {
+    .Nav {
+        display: flex;
+        align-items: space-around;
+        justify-content: left; 
+        flex-direction: row;
+        width: 100%;
+        height: 25%;
+        gap: 10%;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+    }
+    
+    .Nav .Button {
+        box-sizing: border-box;
+        position: relative;
+        height: 100%;
+        min-width: 60%;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        scroll-margin: 50%;
+        scroll-snap-align: center;
+        border-radius: 3vh;
+        background-size: cover;
+    }
+
+    .Nav .Button::before {
+        position: absolute;
+        content: "";
+        height: 100%;
+        width: 100%;
+        display: block;
+        background-color: var(--button);
+        opacity: 0.4;
+    }
+
+    .Nav .Button:active::before {
+        background: linear-gradient(to bottom, var(--buttonActiveText), transparent 15%),
+                    linear-gradient(to right, var(--buttonActiveText), transparent 15%),
+                    linear-gradient(to top, var(--buttonActiveText), transparent 15%),
+                    linear-gradient(to left, var(--buttonActiveText), transparent 15%);
+    }
+
+    .Nav .Button:first-child {
+        margin-left: 25%;
+    }
+    
+    .Nav .Button:last-child {
+        margin-right: 25%;
+    }
+
+    .Nav .Button:hover {
+    }
+    
+    .Nav .Button:active {
+    }
+
+    .Nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .Nav {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}

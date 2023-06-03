@@ -13,17 +13,12 @@
   transition: 0.2s;
   top: 0;
   left: 0;
-}
 
-.Card:hover {
-  top: -2px;
-  left: -2px;
-}
-
-.Card:active {
-  top: 0;
-  left: 0;
-  transition: 0s;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+  -webkit-tap-highlight-color: var(--borders);
+  -webkit-touch-callout: none;
 }
 
 .glow {
@@ -38,14 +33,6 @@
   transition: inherit;
 }
 
-.Card:hover .glow {
-  opacity: 1;
-}
-
-.Card:active .glow {
-  opacity: 0;
-}
-
 .Card svg {
   height: 100%;
   z-index: 12;
@@ -55,4 +42,27 @@
   font-size: 3rem;
   fill: lightblue;
   z-index: 13;
+}
+
+@media screen and (min-aspect-ratio: 9/16){
+
+  .Card:hover .glow {
+    opacity: 1;
+  }
+  
+  .Card:active .glow {
+    opacity: 0;
+  }
+
+  .Card:hover {
+    top: -2px;
+    left: -2px;
+  }
+  
+  .Card:active {
+    top: 0;
+    left: 0;
+    transition: 0s;
+  }
+  
 }

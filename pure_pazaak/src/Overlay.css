@@ -1,8 +1,10 @@
 .Overlay {
     background-color: var(--overlayColor);
-    border-radius: var(--borderRadius);
+    border-radius: 2vh;
     height: 100%;
     width: 100%;
+    min-height: 0;
+    min-width: 0;
     box-sizing: border-box;
     display: flex;
     align-items: center;

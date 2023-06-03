@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 
 function ButtonLink(props) {
   return (
-    <Link className={`Button ButtonLink ${props.className}`} to={props.to}>{props.children}</Link>
+    <Link className={`Button ButtonLink ${props.className}`} style={props.style || {}} to={props.to}>
+      <span>{props.children}</span>
+    </Link>
   )
 }
 

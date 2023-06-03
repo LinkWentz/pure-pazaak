@@ -1,6 +1,7 @@
 .Board{
   height: 100%;
   width: 100%;
+  padding: 2%;
   min-width: 0;
   min-height: 0;
   display: flex;
