@@ -6,8 +6,10 @@ class PazaakAISession extends PazaakSession{
         this.privateSession = true;
         this.players["Player 2"] = {
             "playerName": "_ai",
-            "callback": (gameState) => this.aiturn(gameState)
-        }
+            "callback": (gameState, label) => {
+                return;
+            }
+        };
     }
 
     assignPlayer(playerName, callback = x=>x) {
@@ -36,14 +38,44 @@ class PazaakAISession extends PazaakSession{
         this.callbacks();
     }
 
-    aiturn(gameState) {
-        if (this.turn == "Player 2"){
+    processMove(player, move) {
+        if (this.finished) {
+            if (move == "new game"){
+                this.resetGame();
+                this.callbacks("New game");
+            }
+            else {
+                this.callbacks("The game is finished");
+            }
+        }
 
+        if (player == this.currentPlayer) {
+            if (move == "stand") {
+                this.callbacks(this.stand());
+                this.callbacks(this.endTurn());
+            }
+            else if (move == "end turn") {
+                this.callbacks(this.endTurn());
+            }
+            else if (Object.hasOwn(move, 'value') || Number.isInteger(move)) {
+                this.callbacks(this.playCard(move));
+            }
+
+            if (this.score() == 20 && !this.finished) {
+                this.callbacks(this.stand());
+                this.callbacks(this.endTurn());
+                if (this.score() == 20 && !this.finished) {
+                    this.callbacks(this.stand());
+                    this.callbacks(this.endTurn());
+                }
+            }
+        }
+
+        if (this.turn == "Player 2"){
             const score = this.score("Player 2");
             const board = this.boards["Player 2"];
 
             if (score < 17 || score > 20) {
-
                 let cardToPlay = null;
 
                 for (const i in board["sidedeck"]) {
@@ -62,19 +94,21 @@ class PazaakAISession extends PazaakSession{
                         }
                     }
                 }
+
                 if (cardToPlay) {
-                    this.playCard(cardToPlay);
-                    this.stand();
+                    this.callbacks(this.playCard(cardToPlay));
+                    this.callbacks(this.stand());
+                    this.callbacks(this.endTurn());
                 }
                 else {
-                    this.endTurn();
+                    this.callbacks(this.endTurn());
                 }
             }
-            else if (score >= 17 && score <= 20){
-                this.stand();
+            else {
+                this.callbacks(this.stand());
+                this.callbacks(this.endTurn());
             }
-            
-            this.callbacks();
+            this.processMove();
         }
     }
 }

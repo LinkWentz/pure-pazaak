@@ -37,9 +37,8 @@ io.on('connection', async (socket) => {
     });
 
     socket.on('join-session', (sessionName) => {
-        sessionManager.addPlayerToSession(socket.id, sessionName, (gameState) => {
-            console.log('Game State Update');
-            socket.emit('game-state', gameState);
+        sessionManager.addPlayerToSession(socket.id, sessionName, (gameState, label = null) => {
+            socket.emit('game-state', gameState, label);
         });
         //Username Handling
         const playersInSession = sessionManager.playersInSession(sessionName);

@@ -24,6 +24,11 @@ class Pazaak {
         this.resetGame();
     }
     // Internal
+    
+    callbacks() {
+        return;
+    }
+
     resetGame() {
         this.boards = {
             "Player 1": {
@@ -43,6 +48,8 @@ class Pazaak {
         };
         this.turn = "Player 1";
         this.finished = false;
+        
+        this.endTurn();
         this.endTurn();
     }
 
@@ -59,6 +66,9 @@ class Pazaak {
             "sidedeckCardPlayed": false,
             "standing": false
         };
+
+        this.endTurn();
+        this.endTurn();
     }
 
     generateSideDeck() {
@@ -79,36 +89,35 @@ class Pazaak {
         }
     }
 
-    dealCard() {
+    dealCard(player = null) {
         const selectedCard = Math.round(Math.random() * 9) + 1;
-        this.boards[this.turn]["board"].push(new Card(selectedCard));
+        this.boards[player || this.turn]["board"].push(new Card(selectedCard));
 
-        if (this.score(this.turn) == 20){
-            this.stand();
-        }
+        return `${selectedCard} dealt to ${player || this.turn}`;
     }
 
     awardPoints() {
         const player1Score = this.score("Player 1");
         const player2Score = this.score("Player 2");
+
         if (player1Score > 20){
             this.boards["Player 2"]["points"]++;
-            return "Player 2 Won the Round!";
+            return "Player 2";
         }
         else if (player2Score > 20){
             this.boards["Player 1"]["points"]++;
-            return "Player 1 Won the Round!";
+            return "Player 1";
         }
         else if (player1Score == player2Score){
-            return "Round is Tied!";
+            return "No one";
         }
         else if (player1Score > player2Score){
             this.boards["Player 1"]["points"]++;
-            return "Player 1 Won the Round!";
+            return "Player 1";
         }
         else {
             this.boards["Player 2"]["points"]++;
-            return "Player 2 Won the Round!";
+            return "Player 2";
         }
     }
 
@@ -118,31 +127,33 @@ class Pazaak {
         if (player1Won || player2Won){
             this.finished = true;
             if (player1Won && player2Won){
-                return "The Game is Tied!";
+                return "No one";
             } 
             else if (player1Won){
-                return "Player 1 Wins the Game!";
+                return "Player 1";
             }
             else {
-                return "Player 2 Wins the Game!";
+                return "Player 2";
             }
-        }
-        else {
-            return "No players have won!"
         }
     }
 
     endRound() {
-        this.awardPoints();
-        this.resetBoards();
-        this.endTurn();
-        
-        this.determineGameWinner();
+        const roundWinner = this.awardPoints();
+        const gameWinner = this.determineGameWinner();
+
+        if (gameWinner) {
+            return `${gameWinner} wins the game`;
+        }
+        else {
+            this.resetBoards();
+            return `${roundWinner} wins the round`;
+        }
     }
     
     // Statuses
-    playerStanding() {
-        return this.boards[this.turn]["standing"];
+    playerStanding(player = null) {
+        return this.boards[player || this.turn]["standing"];
     }
     
     score(player = null) {
@@ -175,37 +186,33 @@ class Pazaak {
                 currentPlayerSidedeck.splice(i, 1);
                 this.boards[this.turn]["board"].push(card);
 
-                break;
+                return (`${this.turn} played ${card.value}`);
             }
-        }
-
-        if (this.score(this.turn) == 20){
-            this.stand();
         }
     }
 
     stand() {
         this.boards[this.turn]["standing"] = true;
-        this.endTurn();
+        return `${this.turn} stands on ${this.score()}`;
     }
 
     endTurn() {
         this.boards[this.turn]["sidedeckCardPlayed"] = false;
 
-        if (this.score() > 20){
-            this.endRound();
+        const playerBust = this.score() > 20;
+        const bothPlayersStanding = this.playerStanding("Player 1") && this.playerStanding("Player 2");
+        
+        if (playerBust || bothPlayersStanding){
+            return this.endRound();
         }
-        else {
-            this.switchTurn();
+        
+        this.switchTurn();
 
-            if(this.playerStanding()){
-                this.switchTurn();
-                if (this.playerStanding()){
-                    return this.endRound();
-                }
-            }
-            this.dealCard();
+        if (this.playerStanding()){
+            this.switchTurn();
         }
+
+        return this.dealCard();
     }
 }
 

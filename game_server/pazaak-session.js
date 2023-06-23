@@ -36,11 +36,15 @@ class PazaakSession extends Pazaak {
         return this.privateSession;
     }
 
-    callbacks(){
-        console.log(this.players);
+    callbacks(label = null){
         for (const player in this.players){
             if (this.players[player]["callback"]){
-                this.players[player]["callback"](this.retrieveSessionState(player));
+                if (label) {
+                    this.players[player]["callback"](this.retrieveSessionState(player), label);
+                }
+                else {
+                    this.players[player]["callback"](this.retrieveSessionState(player));
+                }
             }
         }
     }
@@ -62,7 +66,8 @@ class PazaakSession extends Pazaak {
             },
             "turn": player == this.turn ? "you" : "opponent",
             "finished": this.finished,
-            "playerCount": this.playerCount
+            "playerCount": this.playerCount,
+            "role": player
         }
     }
 
@@ -111,31 +116,34 @@ class PazaakSession extends Pazaak {
         if (this.finished) {
             if (move == "new game"){
                 this.resetGame();
+                this.callbacks("New game");
             }
             else {
-                return "This game is finished!";
+                this.callbacks("The game is finished");
             }
         }
 
         if (player == this.currentPlayer) {
             if (move == "stand") {
-                this.stand();
+                this.callbacks(this.stand());
+                this.callbacks(this.endTurn());
             }
             else if (move == "end turn") {
-                this.endTurn();
+                this.callbacks(this.endTurn());
             }
             else if (Object.hasOwn(move, 'value') || Number.isInteger(move)) {
-                this.playCard(move);
+                this.callbacks(this.playCard(move));
             }
-            else {
-                //`${move} is not a valid move!`;
-            }
-        }
-        else {
-            //`It is not ${player}'s turn!`;
-        }
 
-        this.callbacks();
+            if (this.score() == 20 && !this.finished) {
+                this.callbacks(this.stand());
+                this.callbacks(this.endTurn());
+                if (this.score() == 20 && !this.finished) {
+                    this.callbacks(this.stand());
+                    this.callbacks(this.endTurn());
+                }
+            }
+        }
     }
 }
 
