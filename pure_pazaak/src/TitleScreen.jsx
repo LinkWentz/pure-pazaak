@@ -2,12 +2,11 @@ import './TitleScreen.css';
 import Nav from './Nav';
 import UsernameField from './UsernameField';
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect, Suspense } from 'react';
+import { useEffect } from 'react';
 import { socket } from './App';
 import FindGameImage from './assets/FindGame.png';
 import PrivateGameImage from './assets/PrivateGame.png';
 import AIGameImage from './assets/AIGame.png';
-import TutorialImage from './assets/Tutorial.png';
 import AboutImage from './assets/About.png';
 
 function TitleScreen() {
@@ -42,7 +41,6 @@ function TitleScreen() {
         <button onClick={FindGame} backgroundImage={FindGameImage}>Find Game</button>
         <button onClick={CreatePrivateGame} backgroundImage={PrivateGameImage}>Private Game</button>
         <button onClick={CreateAIGame} backgroundImage={AIGameImage}>Play Against AI</button>
-        <button to="/rules" backgroundImage={TutorialImage}>Rules</button>
         <button to="/about" backgroundImage={AboutImage}>About</button>
       </Nav>
       <UsernameField />

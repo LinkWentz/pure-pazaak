@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import CantinaVideo from './CantinaVideo';
 import TitleScreen from './TitleScreen';
-import Rules from './Rules';
+import Tutorial from './Tutorial';
 import About from './About';
 import Game from './Game';
 import { io } from 'socket.io-client';
@@ -16,7 +16,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<TitleScreen/>} />
-          <Route path="/rules" element={<Rules/>} />
+          <Route path="/tutorial" element={<Tutorial/>} />
           <Route path="/about" element={<About/>} />
           <Route path="/game/:sessionName" element={<Game/>} />
           <Route path="*" element={<Navigate to="/" replace/>} />
