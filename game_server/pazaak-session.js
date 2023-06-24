@@ -134,15 +134,6 @@ class PazaakSession extends Pazaak {
             else if (Object.hasOwn(move, 'value') || Number.isInteger(move)) {
                 this.callbacks(this.playCard(move));
             }
-
-            if (this.score() == 20 && !this.finished) {
-                this.callbacks(this.stand());
-                this.callbacks(this.endTurn());
-                if (this.score() == 20 && !this.finished) {
-                    this.callbacks(this.stand());
-                    this.callbacks(this.endTurn());
-                }
-            }
         }
     }
 }

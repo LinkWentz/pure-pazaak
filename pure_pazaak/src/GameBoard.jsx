@@ -17,7 +17,7 @@ function GameBoard(props){
         <div className={`GameBoard ${props.className}`}>
             <Scoreboard className="yourScoreboard" score={props.gameState["boards"]["you"]["points"]}/>
             <Username className="yourUsername">{window.localStorage.username}</Username>
-            <BoardSum className="yourBoardSum" board={props.gameState["boards"]["you"]["board"]}/>
+            <BoardSum className="yourBoardSum" board={props.gameState["boards"]["you"]["board"]} stand={props.stand}/>
             
             <BoardSum className="opponentsBoardSum" board={props.gameState["boards"]["opponent"]["board"]}/>
             <Username className="opponentsUsername">{props.opponentsUsername}</Username>
