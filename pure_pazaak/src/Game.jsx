@@ -97,6 +97,7 @@ function Game(){
         if (!label) {
           label = "";
         }
+
         // If card is dealt
         if (label.includes("dealt")) {
           timedQueue.add(() => new Audio(DrawCard).play(), 0);
@@ -106,19 +107,19 @@ function Game(){
           timedQueue.add(() => new Audio(PlayCard).play(), 0);
         }
         // If player wins round
-        if (label.includes("win") && label.includes("round") && label.includes(gameState["role"])){
+        if (label.includes("win") && label.includes("round") && label.includes(gameState["role"]) && !label.includes("No one")){
           timedQueue.add(() => new Audio(WinRound).play(), 0);
         }
         // If player lsoes round
-        if (label.includes("win") && label.includes("round") && !label.includes(gameState["role"])){
+        if (label.includes("win") && label.includes("round") && !label.includes(gameState["role"]) && !label.includes("No one")){
           timedQueue.add(() => new Audio(LoseRound).play(), 0);
         }
         // if player wins game
-        if (label.includes("win") && label.includes("game") && label.includes(gameState["role"])){
+        if (label.includes("win") && label.includes("game") && label.includes(gameState["role"]) && !label.includes("No one")){
           timedQueue.add(() => new Audio(WinGame).play(), 0);
         }
         // if player loses game
-        if (label.includes("win") && label.includes("game") && !label.includes(gameState["role"])){
+        if (label.includes("win") && label.includes("game") && !label.includes(gameState["role"]) && !label.includes("No one")){
           timedQueue.add(() => new Audio(LoseGame).play(), 0);
         }
 
