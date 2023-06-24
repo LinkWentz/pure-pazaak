@@ -146,9 +146,7 @@ function Game(){
     }, []);
 
     const EndTurn = () => {
-      console.log('a');
       if (queueDone){
-        console.log('b');
         socket.emit('game-event', 'end turn', params['sessionName']);
       }
     };
