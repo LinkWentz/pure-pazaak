@@ -1,5 +1,6 @@
 import './BoardSum.css'
 import { useState, useEffect } from 'react';
+import BustSound from './assets/audio/mgs_warnbust.wav';
 
 function BoardSum(props) {
 
@@ -12,6 +13,10 @@ function BoardSum(props) {
     useEffect(() => {
         if (sum == 20 && props.stand) {
             props.stand();
+        }
+
+        if (sum > 20) {
+            new Audio(BustSound).play();
         }
     }, [sum, setSum])
 
