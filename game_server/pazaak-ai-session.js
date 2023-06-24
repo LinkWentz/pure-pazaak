@@ -71,7 +71,7 @@ class PazaakAISession extends PazaakSession{
             }
         }
 
-        if (this.turn == "Player 2"){
+        if (this.turn == "Player 2" && !this.finished){
             const score = this.score("Player 2");
             const board = this.boards["Player 2"];
 
