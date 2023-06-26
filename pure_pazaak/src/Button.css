@@ -56,6 +56,3 @@
     color: var(--buttonHoverText);
   }
 }
-
-/* radial-gradient(circle at 5%, transparent, var(--buttonActiveText), transparent 10%),
-              radial-gradient(circle at 95%, transparent, var(--buttonActiveText), transparent 10%)
