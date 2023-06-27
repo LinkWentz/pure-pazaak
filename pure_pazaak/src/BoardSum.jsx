@@ -1,8 +1,12 @@
 import './BoardSum.css'
 import { useState, useEffect } from 'react';
 import BustSound from './assets/audio/mgs_warnbust.wav';
+import { useParams } from "react-router-dom";
+import { socket } from './App';
 
 function BoardSum(props) {
+
+    const params = useParams();
 
     const [sum, setSum] = useState(0);
 
@@ -12,7 +16,7 @@ function BoardSum(props) {
 
     useEffect(() => {
         if (sum == 20 && props.stand) {
-            props.stand();
+            socket.emit('game-event', 'stand', params['sessionName']);
         }
 
         if (sum > 20) {
