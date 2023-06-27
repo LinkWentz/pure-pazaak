@@ -6,8 +6,8 @@ const https = require('https');
 
 const {key, cert} = (() => {
 	return {
-		key: fs.readFileSync(`../certs/privkey.pem`, 'utf-8'),
-		cert: fs.readFileSync(`../certs/fullchain.pem`, 'utf-8')
+		key: fs.readFileSync(`/etc/letsencrypt/live/www.lincolnwentz.com/privkey.pem`, 'utf-8'),
+		cert: fs.readFileSync(`/etc/letsencrypt/live/www.lincolnwentz.com/fullchain.pem`, 'utf-8')
 	}
 })();
 
