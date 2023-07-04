@@ -1,37 +1,26 @@
-import { socket } from '../App';
 // Stylesheets
 import './styles/BoardSum.css'
 // Libraries
-import { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from 'react';
 // Audio
 import BustSound from '../assets/audio/mgs_warnbust.wav';
 
 function BoardSum(props) {
 
-    const params = useParams();
-
-    const [sum, setSum] = useState(0);
+    const [lastValue, setLastValue] = useState(0);
 
     useEffect(() => {
-        setSum(props.board.reduce((x, e) => x + e.value, 0))
-    }, [props])
-
-    useEffect(() => {
-        if (sum == 20 && props.stand) {
-            socket.emit('game-event', 'stand', params['sessionName']);
-        }
-
-        if (sum > 20) {
+        if (props.value && props.value > 20 && props.value !== lastValue) {
             new Audio(BustSound).play();
         }
-    }, [sum, setSum])
+        setLastValue(props.value || 0);
+    }, [props]);
 
     return(
         <div className={`BoardSum ${props.className}`}>
-            <p>{sum}</p>
+            <p>{props.value || 0}</p>
         </div>
-    )
+    );
 }
 
 export default BoardSum;

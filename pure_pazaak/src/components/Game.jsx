@@ -31,14 +31,16 @@ function Game() {
                 "standing": false,
                 "sidedeck": [],
                 "sidedeckCardPlayed": false,
-                "board": []
+                "board": [],
+                "boardSum": 0
             },
             "opponent": {
                 "sidedeckSize": 0,
                 "points": 0,
                 "standing": false,
                 "sidedeckCardPlayed": false,
-                "board": []
+                "board": [],
+                "boardSum": 0
             }
         },
         "turn": "you",
@@ -46,7 +48,7 @@ function Game() {
         "playerCount": 1,
         "role": "Player 1"
     });
-
+    
     useEffect(() => {
         socket.emit('join-session', params['sessionName']);
 
@@ -84,7 +86,24 @@ function Game() {
                 timedQueue.add(() => new Audio(LoseGame).play(), 0);
             }
 
-            timedQueue.add(() => { setGameState(newGameState) }, 0);
+            timedQueue.add(() => {
+                const yourBoardSum = newGameState["boards"]["you"]["board"].reduce((x, e) => x + e.value, 0);
+                const opponentsBoardSum = newGameState["boards"]["opponent"]["board"].reduce((x, e) => x + e.value, 0);
+        
+                setGameState({
+                    ...newGameState,
+                    "boards": {
+                        "you": {
+                            ...newGameState["boards"]["you"],
+                            "boardSum": yourBoardSum
+                        },
+                        "opponent": {
+                            ...newGameState["boards"]["opponent"],
+                            "boardSum": opponentsBoardSum
+                        }
+                    }
+                });
+            }, 0);
             timedQueue.add(() => { }, 500);
             timedQueue.start();
         });
@@ -106,6 +125,12 @@ function Game() {
             socket.off('opponents-username');
         };
     }, []);
+
+    useEffect(() => {
+        if (gameState["boards"]["you"]["boardSum"] == 20 && !gameState["boards"]["you"]["standing"]) {
+            socket.emit('game-event', 'stand', params['sessionName']);
+        }
+    }, [gameState]);
 
     const timedQueue = (function () {
         var API;
