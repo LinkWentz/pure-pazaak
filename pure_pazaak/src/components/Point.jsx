@@ -1,4 +1,5 @@
-import './Point.css';
+// Stylesheets
+import './styles/Point.css';
 
 function Point(props) {
   return (

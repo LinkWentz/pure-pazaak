@@ -1,4 +1,6 @@
-import './Overlay.css';
+// Stylesheets
+import './styles/Overlay.css';
+// Libraries
 import { useState, useEffect } from 'react';
 
 function Overlay(props){

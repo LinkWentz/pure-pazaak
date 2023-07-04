@@ -1,4 +1,5 @@
-import './Username.css'
+// Stylesheets
+import './styles/Username.css'
 
 function Username(props) {
 

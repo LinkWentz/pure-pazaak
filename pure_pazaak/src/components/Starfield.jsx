@@ -1,4 +1,6 @@
-import './Starfield.css';
+// Stylesheets
+import './styles/Starfield.css';
+// Libraries
 import { useState, useEffect } from 'react';
 
 function Starfield(props){

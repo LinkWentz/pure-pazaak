@@ -1,8 +1,11 @@
-import './Sidedeck.css';
+import { socket } from '../App';
+// Stylesheets
+import './styles/Sidedeck.css';
+// Components
 import Card from './Card';
+// Libraries
 import { useEffect, useState} from 'react';
 import { useParams } from "react-router-dom";
-import { socket } from './App';
 
 function Sidedeck(props) {
 

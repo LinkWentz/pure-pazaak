@@ -1,4 +1,6 @@
-import './Card.css'
+// Stylesheets
+import './styles/Card.css'
+// Libraries
 import { useState, useEffect } from 'react';
 
 function Card(props) {

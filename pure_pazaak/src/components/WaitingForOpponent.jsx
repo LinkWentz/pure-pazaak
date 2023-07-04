@@ -1,6 +1,9 @@
-import './WaitingForOpponent.css';
+// Stylesheets
+import './styles/WaitingForOpponent.css';
+// Components
 import Button from './Button';
 import ButtonLink from './ButtonLink';
+// Libraries
 import { useEffect, useState } from 'react';
 
 function WaitingForOpponent(props){

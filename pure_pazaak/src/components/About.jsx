@@ -1,4 +1,6 @@
-import './About.css';
+// Stylesheets
+import './styles/About.css';
+// Components
 import ButtonLink from './ButtonLink';
 
 function About(){

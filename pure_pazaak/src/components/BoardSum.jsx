@@ -1,8 +1,11 @@
-import './BoardSum.css'
+import { socket } from '../App';
+// Stylesheets
+import './styles/BoardSum.css'
+// Libraries
 import { useState, useEffect } from 'react';
-import BustSound from './assets/audio/mgs_warnbust.wav';
 import { useParams } from "react-router-dom";
-import { socket } from './App';
+// Audio
+import BustSound from '../assets/audio/mgs_warnbust.wav';
 
 function BoardSum(props) {
 

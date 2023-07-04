@@ -1,4 +1,6 @@
-import './GameBoard.css';
+// Stylesheets
+import './styles/GameBoard.css';
+// Components
 import Scoreboard from './Scoreboard';
 import Board from './Board' ;
 import Sidedeck from './Sidedeck';
@@ -7,6 +9,7 @@ import Button from './Button';
 import ButtonLink from './ButtonLink';
 import BoardSum from './BoardSum';
 import Username from './Username';
+// Libraries
 import { useParams } from "react-router-dom";
 
 function GameBoard(props){

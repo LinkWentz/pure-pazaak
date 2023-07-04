@@ -1,7 +1,10 @@
-import { useEffect, useState } from 'react';
+// Stylesheets
+import './styles/Nav.css';
+// Components
 import Button from './Button';
 import ButtonLink from './ButtonLink';
-import './Nav.css';
+// Libraries
+import { useEffect, useState } from 'react';
 
 function Nav({ children }) {
 

@@ -1,4 +1,6 @@
-import './TurnOverlay.css';
+// Stylesheets
+import './styles/TurnOverlay.css';
+// Components
 import Overlay from './Overlay';
 
 function TurnOverlay(props){

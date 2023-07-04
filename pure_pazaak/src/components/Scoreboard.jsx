@@ -1,6 +1,8 @@
-import "./Scoreboard.css";
+// Stylesheets
+import "./styles/Scoreboard.css";
+// Components
 import Point from './Point';
-
+// Libraries
 import { useState, useEffect } from 'react';
 
 function Scoreboard(props) {

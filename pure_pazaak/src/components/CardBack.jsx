@@ -1,4 +1,5 @@
-import './Card.css'
+// Stylesheets
+import './styles/Card.css'
 
 function CardBack() {
   return (

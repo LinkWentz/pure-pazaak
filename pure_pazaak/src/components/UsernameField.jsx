@@ -1,4 +1,6 @@
-import './UsernameField.css';
+// Stylesheets
+import './styles/UsernameField.css';
+// Libraries
 import { useState, useEffect } from 'react';
 
 function UsernameField() {

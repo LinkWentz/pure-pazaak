@@ -1,8 +1,10 @@
-import './Button.css'
+// Stylesheets
+import './styles/Button.css'
+// Libraries
 import { Link } from 'react-router-dom';
-import Scroll from './assets/audio/gui_actscroll.wav';
-import Click from './assets/audio/gui_actuse.wav';
-import { useEffect } from 'react';
+// Audio
+import Scroll from '../assets/audio/gui_actscroll.wav';
+import Click from '../assets/audio/gui_actuse.wav';
 
 function ButtonLink(props) {
 

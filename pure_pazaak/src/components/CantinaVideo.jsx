@@ -1,5 +1,7 @@
-import './CantinaVideo.css';
-import backgroundVideo from './assets/cantina_background.mp4';
+// Stylesheets
+import './styles/CantinaVideo.css';
+// Videos
+import backgroundVideo from '../assets/cantina_background.mp4';
 
 function CantinaVideo() {
     return (

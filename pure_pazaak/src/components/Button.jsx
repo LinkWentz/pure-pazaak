@@ -1,6 +1,8 @@
-import './Button.css'
-import Scroll from './assets/audio/gui_actscroll.wav';
-import Click from './assets/audio/gui_actuse.wav';
+// Stylesheets
+import './styles/Button.css'
+// Audio
+import Scroll from '../assets/audio/gui_actscroll.wav';
+import Click from '../assets/audio/gui_actuse.wav';
 
 function Button(props) {
 

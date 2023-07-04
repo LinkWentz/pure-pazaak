@@ -1,5 +1,8 @@
-import './Sidedeck.css';
+// Stylesheets
+import './styles/Sidedeck.css';
+// Components
 import CardBack from './CardBack';
+// Libraries
 import { useEffect, useState } from 'react';
 
 function Sidedeck(props) {

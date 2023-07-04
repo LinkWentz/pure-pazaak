@@ -1,8 +1,10 @@
-import './GameOver.css';
+// Stylesheets
+import './styles/GameOver.css';
+// Components
 import Button from './Button';
 import ButtonLink from './ButtonLink';
+// Libraries
 import { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom";
 
 function GameOver(props){
 

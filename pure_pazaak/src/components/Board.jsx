@@ -1,6 +1,7 @@
-import './Board.css';
+// Stylesheets
+import './styles/Board.css';
+// Components
 import Card from './Card';
-import Scoreboard from './Scoreboard';
 
 function Board(props) {
 

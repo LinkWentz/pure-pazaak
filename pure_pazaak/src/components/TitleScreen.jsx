@@ -1,13 +1,17 @@
-import './TitleScreen.css';
+import { socket } from '../App';
+// Stylesheets
+import './styles/TitleScreen.css';
+// Components
 import Nav from './Nav';
 import UsernameField from './UsernameField';
+// Libraries
 import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react';
-import { socket } from './App';
-import FindGameImage from './assets/FindGame.png';
-import PrivateGameImage from './assets/PrivateGame.png';
-import AIGameImage from './assets/AIGame.png';
-import AboutImage from './assets/About.png';
+// Images
+import FindGameImage from '../assets/FindGame.png';
+import PrivateGameImage from '../assets/PrivateGame.png';
+import AIGameImage from '../assets/AIGame.png';
+import AboutImage from '../assets/About.png';
 
 function TitleScreen() {
 
