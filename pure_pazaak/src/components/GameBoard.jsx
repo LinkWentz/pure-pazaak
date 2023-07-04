@@ -6,7 +6,6 @@ import Board from './Board' ;
 import Sidedeck from './Sidedeck';
 import OpponentsSidedeck from './OpponentsSidedeck'
 import Button from './Button';
-import ButtonLink from './ButtonLink';
 import BoardSum from './BoardSum';
 import Username from './Username';
 // Libraries
@@ -32,7 +31,7 @@ function GameBoard(props){
             <Sidedeck className="yourSidedeck" cards={props.gameState["boards"]["you"]["sidedeck"]}></Sidedeck>
             <OpponentsSidedeck className="opponentsSidedeck" cardsCount={props.gameState["boards"]["opponent"]["sidedeckSize"]}/>
 
-            <ButtonLink className="mainMenu" to="/">Main Menu</ButtonLink>
+            <Button className="mainMenu" to="/">Main Menu</Button>
             <Button className="endTurn" onClick={props.endTurn}>End Turn</Button>
             <Button className="stand" onClick={props.stand}>Stand</Button>
         </div>

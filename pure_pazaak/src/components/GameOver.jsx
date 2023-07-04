@@ -2,7 +2,6 @@
 import './styles/GameOver.css';
 // Components
 import Button from './Button';
-import ButtonLink from './ButtonLink';
 // Libraries
 import { useEffect, useState } from 'react';
 
@@ -34,7 +33,7 @@ function GameOver(props){
     return(
         <div className="GameOver" style={style}>
             <p className="message">{message}</p>
-            <ButtonLink to={'/'} className="mainMenu">Main Menu</ButtonLink>
+            <Button to={'/'} className="mainMenu">Main Menu</Button>
             <Button onClick={props.newGame}>Rematch</Button>
         </div>
     )

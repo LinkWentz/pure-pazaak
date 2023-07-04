@@ -1,13 +1,13 @@
 // Stylesheets
 import './styles/About.css';
 // Components
-import ButtonLink from './ButtonLink';
+import Button from './Button';
 
 function About(){
     return(
         <div class="About">
             <p>This isn't the page you're looking for...</p>
-            <ButtonLink to="/">Back</ButtonLink>
+            <Button to="/">Back</Button>
         </div>
     )
 }

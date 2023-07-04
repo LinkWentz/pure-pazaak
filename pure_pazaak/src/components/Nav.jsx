@@ -2,7 +2,6 @@
 import './styles/Nav.css';
 // Components
 import Button from './Button';
-import ButtonLink from './ButtonLink';
 // Libraries
 import { useEffect, useState } from 'react';
 
@@ -18,12 +17,12 @@ function Nav({ children }) {
 
             if (child.props.hasOwnProperty("to")) {
                 newButtons.push(
-                    <ButtonLink 
+                    <Button 
                         to={child.props.to} 
                         key={element}
                         style={{backgroundImage: `url(${child.props.backgroundImage || ''})`}}>
                             {child.props.children}
-                    </ButtonLink>
+                    </Button>
                 );
             }
             else if (child.props.hasOwnProperty("onClick")) {
