@@ -8,12 +8,8 @@ import OpponentsSidedeck from './OpponentsSidedeck'
 import Button from './Button';
 import BoardSum from './BoardSum';
 import Username from './Username';
-// Libraries
-import { useParams } from "react-router-dom";
 
 function GameBoard(props){
-
-    const params = useParams();
 
     return(
         <div className={`GameBoard ${props.className}`}>
