@@ -1,7 +1,7 @@
 // Stylesheets
 import './styles/Sidedeck.css';
 // Components
-import CardBack from './CardBack';
+import Card from './Card';
 // Libraries
 import { useEffect, useState } from 'react';
 
@@ -12,7 +12,7 @@ function Sidedeck(props) {
   useEffect(() => {
     const newCards = [];
     for (let i = 0; i < props.cardsCount; i++){
-      newCards.push(<CardBack key={i}/>);
+      newCards.push(<Card key={i}/>);
     }
     setCards(newCards);
   }, [props.cardsCount]);
