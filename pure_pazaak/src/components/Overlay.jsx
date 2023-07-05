@@ -3,22 +3,22 @@ import './styles/Overlay.css';
 // Libraries
 import { useState, useEffect } from 'react';
 
-function Overlay(props){
-  
+function Overlay(props) {
+
     const [style, setStyle] = useState({});
 
     useEffect(() => {
-      if (props.visible){
-        setStyle({"visibility": "visible"});
-      }
-      else {
-        setStyle({"visibility": "hidden"});
-      }
+        if (props.visible) {
+            setStyle({ "visibility": "visible" });
+        }
+        else {
+            setStyle({ "visibility": "hidden" });
+        }
     }, [props.visible]);
 
-    return(
+    return (
         <div className={`Overlay ${props.className}`} style={style}>
-          {props.children}
+            {props.children}
         </div>
     )
 }
