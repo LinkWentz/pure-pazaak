@@ -1,0 +1,23 @@
+.Tutorial {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    overflow: scroll;
+}
+
+.Tutorial > header {
+    padding: 2rem 0 0 0;
+}
+.Tutorial > main {
+    padding: 0 33%;
+}
+
+.Tutorial > main > p {
+    font-family: "Franklin Gothic";
+    font-weight: 1000;
+    font-size: 1.5rem;
+    color: var(--headers);
+    text-align: left;
+}
+

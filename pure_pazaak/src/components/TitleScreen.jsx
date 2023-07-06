@@ -45,6 +45,7 @@ function TitleScreen() {
                 <button onClick={FindGame} backgroundImage={FindGameImage}>Find Game</button>
                 <button onClick={CreatePrivateGame} backgroundImage={PrivateGameImage}>Private Game</button>
                 <button onClick={CreateAIGame} backgroundImage={AIGameImage}>Play Against AI</button>
+                <button to="/tutorial" backgroundImage={null}>Tutorial</button>
                 <button to="/about" backgroundImage={AboutImage}>About</button>
             </Nav>
             <UsernameField />
