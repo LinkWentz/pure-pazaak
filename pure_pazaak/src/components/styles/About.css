@@ -1,9 +1,9 @@
-.About{
+.About {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.About > p {
+.About>p {
     font-size: 2rem;
 }

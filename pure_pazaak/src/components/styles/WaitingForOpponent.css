@@ -1,20 +1,18 @@
 .WaitingForOpponent {
-    position: absolute;
-    box-sizing: border-box;
-    height: 100%;
-    width: 100%;
-    padding: 2%;
-    z-index: 30;
-
-    background-color: var(--overlayColor);
-    font-size: 3rem;
-    border-radius: var(--borderRadius);
-    text-align: center;
-
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    position: absolute;
+    z-index: 30;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 2%;
+    background-color: var(--overlayColor);
+    border-radius: var(--borderRadius);
+    font-size: 3rem;
+    text-align: center;
 }
 
 .WaitingForOpponent p {
@@ -31,9 +29,9 @@
 @media screen and (max-aspect-ratio: 9/16) {
     .WaitingForOpponent {
         display: grid;
+        gap: var(--gridGap);
         grid-template-rows: 13fr 1fr;
         grid-template-columns: 1fr 1fr;
-        gap: var(--gridGap);
     }
 
     .WaitingForOpponent p {
@@ -41,8 +39,8 @@
     }
 
     .WaitingForOpponent .Button {
-        height: 100%;
         width: 100%;
+        height: 100%;
     }
 
     .WaitingForOpponent .mainMenu {

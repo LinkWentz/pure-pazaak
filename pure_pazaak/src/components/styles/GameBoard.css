@@ -1,177 +1,176 @@
 .GameBoard {
-  display: grid;
-  height: 100%;
-  width: 100%;
-  padding: 2%;
-  box-sizing: border-box;
-
-  gap: var(--gridGap); 
-
-  background-color: var(--gameBackground);
-  border-radius: var(--borderRadius);
-  border: var(--borderThickness) solid var(--borders); 
+    display: grid;
+    gap: var(--gridGap);
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 2%;
+    background-color: var(--gameBackground);
+    border: var(--borderThickness) solid var(--borders);
+    border-radius: var(--borderRadius);
 }
 
 @media screen and (min-aspect-ratio: 9/16) {
-  .GameBoard {
-    grid-template-rows: 1fr 8fr 3fr 1fr;
-    grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1fr 2fr 2fr;
-    padding: 2%;
-  }
+    .GameBoard {
+        grid-template-rows: 1fr 8fr 3fr 1fr;
+        grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1fr 2fr 2fr;
+        padding: 2%;
+    }
 
-  .GameBoard .Button {
-    height: 100%;
-    width: 100%;
-  }
+    .GameBoard .Button {
+        width: 100%;
+        height: 100%;
+    }
 
-  .GameBoard .Scoreboard {
-    padding: 5%;
-  }
+    .GameBoard .Scoreboard {
+        padding: 5%;
+    }
 
-  .GameBoard .Sidedeck {
-    padding: 2%;
-  }
+    .GameBoard .Sidedeck {
+        padding: 2%;
+    }
 
-  .GameBoard .yourScoreboard {
-    grid-column: 1;
-  }
+    .GameBoard .yourScoreboard {
+        grid-column: 1;
+    }
 
-  .GameBoard .yourUsername {
-    grid-column: 2 / span 2;
-  }
+    .GameBoard .yourUsername {
+        grid-column: 2 / span 2;
+    }
 
-  .GameBoard .yourBoardSum {
-    grid-column: 4;
-  }
+    .GameBoard .yourBoardSum {
+        grid-column: 4;
+    }
 
-  .GameBoard .opponentsBoardSum {
-    grid-column: 5;
-  }
+    .GameBoard .opponentsBoardSum {
+        grid-column: 5;
+    }
 
-  .GameBoard .opponentsUsername {
-    grid-column: 6 / span 2;
-  }
+    .GameBoard .opponentsUsername {
+        grid-column: 6 / span 2;
+    }
 
-  .GameBoard .opponentsScoreboard {
-    grid-column: 8;
-  }
+    .GameBoard .opponentsScoreboard {
+        grid-column: 8;
+    }
 
-  .GameBoard .yourBoard {
-    grid-column: 1 / span 4;
-  }
+    .GameBoard .yourBoard {
+        grid-column: 1 / span 4;
+    }
 
-  .GameBoard .opponentsBoard {
-    grid-column: 5 / span 4;
-  }
+    .GameBoard .opponentsBoard {
+        grid-column: 5 / span 4;
+    }
 
-  .GameBoard .yourSidedeck {
-    grid-column: 1 / span 4;
-  }
+    .GameBoard .yourSidedeck {
+        grid-column: 1 / span 4;
+    }
 
-  .GameBoard .opponentsSidedeck {
-    grid-column: 5 / span 4;
-  }
+    .GameBoard .opponentsSidedeck {
+        grid-column: 5 / span 4;
+    }
 
-  .GameBoard .mainMenu {
-    grid-column: 1;
-    z-index: 50;
-  }
+    .GameBoard .mainMenu {
+        grid-column: 1;
+        z-index: 50;
+    }
 
-  .GameBoard .endTurn {
-    grid-column: 7;
-  }
+    .GameBoard .endTurn {
+        grid-column: 7;
+    }
 
-  .GameBoard .stand {
-    grid-column: 8;
-  }
+    .GameBoard .stand {
+        grid-column: 8;
+    }
 }
 
 @media screen and (max-aspect-ratio: 9/16) {
-  .GameBoard {
-    grid-template-rows: 2fr 3fr 1fr 1fr 1fr 3fr 2fr 1fr;
-    grid-template-columns: 2fr 5fr 5fr 2fr;
-    padding: 2%;
-  }
-  
-  .Scoreboard {
-    flex-direction: column;
-    padding: 20%;
-    box-sizing: border-box;
-  }
+    .GameBoard {
+        grid-template-rows: 2fr 3fr 1fr 1fr 1fr 3fr 2fr 1fr;
+        grid-template-columns: 2fr 5fr 5fr 2fr;
+        padding: 2%;
+    }
 
-  .Sidedeck {
-    padding: 0%;
-  }
+    .Scoreboard {
+        flex-direction: column;
+        box-sizing: border-box;
+        padding: 20%;
+    }
 
-  .GameBoard .BoardSum {
-    font-size: 1.5rem;
-  }
+    .Sidedeck {
+        padding: 0%;
+    }
 
-  .GameBoard .Button {
-    height: 100%;
-    width: 100%;
-  }
-  
-  .GameBoard .yourScoreboard {
-    grid-row: 6;
-    grid-column: 1;
-  }
-  
-  .GameBoard .yourUsername {
-    grid-row: 4;
-    grid-column: 1 / span 2;
-  }
-  
-  .GameBoard .yourBoardSum {
-    grid-row: 5;
-    grid-column: 1;
-  }
-  
-  .GameBoard .opponentsBoardSum {
-    grid-row: 3;
-    grid-column: 1;
-  }
-  .GameBoard .opponentsUsername {
-    grid-row: 4;
-    grid-column: 3 / span 2;
-  }
-  
-  .GameBoard .opponentsScoreboard {
-    grid-row: 2;
-    grid-column: 1;
-  }
-  
-  .GameBoard .yourBoard {
-    grid-row: 5 / span 2;
-    grid-column: 2 / span 3;
-  }
-  
-  .GameBoard .opponentsBoard {
-    grid-row: 2 / span 2;
-    grid-column: 2 / span 3;
-  }
-  
-  .GameBoard .yourSidedeck {
-    grid-row: 7;
-    grid-column: 1 / span 4;
-  }
-  
-  .GameBoard .opponentsSidedeck {
-    grid-row: 1;
-    grid-column: 1 / span 4;
-  }
-  
-  .GameBoard .mainMenu {
-    display: none;
-  }
-  
-  .GameBoard .endTurn {
-    grid-row: 8;
-    grid-column: 1 / span 2;
-  }
-  
-  .GameBoard .stand {
-    grid-row: 8;
-    grid-column: 3 / span 2;
-  }
+    .GameBoard .BoardSum {
+        font-size: 1.5rem;
+    }
+
+    .GameBoard .Button {
+        width: 100%;
+        height: 100%;
+    }
+
+    .GameBoard .yourScoreboard {
+        grid-row: 6;
+        grid-column: 1;
+    }
+
+    .GameBoard .yourUsername {
+        grid-row: 4;
+        grid-column: 1 / span 2;
+    }
+
+    .GameBoard .yourBoardSum {
+        grid-row: 5;
+        grid-column: 1;
+    }
+
+    .GameBoard .opponentsBoardSum {
+        grid-row: 3;
+        grid-column: 1;
+    }
+
+    .GameBoard .opponentsUsername {
+        grid-row: 4;
+        grid-column: 3 / span 2;
+    }
+
+    .GameBoard .opponentsScoreboard {
+        grid-row: 2;
+        grid-column: 1;
+    }
+
+    .GameBoard .yourBoard {
+        grid-row: 5 / span 2;
+        grid-column: 2 / span 3;
+    }
+
+    .GameBoard .opponentsBoard {
+        grid-row: 2 / span 2;
+        grid-column: 2 / span 3;
+    }
+
+    .GameBoard .yourSidedeck {
+        grid-row: 7;
+        grid-column: 1 / span 4;
+    }
+
+    .GameBoard .opponentsSidedeck {
+        grid-row: 1;
+        grid-column: 1 / span 4;
+    }
+
+    .GameBoard .mainMenu {
+        display: none;
+    }
+
+    .GameBoard .endTurn {
+        grid-row: 8;
+        grid-column: 1 / span 2;
+    }
+
+    .GameBoard .stand {
+        grid-row: 8;
+        grid-column: 3 / span 2;
+    }
 }

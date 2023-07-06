@@ -1,26 +1,26 @@
 .Game {
-  aspect-ratio: 4/3;
-  max-height: 100vh;
-  max-width: 100vw;
-  position: relative;
-  z-index: 10;
+    aspect-ratio: 4/3;
+    max-height: 100vh;
+    max-width: 100vw;
+    position: relative;
+    z-index: 10;
 }
 
-.Game .Button{
-  font-size: 1.1rem;
+.Game .Button {
+    font-size: 1.1rem;
 }
 
 @media screen and (max-aspect-ratio: 9/16) {
-  .Game {
-    max-height: 100vh;
-    max-width: 100vw;
-    height: 100%;
-    width: 100%;
-    position: relative;
-    z-index: 10;
-  }
+    .Game {
+        max-height: 100vh;
+        max-width: 100vw;
+        height: 100%;
+        width: 100%;
+        position: relative;
+        z-index: 10;
+    }
 
-  .Game .Button{
-    font-size: 1rem;
-  }
+    .Game .Button {
+        font-size: 1rem;
+    }
 }

@@ -1,31 +1,30 @@
 .Sidedeck {
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  max-height: 100%;
-  min-height: 0;
-  min-width: 0;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  justify-items: center;
-  align-items: center;
-  box-sizing: border-box;
+    justify-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    height: 100%;
+    min-height: 0;
+    max-height: 100%;
 }
 
 .sidedeckGrid {
-  height: 100%;
-  width: 100%;
-  max-width: 100%;
-  min-width: 100%;
-  min-height: 0;
-  min-width: 0;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-template-rows: 1fr;
-  gap: var(--gridGap);
-  justify-content: center;
-  align-content: center;
-  justify-items: center;
-  align-items: center;
+    justify-items: center;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: var(--gridGap);
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    height: 100%;
+    min-height: 0;
 }
