@@ -1,9 +1,9 @@
 .Tutorial {
     display: flex;
     flex-direction: column;
-    width: 100%;
     align-items: center;
     overflow: scroll;
+    width: 100%;
 }
 
 .Tutorial > header {
@@ -14,30 +14,41 @@
 }
 
 .Tutorial > main > p {
+    font-size: 1.5rem;
     font-family: "Franklin Gothic";
     font-weight: 1000;
-    font-size: 1.5rem;
     color: var(--headers);
     text-align: left;
 }
 
 .TutorialMessageBubble {
+    display: flex;
+    flex-direction: column;
+    justify-content: cemter;
+    align-items: center;
     position: absolute;
-    left: 0;
-    top: 0;
-    background-color: black;
-    display: block;
-    line-height: 4rem;
-    font-size: 1rem;
-    text-align: center;
-    height: auto;
+    z-index: 100;
+    top: auto;
+    left: auto;
+    overflow: hidden;
     width: auto;
     min-width: min-content;
     max-width: 50%;
-    z-index: 100;
-    border-radius: var(--borderRadius);
-    overflow: hidden;
+    height: auto;
+    padding: 1.5rem;
+    background-color: black;
     border: var(--borders) var(--borderThickness) solid;
-    padding: 0 1rem;
-    background-color: var(--overlayColor);
+    border-radius: var(--borderRadius);
+}
+
+.TutorialMessageBubble p {
+    font-size: 1.5rem;
+    line-height: 3rem;
+    text-align: center;
+}
+
+@media screen and (max-aspect-ratio: 9/16) {
+    .TutorialMessageBubble {
+        max-width: 100%;
+    }   
 }
