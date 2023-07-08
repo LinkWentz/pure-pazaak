@@ -1,26 +1,3 @@
-.Tutorial {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: scroll;
-    width: 100%;
-}
-
-.Tutorial > header {
-    padding: 2rem 0 0 0;
-}
-.Tutorial > main {
-    padding: 0 33%;
-}
-
-.Tutorial > main > p {
-    font-size: 1.5rem;
-    font-family: "Franklin Gothic";
-    font-weight: 1000;
-    color: var(--headers);
-    text-align: left;
-}
-
 .TutorialMessageBubble {
     display: flex;
     flex-direction: column;
