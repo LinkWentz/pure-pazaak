@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect, useRef } from 'react';
 
 function NetworkedGame() {
-    
+
     const params = useParams();
 
     const [opponentsUsername, setOpponentsUsername] = useState(null);
@@ -111,13 +111,15 @@ function NetworkedGame() {
 
     const Stand = () => socket.emit('game-event', 'stand', params['sessionName']);;
 
-    const NewGame = () => socket.emit("game-event", "new game", params['roomcode']);
+    const NewGame = () => socket.emit("game-event", "new game", params['sessionName']);
+
+    const PlayCard = (card) => socket.emit('game-event', card, params['sessionName']);
 
     return (
         <Game gameState={gameState}
         opponentsUsername={opponentsUsername} 
         endTurn={EndTurn} stand={Stand} 
-        newGame={NewGame}/>
+        newGame={NewGame} playCard={PlayCard}/>
     )
 }
 

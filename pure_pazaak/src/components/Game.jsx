@@ -17,7 +17,7 @@ import { useState, useEffect, useRef } from 'react';
 // import WinGame from '../assets/audio/mgs_winmatch.wav';
 // import WinRound from '../assets/audio/mgs_winset.wav';
 
-function Game( { gameState, opponentsUsername, endTurn, stand, newGame } ) {
+function Game( { gameState, opponentsUsername, endTurn, stand, newGame, playCard } ) {
 
     const [displayedGameState, setDisplayedGameState] = useState(gameState);
 
@@ -102,13 +102,17 @@ function Game( { gameState, opponentsUsername, endTurn, stand, newGame } ) {
         if (timedQueue.current.done) newGame();
     };
 
+    const PlayCard = (card) => { 
+        if (timedQueue.current.done) playCard(card);
+    };
+
     return (
         <div className="Game">
             <GameOver finished={displayedGameState.finished} yourScore={displayedGameState["boards"]["you"]["points"]} 
                 opponentScore={displayedGameState["boards"]["opponent"]["points"]} newGame={NewGame} />
             <WaitingForOpponent playerCount={displayedGameState.playerCount} finished={displayedGameState.finished} />
             <TurnOverlay gameState={displayedGameState} />
-            <GameBoard gameState={displayedGameState} opponentsUsername={opponentsUsername} endTurn={EndTurn} stand={Stand} />
+            <GameBoard gameState={displayedGameState} opponentsUsername={opponentsUsername} endTurn={EndTurn} stand={Stand} playCard={PlayCard}/>
         </div>
     )
 }
