@@ -21,3 +21,23 @@
     text-align: left;
 }
 
+.TutorialMessageBubble {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: black;
+    display: block;
+    line-height: 4rem;
+    font-size: 1rem;
+    text-align: center;
+    height: auto;
+    width: auto;
+    min-width: min-content;
+    max-width: 50%;
+    z-index: 100;
+    border-radius: var(--borderRadius);
+    overflow: hidden;
+    border: var(--borders) var(--borderThickness) solid;
+    padding: 0 1rem;
+    background-color: var(--overlayColor);
+}
