@@ -3,8 +3,8 @@ const fs = require("fs");
 
 const {key, cert} = (() => {
 	return {
-		key: fs.readFileSync(`../certs/privkey.pem`, 'utf-8'),
-		cert: fs.readFileSync(`../certs/fullchain.pem`, 'utf-8')
+		key: fs.readFileSync(`../_untracked/certs/privkey.pem`, 'utf-8'),
+		cert: fs.readFileSync(`../_untracked/certs/fullchain.pem`, 'utf-8')
 	}
 })();
 
