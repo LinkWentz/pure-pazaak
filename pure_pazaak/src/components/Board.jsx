@@ -2,19 +2,39 @@
 import './styles/Board.css';
 // Components
 import Card from './Card';
+// Libraries
+import { useState, useEffect } from 'react';
+//Audio
+import DrawCard from '../assets/audio/mgs_drawmain.wav';
+import PlayCard from '../assets/audio/mgs_playside.wav';
 
 function Board(props) {
 
-    const card_elements = [];
+    const [cardElements, setCardElements] = useState([]);
 
-    for (const card in props.cards) {
-        card_elements.push(<Card key={card} card={props.cards[card]} />);
-    }
+    useEffect(() => {
+        const newCardElements = [];
+        for (const card in props.cards) {
+            newCardElements.push(<Card key={card} card={props.cards[card]} />);
+        }
+
+        if (newCardElements.length == cardElements.length+1) {
+            const cardType = props.cards[props.cards.length - 1]["type"];
+            if (cardType == 'sidedeck') {
+                new Audio(PlayCard).play();
+            }
+            else {
+                new Audio(DrawCard).play();
+            }
+        }
+
+        setCardElements(newCardElements);
+    }, [props.cards]);
 
     return (
         <div className={`Board ${props.className}`}>
             <div className="cardGrid">
-                {card_elements}
+                {cardElements}
             </div>
         </div>
     )

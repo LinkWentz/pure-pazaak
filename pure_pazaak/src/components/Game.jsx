@@ -7,15 +7,6 @@ import TurnOverlay from './TurnOverlay';
 import GameBoard from './GameBoard';
 // Libraries
 import { useState, useEffect, useRef } from 'react';
-// Audio
-// import DrawCard from '../assets/audio/mgs_drawmain.wav';
-// import LoseGame from '../assets/audio/mgs_losematch.wav';
-// import LoseRound from '../assets/audio/mgs_loseset.wav';
-// import PlayCard from '../assets/audio/mgs_playside.wav';
-// import StartTurn from '../assets/audio/mgs_startturn.wav';
-// import Bust from '../assets/audio/mgs_warnbust.wav';
-// import WinGame from '../assets/audio/mgs_winmatch.wav';
-// import WinRound from '../assets/audio/mgs_winset.wav';
 
 function Game( { gameState, opponentsUsername, endTurn, stand, newGame, playCard } ) {
 

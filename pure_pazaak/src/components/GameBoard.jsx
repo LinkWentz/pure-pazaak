@@ -13,13 +13,13 @@ function GameBoard(props){
 
     return(
         <div className={`GameBoard ${props.className}`}>
-            <Scoreboard className="yourScoreboard" score={props.gameState["boards"]["you"]["points"]}/>
+            <Scoreboard className="yourScoreboard" score={props.gameState["boards"]["you"]["points"]} role={"you"}/>
             <Username className="yourUsername">{window.localStorage.username}</Username>
             <BoardSum className="yourBoardSum" value={props.gameState["boards"]["you"]["boardSum"]}/>
             
             <BoardSum className="opponentsBoardSum" value={props.gameState["boards"]["opponent"]["boardSum"]}/>
             <Username className="opponentsUsername">{props.opponentsUsername}</Username>
-            <Scoreboard className="opponentsScoreboard" score={props.gameState["boards"]["opponent"]["points"]}/>
+            <Scoreboard className="opponentsScoreboard" score={props.gameState["boards"]["opponent"]["points"]} role={"opponent"}/>
             
             <Board className="yourBoard" cards={props.gameState["boards"]["you"]["board"]}/>
             <Board className="opponentsBoard" cards={props.gameState["boards"]["opponent"]["board"]}/>
