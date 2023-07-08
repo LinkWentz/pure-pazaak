@@ -83,7 +83,10 @@
     }
 
     .Nav .Button:active::before {
-        background: linear-gradient(to bottom, var(--buttonActiveText), transparent 15%), ;
+        background: linear-gradient(to bottom, var(--buttonActiveText), transparent 15%),
+                    linear-gradient(to right, var(--buttonActiveText), transparent 15%),
+                    linear-gradient(to top, var(--buttonActiveText), transparent 15%),
+                    linear-gradient(to left, var(--buttonActiveText), transparent 15%);
     }
 
     .Nav .Button:first-child {
