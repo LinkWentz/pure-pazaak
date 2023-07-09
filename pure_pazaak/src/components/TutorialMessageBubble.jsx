@@ -1,11 +1,15 @@
 // Components
 import Button from './Button';
 // Libraries
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function TutorialMessageBubble(props) {
 
     const [visible, setVisible] = useState(props.children ? true : false);
+
+    useEffect(() => {
+        setVisible(props.children ? true : false);
+    }, [props.children])
 
     const Dismiss = () => {
         setVisible(false);
