@@ -20,6 +20,10 @@
     cursor: pointer;
 }
 
+.Card.acceptPointerEvents {
+    pointer-events: auto;
+}
+
 .glow {
     aspect-ratio: 20/27;
     position: absolute;
