@@ -957,7 +957,7 @@ function Tutorial() {
     return (
         <div className={`Tutorial ${displayedState["highlightClass"]}`}>
             <Game gameState={tutorialStates[currentState]}
-            opponentsUsername={"Whoever the guy is who gives the tutorial (temp)"} 
+            opponentsUsername={"Garouk"} 
             endTurn={NextState} stand={NextState} 
             newGame={NextState} playCard={NextState}
             updateDelay={900}/>
