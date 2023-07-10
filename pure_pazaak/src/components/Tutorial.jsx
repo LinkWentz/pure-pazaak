@@ -4,7 +4,7 @@ import './styles/Tutorial.css';
 import Game from './Game';
 import TutorialMessageBubble from './TutorialMessageBubble';
 // Libraries
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 function Tutorial() {
 
@@ -896,7 +896,47 @@ function Tutorial() {
     ]
 
     const [currentState, setCurrentState] = useState(0);
-    const [highlight, setHighlight] = useState("");
+    const [displayedState, setDisplayedState] = useState(tutorialStates[currentState]);
+
+    const timedQueue = useRef((function () {
+        var API;
+        const queue = [];
+        var task = null;
+        var tHandle;
+
+        function next() {
+            if (task !== null) {
+                task.func();
+                task = null;
+            }
+            if (queue.length > 0) {
+                task = queue.shift();
+                tHandle = setTimeout(next, task.time)
+            }
+            else {
+                API.done = true;
+            }
+        }
+
+        return API = {
+            add: function (func, time) {
+                queue.push({ func: func, time: time });
+            },
+            start: function () {
+                if (queue.length > 0 && API.done) {
+                    API.done = false;
+                    tHandle = setTimeout(next, 0);
+                }
+            },
+            clear: function () {
+                task = null;
+                queue.length = 0;
+                clearTimeout(tHandle);
+                API.done = true;
+            },
+            done: true,
+        }
+    })());
 
     const NextState = () => {
         if (currentState == tutorialStates.length - 1) {
@@ -906,17 +946,22 @@ function Tutorial() {
     };
 
     useEffect(() => {
-        tutorialStates[currentState]["next"]();
-        setHighlight(tutorialStates[currentState]["highlightClass"]);
+        timedQueue.current.add(() => {
+            setDisplayedState(tutorialStates[currentState]);
+            tutorialStates[currentState]["next"]();
+        }, 0);
+        timedQueue.current.add(() => {}, 1000);
+        timedQueue.current.start();
     }, [currentState]);
 
     return (
-        <div className={`Tutorial ${highlight}`}>
+        <div className={`Tutorial ${displayedState["highlightClass"]}`}>
             <Game gameState={tutorialStates[currentState]}
             opponentsUsername={"Whoever the guy is who gives the tutorial (temp)"} 
             endTurn={NextState} stand={NextState} 
-            newGame={NextState} playCard={NextState}/>
-            <TutorialMessageBubble>{tutorialStates[currentState]["bubble"]["message"]}</TutorialMessageBubble>
+            newGame={NextState} playCard={NextState}
+            updateDelay={900}/>
+            <TutorialMessageBubble>{displayedState["bubble"]["message"]}</TutorialMessageBubble>
         </div>
     )
 }

@@ -8,7 +8,7 @@ import GameBoard from './GameBoard';
 // Libraries
 import { useState, useEffect, useRef } from 'react';
 
-function Game( { gameState, opponentsUsername, endTurn, stand, newGame, playCard } ) {
+function Game( { gameState, opponentsUsername, endTurn, stand, newGame, playCard, updateDelay=500 } ) {
 
     const [displayedGameState, setDisplayedGameState] = useState(gameState);
 
@@ -77,7 +77,7 @@ function Game( { gameState, opponentsUsername, endTurn, stand, newGame, playCard
                 }
             });
         }, 0);
-        timedQueue.current.add(() => { }, 500);
+        timedQueue.current.add(() => { }, updateDelay);
         timedQueue.current.start();
     }, [gameState]);
 
