@@ -30,24 +30,32 @@
     overflow: hidden;
     width: auto;
     min-width: min-content;
-    max-width: 50%;
+    width: 70%;
+    max-width: 800px;
     height: auto;
-    padding: 1.5rem;
-    background-color: black;
+    padding: 1rem;
+    background-color: var(--gameBackground);
     border: var(--borders) var(--borderThickness) solid;
     border-radius: var(--borderRadius);
     pointer-events: all;
 }
 
 .TutorialMessageBubble p {
-    font-size: 1.5rem;
-    line-height: 3rem;
+    font-size: 1.2rem;
+    line-height: 2rem;
     text-align: center;
 }
 
-@media screen and (max-aspect-ratio: 9/16) {
+.TutorialMessageBubble .Button {
+    height: 45px;
+    width: 150px;
+    font-size: 1.2rem;
+}
+
+@media screen and (max-aspect-ratio: 1) {
     .TutorialMessageBubble {
         max-width: 100%;
+        width: 100%;
     }   
 }
 
