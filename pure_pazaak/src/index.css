@@ -34,9 +34,9 @@
   --buttonHover: rgba(0, 0, 20, 1);
   --buttonActive: black;
   --buttonBorder: #9DD9D2;
-  --buttonHoverBorder: #FBC846;
+  --buttonHoverBorder: #9DD9D2;
   --buttonActiveBorder: #FBC846;
-  --buttonHoverText: #FBC846;
+  --buttonHoverText: #9DD9D2;
   --buttonActiveText: #FBC846;
   /* borders */
   --gridGap: 5px;

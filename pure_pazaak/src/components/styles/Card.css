@@ -48,15 +48,8 @@
 }
 
 @media screen and (min-aspect-ratio: 9/16) {
-    .Card:hover .glow {
-        opacity: 1;
-    }
-
-    .Card:active .glow {
-        opacity: 0;
-    }
-
     .Card:hover {
+        filter: drop-shadow(0 0 10px var(--text));
         top: -2px;
         left: -2px;
     }
