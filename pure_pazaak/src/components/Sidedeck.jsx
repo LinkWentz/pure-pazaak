@@ -7,19 +7,15 @@ import { useEffect, useState } from 'react';
 
 function Sidedeck(props) {
 
-    const [cards, setCards] = useState([]);
+    const cards = []
 
-    useEffect(() => {
-        const newCards = [];
-        for (const card in props.cards) {
-            newCards.push(
-                <Card key={card} card={props.cards[card]} 
-                onClick={() => props.playCard(props.cards[card])} 
-                acceptPointerEvents={true} />
-            );
-        }
-        setCards(newCards);
-    }, [props.cards]);
+    for (const card in props.cards) {
+        cards.push(
+            <Card key={card} card={props.cards[card]} 
+            onClick={() => props.playCard(props.cards[card])} 
+            acceptPointerEvents={true} />
+        )
+    }
 
     return (
         <div className={`Sidedeck ${props.className}`}>
