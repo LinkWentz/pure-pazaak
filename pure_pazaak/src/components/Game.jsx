@@ -53,29 +53,26 @@ function Game( { gameState, opponentsUsername, endTurn, stand, newGame, playCard
     })());
 
     useEffect(() => {
-        // Automatic standing
-        const yourBoardSum = gameState["boards"]["you"]["board"].reduce((x, e) => x + e.value, 0);
-        const opponentsBoardSum = gameState["boards"]["opponent"]["board"].reduce((x, e) => x + e.value, 0);
+        // Game State Creation
+        const newGameState = Object.assign({}, displayedGameState, gameState); 
+        if (gameState["boards"]){
+            newGameState["boards"]["you"] = Object.assign({}, displayedGameState["boards"]["you"], gameState["boards"]["you"]);
+            newGameState["boards"]["opponent"] = Object.assign({}, displayedGameState["boards"]["opponent"], gameState["boards"]["opponent"]);
+        }
 
-        if (yourBoardSum == 20 && !gameState["boards"]["you"]["standing"]) {
+        const yourBoardSum = newGameState["boards"]["you"]["board"].reduce((x, e) => x + e.value, 0);
+        const opponentsBoardSum = newGameState["boards"]["opponent"]["board"].reduce((x, e) => x + e.value, 0);
+        newGameState["boards"]["you"]["boardSum"] = yourBoardSum;
+        newGameState["boards"]["opponent"]["boardSum"] = opponentsBoardSum;
+
+        // Automatic Standing
+        if (yourBoardSum == 20 && !newGameState["boards"]["you"]["standing"] && !newGameState["next"]) {
             stand();
         }
 
         // Game State Updating
         timedQueue.current.add(() => {
-            setDisplayedGameState({
-                ...gameState,
-                "boards": {
-                    "you": {
-                        ...gameState["boards"]["you"],
-                        "boardSum": yourBoardSum
-                    },
-                    "opponent": {
-                        ...gameState["boards"]["opponent"],
-                        "boardSum": opponentsBoardSum
-                    }
-                }
-            });
+            setDisplayedGameState(newGameState);
         }, 0);
         timedQueue.current.add(() => { }, updateDelay);
         timedQueue.current.start();
