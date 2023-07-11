@@ -38,6 +38,9 @@
   --buttonActiveBorder: #FBC846;
   --buttonHoverText: #9DD9D2;
   --buttonActiveText: #FBC846;
+  --inactiveText: #457771;
+  --inactiveBorder: #457771;
+  --inactiveBackground: #111240;
   /* borders */
   --gridGap: 5px;
   --borderRadius: 3vh;

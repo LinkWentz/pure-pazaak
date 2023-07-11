@@ -10,6 +10,13 @@
     border-radius: var(--borderRadius);
 }
 
+.inputDisabled.Button {
+    pointer-events: none;
+    color: var(--inactiveText);
+    border-color: var(--inactiveBorder);
+    background-color: var(--inactiveBackground);
+}
+
 @media screen and (min-aspect-ratio: 9/16) {
     .GameBoard {
         grid-template-rows: 1fr 8fr 3fr 1fr;

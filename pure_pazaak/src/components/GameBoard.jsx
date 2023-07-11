@@ -24,12 +24,12 @@ function GameBoard(props){
             <Board className="yourBoard" cards={props.gameState["boards"]["you"]["board"]}/>
             <Board className="opponentsBoard" cards={props.gameState["boards"]["opponent"]["board"]}/>
             
-            <Sidedeck className="yourSidedeck" cards={props.gameState["boards"]["you"]["sidedeck"]} playCard={props.playCard}></Sidedeck>
+            <Sidedeck className={`yourSidedeck ${props.inputDisabled ? "inputDisabled" : ""}`} cards={props.gameState["boards"]["you"]["sidedeck"]} playCard={props.playCard}></Sidedeck>
             <OpponentsSidedeck className="opponentsSidedeck" cardsCount={props.gameState["boards"]["opponent"]["sidedeckSize"]}/>
 
             <Button className="mainMenu" to="/">Main Menu</Button>
-            <Button className="endTurn" onClick={props.endTurn}>End Turn</Button>
-            <Button className="stand" onClick={props.stand}>Stand</Button>
+            <Button className={`endTurn ${props.inputDisabled ? "inputDisabled" : ""}`} onClick={props.endTurn}>End Turn</Button>
+            <Button className={`stand ${props.inputDisabled ? "inputDisabled" : ""}`} onClick={props.stand}>Stand</Button>
         </div>
     )
 }

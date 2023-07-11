@@ -11,6 +11,7 @@ import { useState, useEffect, useRef } from 'react';
 function Game( { gameState, opponentsUsername, endTurn, stand, newGame, playCard, updateDelay=500 } ) {
 
     const [displayedGameState, setDisplayedGameState] = useState(gameState);
+    const [inputDisabled, setInputDisabled] = useState(false);
 
     const timedQueue = useRef((function () {
         var API;
@@ -29,6 +30,7 @@ function Game( { gameState, opponentsUsername, endTurn, stand, newGame, playCard
             }
             else {
                 API.done = true;
+                setInputDisabled(false);
             }
         }
 
@@ -39,6 +41,7 @@ function Game( { gameState, opponentsUsername, endTurn, stand, newGame, playCard
             start: function () {
                 if (queue.length > 0 && API.done) {
                     API.done = false;
+                    setInputDisabled(true);
                     tHandle = setTimeout(next, 0);
                 }
             },
@@ -47,6 +50,7 @@ function Game( { gameState, opponentsUsername, endTurn, stand, newGame, playCard
                 queue.length = 0;
                 clearTimeout(tHandle);
                 API.done = true;
+                setInputDisabled(false);
             },
             done: true,
         }
@@ -78,29 +82,13 @@ function Game( { gameState, opponentsUsername, endTurn, stand, newGame, playCard
         timedQueue.current.start();
     }, [gameState]);
 
-    const EndTurn = () => {
-        if (timedQueue.current.done) endTurn();
-    };
-
-    const Stand = () => {
-        if (timedQueue.current.done) stand();
-    };
-
-    const NewGame = () => {
-        if (timedQueue.current.done) newGame();
-    };
-
-    const PlayCard = (card) => { 
-        if (timedQueue.current.done) playCard(card);
-    };
-
     return (
         <div className="Game">
             <GameOver finished={displayedGameState.finished} yourScore={displayedGameState["boards"]["you"]["points"]} 
-                opponentScore={displayedGameState["boards"]["opponent"]["points"]} newGame={NewGame} />
+                opponentScore={displayedGameState["boards"]["opponent"]["points"]} newGame={newGame} />
             <WaitingForOpponent playerCount={displayedGameState.playerCount} finished={displayedGameState.finished} />
             <TurnOverlay gameState={displayedGameState} />
-            <GameBoard gameState={displayedGameState} opponentsUsername={opponentsUsername} endTurn={EndTurn} stand={Stand} playCard={PlayCard}/>
+            <GameBoard gameState={displayedGameState} opponentsUsername={opponentsUsername} endTurn={endTurn} stand={stand} playCard={playCard} inputDisabled={inputDisabled}/>
         </div>
     )
 }
