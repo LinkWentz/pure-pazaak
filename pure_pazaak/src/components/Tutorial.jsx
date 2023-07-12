@@ -1,10 +1,13 @@
+import { backgroundVideoUrlContext } from '../App';
 // Stylesheets
 import './styles/Tutorial.css';
 // Components
 import Game from './Game';
 import TutorialMessageBubble from './TutorialMessageBubble';
 // Libraries
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
+// Video
+import TutorialBackground from '../assets/video/TutorialBackground.mkv'
 
 function Tutorial() {
 
@@ -418,7 +421,11 @@ function Tutorial() {
         }
     ]
 
-    console.log(tutorialStates[10]);
+    const [backgroundVideoUrl, setBackgroundVideoUrl] = useContext(backgroundVideoUrlContext);
+
+    useEffect(() => {
+        setBackgroundVideoUrl(TutorialBackground);
+    }, []);
 
     const [currentState, setCurrentState] = useState(0);
     const [displayedState, setDisplayedState] = useState(tutorialStates[currentState]);
@@ -467,7 +474,6 @@ function Tutorial() {
         if (currentState == tutorialStates.length - 1) {
             return;
         }
-        console.log(currentState);
         setCurrentState(currentState + 1);
     };
 

@@ -14,5 +14,6 @@ export default defineConfig({
   },
   build: {
     minify: false
-  }
+  },
+  assetsInclude: ['**/*.mkv']
 })

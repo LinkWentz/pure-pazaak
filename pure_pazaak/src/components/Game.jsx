@@ -8,7 +8,7 @@ import GameBoard from './GameBoard';
 // Libraries
 import { useState, useEffect, useRef } from 'react';
 
-function Game( { gameState, opponentsUsername, endTurn, stand, newGame, playCard, updateDelay=500 } ) {
+function Game( { gameState, opponentsUsername, endTurn, stand, newGame, playCard, updateDelay=500, automaticStanding=true } ) {
 
     const [displayedGameState, setDisplayedGameState] = useState(gameState);
     const [inputDisabled, setInputDisabled] = useState(false);
@@ -70,7 +70,7 @@ function Game( { gameState, opponentsUsername, endTurn, stand, newGame, playCard
         newGameState["boards"]["opponent"]["boardSum"] = opponentsBoardSum;
 
         // Automatic Standing
-        if (yourBoardSum == 20 && !newGameState["boards"]["you"]["standing"] && !newGameState["next"]) {
+        if (yourBoardSum == 20 && !newGameState["boards"]["you"]["standing"] && automaticStanding) {
             stand();
         }
 

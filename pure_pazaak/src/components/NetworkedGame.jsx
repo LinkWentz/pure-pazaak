@@ -1,13 +1,21 @@
-import { socket } from '../App';
-
+import { socket, backgroundVideoUrlContext } from '../App';
+// Components
 import Game from './Game';
-
+// Libraries
 import { useParams } from "react-router-dom";
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
+// Video
+import NetworkedGameBackground from '../assets/video/NetworkedGameBackground.mkv'
 
 function NetworkedGame() {
 
     const params = useParams();
+
+    const [backgroundVideoUrl, setBackgroundVideoUrl] = useContext(backgroundVideoUrlContext);
+
+    useEffect(() => {
+        setBackgroundVideoUrl(NetworkedGameBackground);
+    }, [])
 
     const [opponentsUsername, setOpponentsUsername] = useState(null);
     const [gameState, setGameState] = useState({
