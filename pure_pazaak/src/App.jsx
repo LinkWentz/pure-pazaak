@@ -6,6 +6,7 @@ import Tutorial from './components/Tutorial';
 import About from './components/About';
 import NetworkedGame from './components/NetworkedGame';
 import BackgroundVideo from './components/BackgroundVideo';
+import Ambience from './components/Ambience';
 // Libraries
 import { useState, createContext } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -21,6 +22,7 @@ export default function App() {
 
   return (
     <div className="App">
+      <Ambience />
       <backgroundVideoUrlContext.Provider value={[backgroundVideoUrl, setBackgroundVideoUrl]}>
         <BackgroundVideo video={backgroundVideoUrl} />
         <BrowserRouter>

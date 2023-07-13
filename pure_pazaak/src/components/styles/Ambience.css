@@ -1,0 +1,12 @@
+.MuteButton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 8%;
+    aspect-ratio: 1;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    z-index: 100;
+    filter: brightness(0.9) invert(.7) sepia(.5) hue-rotate(120deg) saturate(200%);
+}
