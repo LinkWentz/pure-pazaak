@@ -482,7 +482,7 @@ function Tutorial() {
             setDisplayedState(tutorialStates[currentState]);
             tutorialStates[currentState]["next"]();
         }, 0);
-        timedQueue.current.add(() => {}, 1000);
+        timedQueue.current.add(() => {}, 900);
         timedQueue.current.start();
     }, [currentState]);
 
@@ -492,7 +492,7 @@ function Tutorial() {
             opponentsUsername={"Garouk"} 
             endTurn={NextState} stand={NextState} 
             newGame={NextState} playCard={NextState}
-            updateDelay={1000}/>
+            updateDelay={900} automaticStanding={false}/>
             <TutorialMessageBubble>{displayedState["bubble"]["message"]}</TutorialMessageBubble>
         </div>
     )
