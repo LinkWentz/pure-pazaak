@@ -5,36 +5,33 @@ import Button from './Button';
 // Libraries
 import { useEffect, useState } from 'react';
 
-function GameOver(props){
+function GameOver( { finished=false, yourScore=0, opponentScore=0, newGame=()=>{}} ){
 
-    const [style, setStyle] = useState({});
+    const [style, setStyle] = useState({"visiblity": "hidden"});
 
     const [message, setMessage] = useState("");
 
     useEffect(() => {
-        if (props.finished){
+        if (finished){
             setStyle({"visibility": "visible"});
         }
         else {
             setStyle({"visibility": "hidden"});
         }
 
-        if (props.yourScore > props.opponentScore){
+        if (yourScore > opponentScore){
             setMessage("You won!");
-        }
-        else if (props.yourScore == props.opponentScore) {
-            setMessage("Tie!");
         }
         else {
             setMessage("You lost!");
         }
-    }, [props.finished]);
+    }, [finished]);
 
     return(
         <div className="GameOver" style={style}>
             <p className="message">{message}</p>
             <Button to={'/'} className="mainMenu">Main Menu</Button>
-            <Button onClick={props.newGame}>Rematch</Button>
+            <Button onClick={newGame}>Rematch</Button>
         </div>
     )
 }
