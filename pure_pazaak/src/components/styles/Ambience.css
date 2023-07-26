@@ -1,9 +1,9 @@
 .MuteButton {
     position: absolute;
-    top: 0;
-    left: 0;
-    height: 8%;
-    aspect-ratio: 14/15;
+    top: 0.5%;
+    left: 0.5%;
+    height: 6%;
+    aspect-ratio: 1;
     background-size: cover;
     background-position: center;
     cursor: pointer;
