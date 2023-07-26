@@ -17,11 +17,11 @@
     min-height: 0;
     max-height: 100%;
     transition: 0.2s;
-    cursor: pointer;
 }
 
 .Card.acceptPointerEvents {
     pointer-events: auto;
+    cursor: pointer;
 }
 
 .Card svg {
@@ -36,13 +36,13 @@
 }
 
 @media screen and (min-aspect-ratio: 14/15) {
-    .Card:hover {
+    .Card.acceptPointerEvents:hover {
         filter: drop-shadow(0 0 10px var(--text));
         top: -2px;
         left: -2px;
     }
 
-    .Card:active {
+    .Card.acceptPointerEvents:active {
         top: 0;
         left: 0;
         transition: 0s;
