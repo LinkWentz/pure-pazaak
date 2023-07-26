@@ -57,7 +57,7 @@
         overflow-y: visible;
         width: 100%;
         height: 30%;
-        padding: 5% 0;
+        padding: 5% 25%;
     }
 
     .Nav .Button {
@@ -67,7 +67,7 @@
         align-items: center;
         position: relative;
         box-sizing: border-box;
-        min-width: 60%;
+        min-width: 120%;
         height: 100%;
         background-size: cover;
         border-radius: 3vh;
@@ -89,14 +89,6 @@
                     linear-gradient(to right, var(--buttonActiveText), transparent 15%),
                     linear-gradient(to top, var(--buttonActiveText), transparent 15%),
                     linear-gradient(to left, var(--buttonActiveText), transparent 15%);
-    }
-
-    .Nav .Button:first-child {
-        margin-left: 25%;
-    }
-
-    .Nav .Button:last-child {
-        margin-right: 25%;
     }
 
     .Nav .Button:hover {}
