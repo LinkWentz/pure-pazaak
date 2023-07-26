@@ -47,7 +47,7 @@
     font-size: 3rem;
 }
 
-@media screen and (min-aspect-ratio: 9/16) {
+@media screen and (min-aspect-ratio: 14/15) {
     .Card:hover {
         filter: drop-shadow(0 0 10px var(--text));
         top: -2px;

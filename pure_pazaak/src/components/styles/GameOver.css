@@ -21,13 +21,13 @@
     text-align: center;
 }
 
-@media screen and (min-aspect-ratio: 9/16) {
+@media screen and (min-aspect-ratio: 14/15) {
     .GameOver .mainMenu {
         display: none;
     }
 }
 
-@media screen and (max-aspect-ratio: 9/16) {
+@media screen and (max-aspect-ratio: 14/15) {
     .GameOver {
         display: grid;
         gap: var(--gridGap);

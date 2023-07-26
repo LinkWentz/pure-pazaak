@@ -35,7 +35,7 @@
     position: relative;
 }
 
-@media screen and (min-aspect-ratio: 9/16) {
+@media screen and (min-aspect-ratio: 14/15) {
     .Button:hover {
         background-color: var(--buttonHover);
         border-color: var(--buttonHoverBorder);

@@ -1,4 +1,4 @@
-@media screen and (min-aspect-ratio: 9/16) {
+@media screen and (min-aspect-ratio: 14/15) {
     .Nav {
         display: flex;
         flex-direction: column;
@@ -45,7 +45,7 @@
     }
 }
 
-@media screen and (max-aspect-ratio: 9/16) {
+@media screen and (max-aspect-ratio: 14/15) {
     .Nav {
         scroll-snap-type: x mandatory;
         display: flex;
