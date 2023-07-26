@@ -24,18 +24,6 @@
     pointer-events: auto;
 }
 
-.glow {
-    aspect-ratio: 20/27;
-    position: absolute;
-    z-index: 11;
-    opacity: 0;
-    width: 100%;
-    transition: inherit;
-    background-color: var(--borders);
-    border: 3px solid var(--borders);
-    border-radius: 10px;
-}
-
 .Card svg {
     z-index: 12;
     height: 100%;
