@@ -34,23 +34,37 @@ function UsernameField() {
         return defaultUsernames[Math.round(Math.random() * (defaultUsernames.length + 1)) - 1];
     }
 
-    useEffect(() => {
+    const loadUsername = () => {
         setUsername(window.localStorage.username || randomUsername());
-      }, []);
+    }
+
+    const UpdateUsername = (event) => {
+        const input = event.target.value;
+
+        if (input.length > 40){
+            return
+        }
+
+        if (RegExp('[^a-zA-Z0-9\-\' ]').test(input)){
+            return
+        }
+
+        setUsername(event.target.value);
+    }
+
+    useEffect(() => {
+        loadUsername();
+    }, []);
 
     useEffect(() => {
       window.localStorage.username = username;
     }, [username, setUsername]);
 
-    const UpdateUsername = (event) => {
-        setUsername(event.target.value);
-    }
-
     return(
         <form className="UsernameField">
             <label htmlFor='username'>Username:</label>
             <input id='username' value={username} 
-            onChange={UpdateUsername} spellCheck='false'
+            onChange={UpdateUsername} onBlur={loadUsername} spellCheck='false'
             autoComplete='false'/>
         </form>
     )
