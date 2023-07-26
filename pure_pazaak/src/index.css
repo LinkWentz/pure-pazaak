@@ -56,17 +56,21 @@
 
 @viewport {
   zoom: 1.0;
-  min-zoom: 0.5;
-  max-zoom: 2.0;
+  min-zoom: 1;
+  max-zoom: 1;
 }
 
 * {
   box-sizing: border-box;
 }
 
-body {
+html, body {
+  height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
+  overflow: hidden;
+  position: fixed;
 }
 
 ::-webkit-scrollbar {
