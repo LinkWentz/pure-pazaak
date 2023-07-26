@@ -7,23 +7,26 @@ import BackgroundSuspenseImage from '../assets/BackgroundSuspense.png'
 // Videos
 import DefaultVideo from '../assets/video/TitleScreenBackground.mkv';
 
-const TestSuspense = () => {
-    throw new Promise(() => {});
-}
-
-
 function BackgroundVideo( { video } ) {
 
     const videoRef = useRef();
-    
+
+    const Play = () => {
+        videoRef.current.play();
+    }
+
     useEffect(() => {
         videoRef.current?.load();
+        window.addEventListener('click', Play);
+        return () => {
+            window.removeEventListener('click', Play);
+        }
     }, [video])
 
     return (
         <>
             <img src={BackgroundSuspenseImage}/>
-            <video style={{backgroundImage: BackgroundSuspenseImage}} ref={videoRef} autoPlay loop muted><source src={video || DefaultVideo} type={'video/mp4'}/></video>
+            <video style={{backgroundImage: BackgroundSuspenseImage}} ref={videoRef} playsInline loop muted><source src={video || DefaultVideo} type={'video/mp4'}/></video>
         </>
     )
 }
