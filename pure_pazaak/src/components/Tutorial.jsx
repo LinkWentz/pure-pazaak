@@ -416,7 +416,7 @@ function Tutorial() {
             "bubble": {
                 "message": ""
             },
-            "highlightClass": "",
+            "highlightClass": "highlightMainMenu",
             "next": () => {}
         }
     ]
