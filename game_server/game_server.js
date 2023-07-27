@@ -1,14 +1,6 @@
-const SessionManager = require("./session-manager.js");
-const fs = require("fs");
+require('dotenv').config();
 
-const {key, cert} = (() => {
-	return {
-		key: fs.readFileSync(`../_untracked/certs/privkey.pem`, 'utf-8'),
-		cert: fs.readFileSync(`../_untracked/certs/fullchain.pem`, 'utf-8')
-	}
-})();
-
-const https = require('https').createServer({key, cert}).listen(3333);
+const https = require('https').createServer({key: process.env.PRIVATE_KEY, cert: process.env.CERTIFICATE}).listen(3333);
 const io = require('socket.io')(https, {
     cors: {
         origin: '*'
@@ -18,6 +10,7 @@ const io = require('socket.io')(https, {
     transports: ["websocket"]
 });
 
+const SessionManager = require("./session-manager.js");
 const sessionManager = new SessionManager();
 
 io.on('connection', async (socket) => {
