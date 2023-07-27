@@ -122,7 +122,6 @@
 
 .highlight1stCard .yourSidedeck .sidedeckGrid .Card:first-child {
     pointer-events: all;
-    z-index: 100;
 }
 
 .highlight1stCard .yourSidedeck .sidedeckGrid .Card, .highlight1stCard .endTurn, .highlight1stCard .stand {

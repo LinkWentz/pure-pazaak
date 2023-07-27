@@ -87,7 +87,7 @@ function Game( { gameState, opponentsUsername, endTurn, stand, newGame, playCard
             <GameOver finished={displayedGameState.finished} yourScore={displayedGameState["boards"]["you"]["points"]} 
                 opponentScore={displayedGameState["boards"]["opponent"]["points"]} newGame={newGame} />
             <WaitingForOpponent playerCount={displayedGameState.playerCount} finished={displayedGameState.finished} />
-            <TurnOverlay gameState={displayedGameState} />
+            <TurnOverlay gameState={displayedGameState} inputDisabled={inputDisabled}/>
             <GameBoard gameState={displayedGameState} opponentsUsername={opponentsUsername} endTurn={endTurn} stand={stand} playCard={playCard} inputDisabled={inputDisabled}/>
         </div>
     )
