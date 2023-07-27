@@ -15,6 +15,12 @@
     color: var(--inactiveText);
     border-color: var(--inactiveBorder);
     background-color: var(--inactiveBackground);
+    box-shadow: none;
+}
+
+.highlight1stCard .yourSidedeck.inputDisabled .sidedeckGrid .Card:first-child svg {
+    pointer-events: none;
+    filter: none;
 }
 
 @media screen and (min-aspect-ratio: 14/15) {

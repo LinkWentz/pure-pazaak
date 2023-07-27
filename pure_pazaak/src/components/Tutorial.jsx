@@ -479,10 +479,11 @@ function Tutorial() {
 
     useEffect(() => {
         timedQueue.current.add(() => {
-            setDisplayedState(tutorialStates[currentState]);
             tutorialStates[currentState]["next"]();
         }, 0);
-        timedQueue.current.add(() => {}, 900);
+        timedQueue.current.add(() => {
+            setDisplayedState(tutorialStates[currentState]);
+        }, 900);
         timedQueue.current.start();
     }, [currentState]);
 
