@@ -1,4 +1,6 @@
 import { socket, backgroundVideoUrlContext } from '../App';
+// Stylesheets
+import './styles/NetworkedGame.css';
 // Components
 import Game from './Game';
 // Libraries
@@ -124,10 +126,12 @@ function NetworkedGame() {
     const PlayCard = (card) => socket.emit('game-event', card, params['sessionName']);
 
     return (
-        <Game gameState={gameState}
-        opponentsUsername={opponentsUsername} 
-        endTurn={EndTurn} stand={Stand} 
-        newGame={NewGame} playCard={PlayCard}/>
+        <div className="NetworkedGame">
+            <Game gameState={gameState}
+            opponentsUsername={opponentsUsername} 
+            endTurn={EndTurn} stand={Stand} 
+            newGame={NewGame} playCard={PlayCard}/>
+        </div>
     )
 }
 
