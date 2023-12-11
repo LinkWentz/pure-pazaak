@@ -11,6 +11,19 @@ Pazaak was a minigame in a 2003 Star Wars RPG called Knights of the Old Republic
 <img src="https://media.licdn.com/dms/image/D562DAQFMHxNO3HSMzQ/profile-treasury-image-shrink_800_800/0/1694293302756?e=1696532400&v=beta&t=HABaq6_m6FGhIAS4GgCcgMPKzG_9vly2FRn11qQisLI" width="19%"></img> 
 <img src="https://media.licdn.com/dms/image/D562DAQEemUDaWl6EIA/profile-treasury-image-shrink_1280_1280/0/1695926210028?e=1696532400&v=beta&t=DS7nTRzdGSr4sCFP1JEL6-emyen3hVJ9VO7eQyXnf8k" width="10%"></img> 
 <img src="https://media.licdn.com/dms/image/D562DAQFCe3UEIxiuGg/profile-treasury-image-shrink_1280_1280/0/1695926240632?e=1696532400&v=beta&t=WdujaY8YUg4Hf1SPX109S-XtBQngYr6L0bc9ZaG93-4" width="10%"></img> 
+
+# Development
+## Completed Features
+ - Basic Pazaak
+ - Multiplayer
+ - Play against PC mode
+ - Tutorial
+
+## Planned Features
+ - Side deck building
+ - Special cards
+ - Offline playability
+
 ## Dependencies
 - [dotenv 16.3.1](https://www.npmjs.com/package/dotenv)
 - [express 4.18.2](https://expressjs.com/)
