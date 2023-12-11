@@ -3,27 +3,6 @@ Pazaak was a minigame in a 2003 Star Wars RPG called Knights of the Old Republic
 
 ### [Try it out!](pazaak.lincolnwentz.com)
 
-# Gallery
-<img src="https://media.licdn.com/dms/image/D562DAQFK38e_bMUoHQ/profile-treasury-image-shrink_800_800/0/1694293270809?e=1696532400&v=beta&t=v5_gI5Ju4c8AL6ltSvBOQb5HhSn5WIafZbfcu1FVUSE" width="19%"></img> 
-<img src="https://media.licdn.com/dms/image/D562DAQEca51CV7Urpg/profile-treasury-image-shrink_800_800/0/1694293479920?e=1696532400&v=beta&t=t6a5y5arUvZ6VTKytm5NdQbby78bm6XsW6pDVSnkKXs" width="19%"></img>
-<img src="https://media.licdn.com/dms/image/D562DAQF-mmuiREeyIA/profile-treasury-image-shrink_800_800/0/1694293584107?e=1696532400&v=beta&t=HKwd20R6I_pkMSijxGfJogLYRHfCJcihRJk79dkaxS8" width="19%"></img>
-<img src="https://media.licdn.com/dms/image/D562DAQF-mmuiREeyIA/profile-treasury-image-shrink_800_800/0/1694293584107?e=1696532400&v=beta&t=HKwd20R6I_pkMSijxGfJogLYRHfCJcihRJk79dkaxS8" width="19%"></img> 
-<img src="https://media.licdn.com/dms/image/D562DAQFMHxNO3HSMzQ/profile-treasury-image-shrink_800_800/0/1694293302756?e=1696532400&v=beta&t=HABaq6_m6FGhIAS4GgCcgMPKzG_9vly2FRn11qQisLI" width="19%"></img> 
-<img src="https://media.licdn.com/dms/image/D562DAQEemUDaWl6EIA/profile-treasury-image-shrink_1280_1280/0/1695926210028?e=1696532400&v=beta&t=DS7nTRzdGSr4sCFP1JEL6-emyen3hVJ9VO7eQyXnf8k" width="10%"></img> 
-<img src="https://media.licdn.com/dms/image/D562DAQFCe3UEIxiuGg/profile-treasury-image-shrink_1280_1280/0/1695926240632?e=1696532400&v=beta&t=WdujaY8YUg4Hf1SPX109S-XtBQngYr6L0bc9ZaG93-4" width="10%"></img> 
-
-# Development
-## Completed Features
- - Basic Pazaak
- - Multiplayer
- - Play against PC mode
- - Tutorial
-
-## Planned Features
- - Side deck building
- - Special cards
- - Offline playability
-
 ## Dependencies
 - [dotenv 16.3.1](https://www.npmjs.com/package/dotenv)
 - [express 4.18.2](https://expressjs.com/)
