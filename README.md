@@ -1,7 +1,9 @@
 # Pure Pazaak
-Pazaak was a minigame in a 2003 Star Wars RPG called Knights of the Old Republic. It's essentially dueling blackjack, with an added resource management element in cards that allow you to modify your hand for a round. For some reason this minigame in a short lived series of RPGs from before iPhones were invented was somehow never adapted into its own standalone version. So I decided to fix that gross oversight, and add multiplayer to really put BioWare's game-within-a-game design to the test.
+Pazaak was a minigame in a 2003 Star Wars RPG called Knights of the Old Republic. It's essentially dueling blackjack, with an added resource management element in cards that allow you to modify your hand for a round. It's honestly pretty fun, and surprisingly no one has made a multiplayer version of it so I figured I'd give it a shot.
 
-### [Try it out!](pazaak.lincolnwentz.com)
+And if I may say so, I think I did pretty well. While there are some features like deck building and special cards that are missing from my version - features that I plan to add once I have the time - the game works and it works well. But don't take my word for it, play it yourself!
+
+### [Try it out!](https://pazaak.lincolnwentz.com)
 
 ## Dependencies
 - [dotenv 16.3.1](https://www.npmjs.com/package/dotenv)
