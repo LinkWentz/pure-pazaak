@@ -28,8 +28,8 @@ Contributions are welcome! If you're interested in improving Pure Pazaak, please
 4. Push to the branch.
 5. Submit a pull request.
 
-## Support or Contact
-Having trouble with Pure Pazaak? Check out our documentation or contact support, and we’ll help you sort it out.
+## License
+Pure Pazaak is released under the [License Name]. For more details, see the LICENSE file in the repository.
 
 ## Dependencies
 - [dotenv 16.3.1](https://www.npmjs.com/package/dotenv)
