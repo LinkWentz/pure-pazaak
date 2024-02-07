@@ -18,7 +18,7 @@ Pure Pazaak is built using React, a powerful JavaScript library for building use
 - Responsive design for desktop and mobile devices
 
 ## Getting Started
-To play Pure Pazaak, simply visit (this website)[https://pazaak.lincolnwentz.com] and start a game. No download or installation required.
+To play Pure Pazaak, simply visit [this website](https://pazaak.lincolnwentz.com) and start a game. No download or installation required.
 
 ## How to Contribute
 Contributions are welcome! If you're interested in improving Pure Pazaak, please follow these steps:
