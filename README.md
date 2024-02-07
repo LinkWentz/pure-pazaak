@@ -29,7 +29,7 @@ Contributions are welcome! If you're interested in improving Pure Pazaak, please
 5. Submit a pull request.
 
 ## License
-Pure Pazaak is released under the [License Name]. For more details, see the LICENSE file in the repository.
+Pure Pazaak is released under the GNU General Public License v3.0. For more details, see the LICENSE file in the repository.
 
 ## Dependencies
 - [dotenv 16.3.1](https://www.npmjs.com/package/dotenv)
