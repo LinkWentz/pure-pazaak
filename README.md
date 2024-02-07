@@ -1,9 +1,35 @@
 # Pure Pazaak
-Pazaak was a minigame in a 2003 Star Wars RPG called Knights of the Old Republic. It's essentially dueling blackjack, with an added resource management element in cards that allow you to modify your hand for a round. It's honestly pretty fun, and surprisingly no one has made a multiplayer version of it so I figured I'd give it a shot.
 
-And if I may say so, I think I did pretty well. While there are some features like deck building and special cards that are missing from my version - features that I plan to add once I have the time - the game works and it works well. But don't take my word for it, play it yourself!
+## Introduction
+Pure Pazaak is a web-based version of the Pazaak card game, originally featured in the video game Knights of the Old Republic. This project aims to bring Pazaak to the browser, allowing players to compete against friends online.
 
-### [Try it out!](https://pazaak.lincolnwentz.com)
+## Why Pure Pazaak?
+This project was born out of a love for Knights of the Old Republic and its unique minigames. Pazaak, being a game of strategy and luck, offers endless entertainment and challenge. Pure Pazaak seeks to recreate this experience in a modern web application, accessible to everyone.
+
+## About the Author
+Pure Pazaak was developed by me, Lincoln, a web developer and enthusiast of Knights of the Old Republic. With a passion for coding and gaming, I aimed to merge these interests by bringing Pazaak to the digital age.
+
+## Technologies and Architecture
+Pure Pazaak is built using React, a powerful JavaScript library for building user interfaces. The project leverages modern web technologies, including HTML5, CSS3, and WebSockets for real-time multiplayer functionality. The architecture is designed with scalability and performance in mind, ensuring a smooth and responsive gaming experience.
+
+## Features
+- Online multiplayer gameplay
+- Authentic Pazaak rules and gameplay
+- Responsive design for desktop and mobile devices
+
+## Getting Started
+To play Pure Pazaak, simply visit (this website)[https://pazaak.lincolnwentz.com] and start a game. No download or installation required.
+
+## How to Contribute
+Contributions are welcome! If you're interested in improving Pure Pazaak, please follow these steps:
+1. Fork the repository.
+2. Create a new branch for your feature or fix.
+3. Commit your changes.
+4. Push to the branch.
+5. Submit a pull request.
+
+## Support or Contact
+Having trouble with Pure Pazaak? Check out our documentation or contact support, and we’ll help you sort it out.
 
 ## Dependencies
 - [dotenv 16.3.1](https://www.npmjs.com/package/dotenv)
